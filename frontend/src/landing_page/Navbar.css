@@ -1,0 +1,12 @@
+#navbarNav{
+    margin-right: 20px;
+}
+.nav-underline .nav-link.active {
+  color: #fff !important; 
+}
+.nav-underline .nav-link:hover {
+  color: #f8f9fa !important; 
+}
+.logoName{
+    color: #008080!important;
+}

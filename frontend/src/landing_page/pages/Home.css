@@ -1,0 +1,14 @@
+
+.home-card:hover {
+  transform:translate(5px,5px);
+  transition:1s, ease-in-out, 0.2s;
+  box-shadow: 0 4px 10px rgba(65, 58, 58, 0.6); 
+  background: linear-gradient(135deg,  #a1c4fd, #c2e9fb);
+  color: #2F4F4F;
+  transition:background-color 0.4s ease-in-out;
+}
+
+
+.highlight{
+  color:#008080;
+}
