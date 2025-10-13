@@ -3,7 +3,7 @@ body {
   /* font-family: "Inter", sans-serif;
   margin: 0;
   transition: background-color 0.3s ease, color 0.3s ease; */
-   font-family: "Inter", sans-serif;
+  font-family: "Inter", sans-serif;
   background-color: #F5F7FA;
   color: #333;
   margin: 0;
@@ -37,18 +37,19 @@ a {
 
 /* Navbar */
 .navbar {
- background:linear-gradient(to right,rgb(136, 190, 240),rgb(73, 140, 240));
+ background: linear-gradient(to bottom, #536173, #707c8c);
+ box-shadow: 0 4px 6px rgba(0,0,0,0.4);
 }
 .navbar-brand,
 .navbar .nav-link {
  font-family:"Inter", sans-serif;
-  color:#0E3386;
-  font-weight: 600;
+  color:rgb(242,242,242);
+  font-weight: 200;
 }
 .nav-title {
-  color: #0E3386;
+  color: rgb(242,242,242);
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 200;
 }
 
 /* Footer */

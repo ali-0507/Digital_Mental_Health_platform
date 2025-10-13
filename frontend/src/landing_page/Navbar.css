@@ -1,12 +1,32 @@
 #navbarNav{
-    margin-right: 20px;
+    margin-right: 10px;
 }
-.nav-underline .nav-link.active {
-  color: #fff !important; 
-}
-.nav-underline .nav-link:hover {
-  color: #f8f9fa !important; 
-}
+
+/* .nav-pills .nav-link:hover {
+  color: rgb(216,216,216,0.4) !important; 
+} */
 .logoName{
-    color: #008080!important;
+    color: rgb(242,242,242) !important;
+}
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  background-color: rgb(216,216,216,0.2) !important;  
+}
+
+.navbar-brand{
+  margin-left:5rem;
+}
+
+.dropdown .btn{
+  background: linear-gradient(to bottom, #536173, #707c8c);
+  border:none;
+  color:rgb(242,242,242);
+}
+/* .dropdown .btn:hover{
+  background: rgb(216,216,216,0.2) ;
+  color:rgb(242,242,242);
+} */
+.dropdown-item:hover{
+  background: rgba(128,159,166,0.2);
+  color:rgb(83,97,115);
 }
