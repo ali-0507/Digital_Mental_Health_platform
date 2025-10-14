@@ -1,16 +1,16 @@
-#navbarNav{
-    margin-right: 10px;
-}
 
-/* .nav-pills .nav-link:hover {
-  color: rgb(216,216,216,0.4) !important; 
-} */
 .logoName{
-    color: rgb(242,242,242) !important;
+    color: #E1F1FC !important;
 }
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
-  background-color: rgb(216,216,216,0.2) !important;  
+  background-color: #CFCAC6 !important;  
+  color:#173753 !important;
+  border:1px solid #E1F1FC;
+}
+
+.nav-link{
+  font-weight: 400 !important;
 }
 
 .navbar-brand{
@@ -18,15 +18,14 @@
 }
 
 .dropdown .btn{
-  background: linear-gradient(to bottom, #536173, #707c8c);
+ background: linear-gradient(to left, #173753, #173753);
   border:none;
-  color:rgb(242,242,242);
+  color:#E1F1FC;
 }
-/* .dropdown .btn:hover{
-  background: rgb(216,216,216,0.2) ;
-  color:rgb(242,242,242);
-} */
 .dropdown-item:hover{
-  background: rgba(128,159,166,0.2);
-  color:rgb(83,97,115);
+  background: #CFCAC6;
+  color:#173753;
+}
+.dropdown-menu a{
+  font-weight: 300;
 }

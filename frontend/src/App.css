@@ -37,14 +37,13 @@ a {
 
 /* Navbar */
 .navbar {
- background: linear-gradient(to bottom, #536173, #707c8c);
+ background: linear-gradient(to left, #173753 80%, #0f5485);
  box-shadow: 0 4px 6px rgba(0,0,0,0.4);
 }
 .navbar-brand,
 .navbar .nav-link {
  font-family:"Inter", sans-serif;
   color:rgb(242,242,242);
-  font-weight: 200;
 }
 .nav-title {
   color: rgb(242,242,242);
