@@ -7,12 +7,12 @@ function Navbar() {
     <nav className="navbar navbar-expand-lg navbar-dark sticky-top">
       
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
-            <img src="/assests/logo (1).svg" alt="Logo" width="40" height="50" className="d-flex align-text-center"/>
-          </Link>
+          {/* <Link className="navbar-brand" to="/">
+            <img src="/assests/logo.png" alt="Logo" className="d-flex align-text-center"/>
+          </Link> */}
 
         <Link className="navbar-brand fs-5 logoName" to="/">
-          Connect&Evolve
+          <i>Connect&Evolve</i>
         </Link> 
 
         {/* for hamburger icon */}
@@ -25,47 +25,37 @@ function Navbar() {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="nav nav-underline ms-auto fs-5">
+          <ul className="nav nav-pills nav-fill ms-auto fs-5">
+    
             <li className="nav-item">
-              <NavLink className="nav-link " to="/">
-                Home
+              <NavLink className="nav-link" to="/"> Home </NavLink>
+            </li>
+
+          {/* Dropdown item */}
+            <li className="nav-item dropdown">
+            <button className="btn btn-lg dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              About Us
+            </button>
+              <ul className="dropdown-menu">
+                <li><a className="dropdown-item" href="#"><i>Who we are</i></a></li>
+                <li><a className="dropdown-item" href="#"><i>Our mission</i></a></li>
+                <li><a className="dropdown-item" href="/email"><i>Contacts</i></a></li>
+              </ul>
+            </li>
+
+
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/signup">
+                SignUp
               </NavLink>
             </li>
+
             <li className="nav-item">
-              <NavLink className="nav-link " to="/signup">
-                Signup
+              <NavLink className="nav-link" to="/login">
+                Login
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/screening">
-                Screening
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/chat">
-                AI Chat
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/booking">
-                Booking
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/resources">
-                Resources
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/peer-support">
-                Peer Support
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/admin">
-                Admin
-              </NavLink>
-            </li>
+
           </ul>
         </div>
       </div>
