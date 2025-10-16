@@ -1,6 +1,19 @@
+.container{
+  padding-left:50px;
+  margin:auto;
+}
+
+.lappy{
+  font-size: 90px;
+  padding-bottom: 10px;
+  color:#4185b5;
+}
+
+
 /* Common link animation for footer links & social icons */
 .footer-links a{
   text-decoration: none;
+  font-style: italic;
   position: relative;
   width:fit-content;
   display: inline-block;
@@ -28,27 +41,29 @@
   color: #fff;
 }
 
-.footer-logo{
+/* .footer-logo{
   height: 120px;
   width: 90px;
-}
-.trust-text{
+} */
+/* .trust-text{
   white-space: nowrap;
-}
+  color:#b2c3cf;
+  font-size:1rem;
+  font-weight: 300; 
+} */
 
-footer .row {
+/* footer .row {
   margin:auto;  
   padding:0;
-}
+} */
 
 footer::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, #2b4ad3, #46c581);;
   background-repeat: no-repeat;
   background-size:cover;
-  opacity:0.7;       
+  opacity:0.5;       
   z-index: 0;
 }
 footer > * {
