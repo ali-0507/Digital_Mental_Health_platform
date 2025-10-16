@@ -4,9 +4,10 @@ body {
   margin: 0;
   transition: background-color 0.3s ease, color 0.3s ease; */
   font-family: "Inter", sans-serif;
-  background-color: #F5F7FA;
+  background-color: #e1f1fc !important;
   color: #333;
   margin: 0;
+  overflow-x: hidden;
 }
 
 /* Light Mode */
@@ -54,11 +55,11 @@ a {
 /* Footer */
 footer {
   color: #fff;
-  padding: 1rem;
-  text-align: center;
-  margin-top: auto;
+  text-align:center;
   position: relative;
   overflow: hidden;
+  background:linear-gradient(to left,#4185b5 10%,#173753);
+  box-shadow: 10px 0 15px rgba(0,0,0,0.5);
 }
 
 /* Sidebar */
