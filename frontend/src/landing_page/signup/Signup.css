@@ -1,0 +1,148 @@
+:root{
+  --mental-primary:#CFCAC6;     /* calm indigo */
+  --mental-accent:#649BBD;      /* soft teal */
+  --mental-bg:#f6f8fc;
+  --mental-deep:#235989;
+}
+
+.mental-bg{
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(28,181,189,.18), transparent 60%),
+              radial-gradient(900px 500px at 90% 80%, rgba(83,88,242,.16), transparent 60%),
+              var(--mental-bg);
+  position: relative;
+}
+
+.mental-bg::before,
+.mental-bg::after{
+  content:"";
+  position:absolute;
+  filter: blur(32px);
+  opacity:.55;
+  z-index:0;
+}
+.mental-bg::before{
+  width:280px;height:280px;left:-60px;top:-40px;
+  background: linear-gradient(135deg, var(--mental-accent), #649BBD);
+  border-radius:50%;
+}
+.mental-bg::after{
+  width:320px;height:320px;right:-80px;bottom:-60px;
+  background: linear-gradient(135deg,#CFCAC6, var(--mental-primary));
+  border-radius:50%;
+}
+
+.auth-wrapper{
+  max-width: 980px;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #fff;
+  position: relative;
+  z-index: 1;
+}
+
+/* Left hero panel */
+.hero-panel{
+  background: linear-gradient(165deg, #eef5ff,#CFCAC6);
+  padding: 2.25rem;
+}
+
+.brand-badge{
+  width:48px;height:48px;border-radius:14px;
+  display:grid;place-items:center;
+  background: linear-gradient(to bottom, #235989);
+  color:#fff;font-size:1.25rem;margin-bottom:1rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+}
+
+.hero-title{
+  font-weight:700;
+  color: var(--mental-deep);
+  margin-bottom:.25rem;
+}
+.hero-dot{ color: #235989; }
+
+.hero-sub{
+  color:#556;
+  margin-bottom:1.25rem;
+}
+
+.hero-points{
+  list-style:none;padding-left:0;margin:0;
+}
+.hero-points li{
+  display:flex;align-items:center;gap:.5rem;
+  color:#3d495c;
+  margin: .35rem 0;
+}
+.hero-points i{
+  color:#173753 ;
+}
+
+.hero-quote{
+  margin-top:auto;
+  padding:.85rem 1rem;
+  background:#fff;
+  border-radius:14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.06);
+  font-style: italic;
+  color:#445;
+}
+.hero-quote span{ font-style: normal; color:#667; }
+
+/* Buttons & links */
+.btn-mental{
+  background: linear-gradient(135deg, #E1F1FC);
+  border:none;
+  color: #000 !important;
+  padding:.7rem 1rem;
+  border-radius:12px;
+  box-shadow: 0 8px 20px rgba(179, 179, 183, 0.3);
+  transition: transform 0.3s ease-in-out;
+}
+.btn-mental:hover {
+  transform: translateY(-4px); /* the actual movement */
+}
+
+
+.link-mental{
+  color: #1970a5;
+  text-decoration: none;
+}
+.link-mental:hover{ text-decoration: underline; }
+
+/* Inputs */
+.input-group-text{
+  background:#f5f7fb;
+  border-right:0;
+}
+.input-group .form-control{
+  border-left:0;
+}
+.form-control, .form-select{
+  border-radius:12px;
+}
+.input-group .btn{
+  border-top-right-radius:12px;
+  border-bottom-right-radius:12px;
+}
+
+/* Password strength */
+.password-progress{
+  height:8px;border-radius:8px;background:#eef1f7;
+}
+.progress-bar{ transition: width .25s ease; }
+.progress-bar.s-0{ background:#fa7268; }
+.progress-bar.s-1{ background:#faae68; }
+.progress-bar.s-2{ background:#ffd166; }
+.progress-bar.s-3{ background:#6ee7b7; }
+.progress-bar.s-4{ background:#22c55e; }
+
+/* Small tweaks on mobile */
+@media (max-width: 991.98px){
+  .auth-wrapper{ border-radius: 18px; }
+}
+
+
+.auth-note {
+  color: #667085;
+}
