@@ -1,7 +1,7 @@
-// import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-
-// Pages
+// Protected Route
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
+// Pages Route
 import Home from "./landing_page/pages/Home.jsx";
 import Screening from "./landing_page/pages/Screening.jsx";
 import AIChat from "./landing_page/pages/AIChat.jsx";
@@ -31,12 +31,24 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/screening" element={<Screening />} />
         <Route path="/chat" element={<AIChat />} />
+          
         <Route path="/booking" element={<Booking />} />
+      
         <Route path="/resources" element={<Resources />} />
         <Route path="/peer-support" element={<PeerSupport />} />
 
         {/* Admin Route */}
-        <Route path="/admin/*" element={<AdminDashboard />} />
+        {/* <Route path="/admin/*" element={<AdminDashboard />} /> */}
+         {/* Protected Admin Route */}
+        <Route
+          path="/admin/*"
+          element={
+            <ProtectedRoute roles={["admin"]}>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+
 
         {/* Not Found */}
         <Route path="*" element={<NotFound />} />

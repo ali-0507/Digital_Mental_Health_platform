@@ -1,0 +1,149 @@
+ 
+:root {
+  --scr-bg-start: #E1F1FC;
+  --scr-bg-end:   #CFCAC6;
+  --scr-head:     #173753;
+  --scr-accent:   #6DAEDB;
+  --scr-accent-600: #6DAEDB; /* hover */
+  --scr-info:     #6DAEDB;
+  --scr-surface:  #FFFFFF;
+  --scr-surface-2:#F8FAFB;
+  --scr-text:     #1f2a37;
+  --scr-muted:    #6b7280;
+  --scr-border:   #E5E7EB;
+  --scr-shadow:   0 20px 45px rgba(23, 55, 83, 0.10);
+}
+
+/* Page background (soft & comforting) */
+.screening-bg {
+  min-height: 100vh;
+  background:
+    radial-gradient(900px 500px at 80% 10%, rgba(109,174,219,.20), transparent 60%),
+    linear-gradient(180deg, var(--scr-bg-start) 0%, var(--scr-bg-end) 100%);
+}
+
+/* Container card */
+.screening-card {
+  background: var(--scr-surface);
+  border: 1px solid var(--scr-border);
+  border-radius: 20px;
+  box-shadow: var(--scr-shadow);
+  overflow: hidden;
+}
+
+/* Title + subtitle */
+.screening-title {
+  color: var(--scr-head);
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+.screening-subtitle {
+  color: var(--scr-muted);
+}
+
+/* Section header (e.g., “Your Score”) */
+.screening-section-title {
+  color: var(--scr-head);
+  font-weight: 600;
+}
+
+/* Labels & info text */
+.screening-label {
+  color: var(--scr-text);
+  font-weight: 600;
+  
+}
+.screening-hint {
+  color: var(--scr-info);
+  font-size: .9rem;
+}
+
+/* Inputs (keeps Bootstrap, gently customized) */
+.screening-select,
+.screening-input {
+  background: var(--scr-surface-2);
+  border: 1px solid var(--scr-border);
+  border-radius: 12px;
+  padding: .4rem 0rem;
+}
+.screening-select:focus,
+.screening-input:focus {
+  border-color: var(--scr-accent);
+  box-shadow: 0 0 0 .25rem rgba(9,189,183,.15);
+}
+
+/* Primary action */
+.screening-btn {
+  background: var(--scr-accent);
+  border: none;
+  color: #003133 ;
+  font-weight: 600;
+  border-radius: 12px;
+  transition: transform .15s ease, background-color .15s ease;
+}
+.screening-btn:hover {
+  background: var(--scr-accent-600);
+  transform: translateY(-1px);
+}
+
+/* Secondary button */
+.screening-btn-outline {
+  border-radius: 12px;
+  border: 1px solid var(--scr-border);
+  background: #fff;
+  color: var(--scr-head);
+}
+.screening-btn-outline:hover {
+  background: var(--scr-surface-2);
+}
+
+/* Progress (answered count, optional) */
+.screening-progress {
+  height: 8px;
+  background: #eef1f7;
+  border-radius: 8px;
+}
+.screening-progress > .bar {
+  background: var(--scr-info);
+  border-radius: 8px;
+  transition: width .25s ease;
+}
+
+/* Alert tones (use with Bootstrap alert classes) */
+.screening-alert-soft {
+  background: #fff;
+  border: 1px solid var(--scr-border);
+  color: var(--scr-text);
+  border-radius: 14px;
+}
+
+/* Result badges */
+.badge-scr-info  { background: rgba(109,174,219,.18); color: #2b6a9a; }
+.badge-scr-good  { background: rgba(9,189,183,.18);  color: #0a7d79; }
+.badge-scr-warn  { background: rgba(255,176,0,.18);  color: #9a6b00; }
+.badge-scr-risk  { background: rgba(220,38,38,.15);  color: #991b1b; }
+
+/* Dividers between questions */
+.screening-divider {
+  border-bottom: 1px dashed #d8dee7;
+  display: flex ;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+/* Small utilities */
+.scr-rounded-12 { border-radius: 12px; }
+.scr-rounded-16 { border-radius: 16px; }
+.scr-shadow     { box-shadow: var(--scr-shadow); }
+
+
+/* Subtle helper text + plain links used in protected section */
+.screening-note { color: var(--scr-muted); }
+.link-plain { color: var(--scr-accent); text-decoration: none; }
+.link-plain:hover { text-decoration: underline; }
+
+/* Disabled look for the history button when logged out */
+.btn.disabled, .btn:disabled {
+  opacity: .6;
+  pointer-events: none;
+}
