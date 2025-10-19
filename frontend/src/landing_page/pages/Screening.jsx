@@ -1,20 +1,32 @@
-// import React from "react";
+ 
 import ScreeningForm from "../components/ScreeningForm";
+// reuse theme (adjust path if needed)
+import "./Screening.css";             // tiny page-specific tweaks
 
 function Screening() {
   return (
-    <div className="screening">
-      <h2 className="mb-4 text-center">Mental Health Screening</h2>
-      <p className="text-muted text-center mb-4">
-        This self-assessment uses common tools (PHQ-9, GAD-7). It is not a
-        medical diagnosis but helps identify if you may benefit from support.
-      </p>
+    <div className="screening-bg py-5">
+      <div className="container" style={{maxWidth: 980}}>
+         <div className="mx-auto text-center mb-4" style={{maxWidth: 860}}>
+          <span className="badge rounded-pill px-3 py-2 bg-light text-dark border me-2">
+            <i className="bi bi-activity me-1"></i> Anonymous screening
+         </span>
+       <span className="badge rounded-pill px-3 py-2 bg-light text-dark border">
+         <i className="bi bi-shield-lock me-1"></i> Private by default
+       </span>
 
-      <div className="card p-4 shadow-sm">
-        <ScreeningForm />
+     <h2 className="mt-3 mb-2">Mental Health Screening</h2>
+           <p className="text-muted">
+            Short self-check inspired by PHQ-9. This is <strong>not</strong> a diagnosis,
+           but it can help you decide whether to seek support.
+         </p>
+      </div>
+        
+        <div className="screening-card p-4 p-md-5">
+          <ScreeningForm />
+        </div>
       </div>
     </div>
   );
 }
-
 export default Screening;
