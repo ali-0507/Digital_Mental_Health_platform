@@ -1,0 +1,47 @@
+# # ==========================
+# # 🌐 FRONTEND
+# # ==========================
+# frontend/node_modules/
+# frontend/dist/
+# frontend/dist-ssr/
+# frontend/logs/
+# frontend/*.log
+# frontend/npm-debug.log*
+# frontend/yarn-debug.log*
+# frontend/yarn-error.log*
+# frontend/pnpm-debug.log*
+# frontend/lerna-debug.log*
+# frontend/*.local
+
+# # Frontend editor files
+# frontend/.vscode/
+# !frontend/.vscode/extensions.json
+# frontend/.idea/
+# frontend/.DS_Store
+# frontend/*.suo
+# frontend/.ntvs
+# frontend/*.njsproj
+# frontend/*.sln
+# frontend/*.sw?
+
+
+# ==========================
+# ⚙ BACKEND
+# ==========================
+backend/node_modules/
+backend/dist/
+backend/dist-ssr/
+backend/*.local
+backend/.env
+
+# ==========================
+# 🧩 COMMON (ROOT LEVEL)
+# ==========================
+node_modules/
+.env
+.env.local
+.DS_Store
+.vscode/
+.idea/
+*.log
+logs/
