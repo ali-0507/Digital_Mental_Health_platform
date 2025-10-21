@@ -1,14 +1,200 @@
 
-.home-card:hover {
-  transform:translate(5px,5px);
-  transition:1s, ease-in-out, 0.2s;
-  box-shadow: 0 4px 10px rgba(65, 58, 58, 0.6); 
-  background: linear-gradient(135deg,  #a1c4fd, #c2e9fb);
-  color: #2F4F4F;
-  transition:background-color 0.4s ease-in-out;
+.hero-text{
+  display:flex;
+  flex-direction:column;
+  text-align:center;
+  margin:30px;
+  padding:10px;
+  height:auto;
+  width:auto;
+  font-family: "Intern",sans-serif;
+}
+#para{
+  color: #0d4954;
+  font-size:large;
+  margin:1rem;
+
+}
+
+.brand-name{
+  /* margin-top: 30px; */
+  font-weight: 700;
+  font-size:50px;
+  color:#649bbd;
+}
+.score-btn{
+  background: linear-gradient(105deg, #E1F1FC,#6daedb) !important;
+  color: #173753 !important;
+  font-style: italic;
+  font-weight: 600 !important;
+  box-shadow: 5px 3px 6px rgba(0, 0, 0, 0.3);
+  margin-top:25px;
+  font-size:large;
+}
+.score-btn:hover {
+  background:#173753 !important;
+  color: #e1f1fc !important;
+  transform:translate(2px,2px);
+  transition: transform 0.2s ease-out;
+}
+/* .heroImg{
+  display:flex;
+  justify-content: flex-end;
+  width: 300px;            
+  height: 200px;           
+  overflow: hidden; 
+  border: 3px solid black;
+} */
+.Img{
+  margin-top:30px;
+  width:auto;          
+  height:1000px;    
+  border-radius:20px;      
+  filter:blur(2px);
+}
+.Img{
+  display:flex;
+  justify-content: center;
+}
+
+/* Feature section */
+.feature-section{
+  display:flex;
+  justify-content: center;
+  margin:60px;
+  padding:0.3rem;
+  font-family: "Intern",sans-serif;
+}
+.AI-card{
+  font-family: "Inter", sans-serif !important;
+  border-radius:40px !important;
+  margin-right:90px;
+  box-shadow: 9px 9px 9px rgba(76, 146, 186, 0.4) !important;
+  background: linear-gradient(180deg, #E1F1FC,#6daedb) !important;
+  border:none;
+  transition:transform 0.2s ease-in-out;
+}
+.AI-card:hover{
+  background: linear-gradient(180deg,#baf3f1,#E1F1FC) !important;
+  transform:translate(-5px,-5px);
+}
+.card-body{
+  text-align: center;
+  padding-top:3rem;
+}
+.card-text{
+  padding-top:1rem;
+  color:#173753;
+  font-size:large;
+  text-align:center;
+}
+.card-title{
+  font-weight: bolder;
+  color:#173753;
+}
+.AI-card .img{
+  height:350px;
+  border-top-right-radius:0px;
+}
+.img-reverse{
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-top-right-radius:30px;
+  border-bottom-right-radius:30px;
+  height:350px;
+  width:900px;
+  
+}
+.card-content a{
+  font-size:25px;
+  font-weight:300;
+  transition:font-size 0.3s ease-in-out;
+}
+.card-content a:hover{
+  font-size:30px;
+  background-color: #baf3f1;
+  border:1px solid #baf3f1;
+  color:#173753;
+  border-radius:10px;
+  padding:0.2rem; 
+}
+.arrow{
+  font-size: larger;
+}
+
+/* Why us */
+.whyUs{
+  display:flex;
+  flex-direction: column;
+  margin:auto;
+  padding:1rem;
+  height:80vh;
+  width:80%;
+  justify-content:flex-start;
+  align-items: center;
+  background-color:rgba(186,243,241,0.3);
+  border-radius:25px;
+}
+.heading{
+  background: linear-gradient(180deg, #cfcac6, #e1f1fc);
+  margin:10px;
+  height:50px;
+  width:250px;
+  padding:0.2rem;
+  border-radius:20px;
+  box-shadow:9px 9px 6px rgba(0, 0, 0, 0.4);
+  text-align:center;  
+  font-family: "Intern",sans-serif !important;
+  color:#173753;
+}
+.whyus-text{
+  padding-top:2rem;
+  line-height: 2rem;
+  font-family: "Intern",sans-serif;
+  font-style: italic;
+  text-align:justify;
+  font-size:large;
+  color:#173753;
+}
+.list{
+  display:flex;
+  margin:20px auto;
+  padding-left:0rem;
+  padding-right:1rem;
+  text-align:justify;
+  background: linear-gradient(to bottom , #e1f1fc ,#cfcac6);
+  border-radius: 20%;
+  box-shadow:9px 9px 6px rgba(0, 0, 0, 0.4);
+}
+.list ul{
+  list-style: none;
+  line-height: 3rem;
+  font-family: "Intern",sans-serif;
+  font-size: large;
+  color:#173753;
 }
 
 
-.highlight{
-  color:#008080;
+
+
+
+/* About us */
+#carouselExampleSlidesOnly {
+  height: 80vh; 
+  overflow: hidden;
 }
+
+#carouselExampleSlidesOnly img {
+  height: 80vh;
+  object-fit: cover;
+}
+#carouselExampleSlidesOnly {
+  margin: 40px auto;
+  width: 80%;
+  border-radius: 15px;
+  box-shadow:10px 10px 10px rgba(34, 34, 34, 0.4);
+  
+}
+
+
+

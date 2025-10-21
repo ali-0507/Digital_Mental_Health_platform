@@ -2,6 +2,7 @@
 import { Link, NavLink } from "react-router-dom";
 import {useAuth} from "../context/AuthContext.jsx";
 import "./Navbar.css";
+import "../landing_page/pages/Home.jsx";
 
 function Navbar() {
   const { user, logout, isAuthenticated } = useAuth(); // get auth state

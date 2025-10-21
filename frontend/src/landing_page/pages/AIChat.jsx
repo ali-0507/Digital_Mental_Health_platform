@@ -1,5 +1,6 @@
  import "./AIChat.css";
 import AIChatBox from "../components/AIChatBox";
+import "./AIChat.css";
 
 function AIChat() {
   const isLoggedIn = Boolean(localStorage.getItem("token"));
