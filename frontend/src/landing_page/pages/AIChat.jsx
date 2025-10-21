@@ -1,5 +1,6 @@
 // import React from "react";
 import AIChatBox from "../components/AIChatBox";
+import "./AIChat.css";
 
 function AIChat() {
   return (

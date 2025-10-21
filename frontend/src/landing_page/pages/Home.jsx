@@ -5,178 +5,172 @@ import "./Home.css";
 function Home() {
   return (
     <div className="home">
-      {/* Hero Section */}
-      <section className="text-center py-5">
-        <h1 className="fw-bold mb-3">
-          <i><span className="highlight">
-              <strong>Connect&Evolve</strong>
-            </span></i>
-        </h1>
-        <h4><p className="text-lg md:text-xl max-w-3xl leading-relaxed"
-          style={{ color: "#458E95" }}>
-          <strong>Connect&Evolve</strong> gives you a chance to know your mental health by meeting up
-          <br />
-          with professional counselors in case of urgency, chatting with AI and many
-          <br />
-          more….to know your mental health score <strong>click below!</strong>
-        </p>
-        </h4>
-        <br/>
-        <Link to="/screening" className="btn btn-primary btn-lg"
-        style={{backgroundColor: "rgb(128,128,128)"}}>
-          Let’s know your score!
-        </Link>
-        <img src="/assests/Hero-Section.png" alt="Mental Health Illustration" className="mt-6 w-72 md:w-96 rounded-2xl shadow-lg"
-        style={{margin: "40px auto", border: "14px", display: "block", boxShadow: "0 6px 15px rgba(0, 0, 0, 0.25)", height:"1000px", width: "auto"}}/>
-      </section>
+      {/* Hero Section */}     
 
+        <div className="hero-text">
+          <h1 className="brand-name"><i>Connect&Evolve</i></h1>
 
+          <br></br>
+          <p id="para" >
+            <b><i>Connect&Evolve</i></b> gives you a chance to know your mental health
+            <br></br>by meeting up with professional counselors in case of urgency, 
+            <br></br>chatting with AI and many more…to know your mental health  
+            <br></br>score <b><i>click below!</i></b>
+          </p>
 
-      {/* Features Section */}
-     <section className="row text-center g-1 my-1 p-1"
-     style={{ backgroundColor: "transparent" }}>
-     <div className="col-md-12">
-       <div className="d-flex align-items-center justify-content-between p-4"
-         style={{backgroundColor: "rgb(161, 172, 187)",borderRadius: "25px",boxShadow: "0 4px 10px rgba(0, 0, 0, 0.15)",flexWrap: "wrap",transition: "transform 0.3s ease",}}>        
-        <img src="/assests/AISupport.jpg" alt="AI Screening"
-        style={{width: "45%", height: "auto", borderRadius: "10px", objectFit: "cover",}}/>
-
-      <div className="text-center text-md-start ms-md-4" style={{ flex: 1, color: "#333" }}>
-        <h2 className="fw-semibold" style={{ color: "rgb(51, 51, 51)", fontStyle: "italic", textAlign: "center"}}>AI Support</h2>
-        <p className="mb-4"
-          style={{fontSize: "1rem",color: "rgb(51, 51, 51)",fontStyle: "italic", textAlign: "center"}}>
-          <h4>Chat with AI, and relax today! Get some <br/> help from it and heal up.</h4>
-          <br/>
-          <Link to="/chat" style={{ textDecoration: "none"}}>
-        <button style={{backgroundColor: "rgb(128, 159, 166)", color: "rgb(51, 51, 51)", border: "none", borderRadius: "10px", fontWeight: 600, boxShadow: "0 3px 0 rgba(51, 51, 51, 0.3)", transition: "all 0.3s ease"}}>
-          Know More
-        </button>
-        </Link>
-        </p>        
-      </div>
-    </div>
-  </div>
-
-
-     <div className="col-md-12">
-       <div className="d-flex align-items-center justify-content-between p-4"
-         style={{backgroundColor: "rgb(161, 172, 187)",borderRadius: "25px",boxShadow: "0 4px 10px rgba(0, 0, 0, 0.15)",flexWrap: "wrap",transition: "transform 0.3s ease",}}>
-      
-      <div className="text-center text-md-start me-md-4" style={{ flex: 1, color: "#333", textAlign: "center"}}>
-        <h2 className="fw-semibold" style={{ color: "rgb(51, 51, 51)", fontStyle: "italic", textAlign: "center"}}>Confidential Booking</h2>
-        <p className="mb-4"
-          style={{fontSize: "1rem",color: "rgb(51, 51, 51)",fontStyle: "italic", textAlign: "center"}}>
-          <h4>Get some help from professional counselors <br/> by booking a confidential meet up.</h4>
-          <br/>
-          <Link to="/Booking" style={{ textDecoration: "none" }}>
-        <button style={{backgroundColor: "rgb(128, 159, 166)", color: "rgb(51, 51, 51)", border: "none",borderRadius: "10px", fontWeight: 600, boxShadow: "0 3px 0 rgba(51, 51, 51, 0.3)", transition: "all 0.3s ease"}}>
-          Book Now!
-        </button>
-        </Link>
-        </p>
-        
-      </div>
-      <img src="/assests/Booking.jpg" alt="Confidential Booking"
-        style={{width: "45%", height: "auto", borderRadius: "20px", objectFit: "cover",}}/>
-    </div>
-  </div>
-
-
-    <div className="col-md-12">
-       <div className="d-flex align-items-center justify-content-between p-4"
-         style={{backgroundColor: "rgb(161, 172, 187)",borderRadius: "25px",boxShadow: "0 4px 10px rgba(0, 0, 0, 0.15)",flexWrap: "wrap",transition: "transform 0.3s ease",}}>
-        <img src="/assests/Resources.jpg" alt="Resources" style={{width: "45%", height: "auto", borderRadius: "20px", objectFit: "cover",}}/>
-      <div className="text-center text-md-start ms-md-4" style={{ flex: 1, color: "#333" }}>
-        <h2 className="fw-semibold" style={{ color: "rgb(51, 51, 51)", fontStyle: "italic", textAlign: "center"}}>Resources</h2>
-        <p className="mb-4"
-          style={{fontSize: "1rem",color: "rgb(51, 51, 51)",fontStyle: "italic", textAlign: "center"}}>
-          <h4>Availability of offline resources like blogs, <br/> relaxation videos, meditation routine and many <br/> more.</h4>
-          <br/>
-           <Link to="/Resources" style={{ textDecoration: "none" }}>
-           <button style={{backgroundColor: "rgb(128, 159, 166)", color: "rgb(51, 51, 51)", border: "none",borderRadius: "10px", padding: "8px 20px", fontWeight: 600, boxShadow: "0 3px 0 rgba(51, 51, 51, 0.3)", transition: "all 0.3s ease",}}>
-            Watch Now!
-          </button>
+          <Link to="/screening">
+            <button className="score-btn">Let’s know your score!</button>
           </Link>
-        </p>     
-      </div>
-    </div>
-  </div>
-
-
-   <div className="col-md-12">
-       <div className="d-flex align-items-center justify-content-between p-4"
-         style={{backgroundColor: "rgb(161, 172, 187)",borderRadius: "25px",boxShadow: "0 4px 10px rgba(0, 0, 0, 0.15)",flexWrap: "wrap",transition: "transform 0.3s ease",}}>
-      
-      <div className="text-center text-md-start ms-md-4" style={{ flex: 1, color: "#333" }}>
-        <h2 className="fw-semibold" style={{ color: "rgb(51, 51, 51)", fontStyle: "italic", textAlign: "center"}}>Peer Support Forum</h2>
-        <p className="mb-4"
-          style={{fontSize: "1rem",color: "rgb(51, 51, 51)",fontStyle: "italic", textAlign: "center"}}>
-          <h4>Share your thoughts,feelings and what <br/> you felt today with others. Also get a new <br/> vision to live life fully.</h4>
-          <br/>
-           <Link to="/peer-support" style={{ textDecoration: "none" }}>
-           <button style={{backgroundColor: "rgb(128, 159, 166)", color: "rgb(51, 51, 51)", border: "none",borderRadius: "10px", padding: "8px 20px", fontWeight: 600, boxShadow: "0 3px 0 rgba(51, 51, 51, 0.3)", transition: "all 0.3s ease", textAlign: "center"}}>
-            Share it!
-          </button>
-          </Link>
-        </p>
+        </div>
        
+       <div className="Img">
+          <img src="/assests/Hero-Section.png" alt="Mental Health Illustration" 
+          />
+        </div>
+
+
+                             {/*Features Section*/}
+           
+    <div className="feature-section">
+      <div className="card mt-5 AI-card" style={{width:"2000px", height:"350px"}}>
+        <div className="row g-0">
+          <div className="col-md-6">
+            <img src="/assests/AIScreening.jpg" className="img-fluid rounded-start img" alt="AI Screening"/>
+          </div>
+          <div className="col-md-6 card-content">
+            <div className="card-body">
+              <h2 className="card-title"><i>AI Support</i></h2>
+              <p className="card-text">
+              <i><b>"When no one is around AI surrounds"</b></i><br></br>
+              Chat with AI, and relax today! Get some <br/> help from it and heal up.</p>
+              <a href="/chat"className="mt-4 "> Know More <span className="arrow">&#8594;</span></a>
+            </div>
+          </div>
+        </div>
       </div>
-      <img src="/assests/PeerSupport.jpg" alt="Peer Support"
-        style={{width: "45%", height: "auto", borderRadius: "20px", objectFit: "cover",}}/>
     </div>
-  </div>
-  </section>
+
+
+      <div className="feature-section">
+        <div className="card mt-5 AI-card" style={{width:"2000px", height:"350px"}}>
+          <div className="row g-0">
+            <div className="col-md-6 card-content">
+              <div className="card-body">
+                <h2 className="card-title"><i>Confidential Booking</i></h2>
+                <p className="card-text">
+                <i><b>"Let's heal together, we are with you"</b></i><br></br>
+                Get some help from professional counselors <br/> by booking a confidential meet up.</p>
+                <a href="/Booking"className="mt-4 "> Book Now! <span className="arrow">&#8594;</span></a>
+              </div>
+            </div>
+            <div className="col-md-6">
+              <img src="/assests/Booking.jpeg" className="img-fluid img-reverse" alt="booking"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div className="feature-section">
+      <div className="card mt-5 AI-card" style={{width:"2000px", height:"350px"}}>
+        <div className="row g-0">
+          <div className="col-md-6">
+            <img src="/assests/Resources.jpg" className="img-fluid rounded-start img" alt="Resources"/>
+          </div>
+          <div className="col-md-6 card-content">
+            <div className="card-body">
+              <h2 className="card-title"><i>Resources</i></h2>
+              <p className="card-text">
+              <i><b>"Wait!! there is something special for you.."</b></i><br></br>
+              Availability of offline resources like blogs, <br/> relaxation videos, meditation routine and many <br/> more.</p>
+              <a href="/resources"className="mt-4 ">Watch Now!<span className="arrow">&#8594;</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
 
+    <div className="feature-section">
+        <div className="card mt-5 AI-card" style={{width:"2000px", height:"350px"}}>
+          <div className="row g-0">
+            <div className="col-md-6 card-content">
+              <div className="card-body">
+                <h2 className="card-title"><i>Peer Support Forum</i></h2>
+                <p className="card-text">
+                <i><b>"Come and discuss your journey with others anonymously"</b></i><br></br>
+                Share your thoughts,feelings and what <br/> you felt today with others. Also get a new <br/> 
+                vision to live life fully.</p>
+                <a href="/peer-support"className="mt-4 "> Share Now! <span className="arrow">&#8594;</span></a>
+              </div>
+            </div>
+            <div className="col-md-6">
+              <img src="/assests/PeerSupport.jpg" className="img-fluid img-reverse" alt="Peer support"/>
+            </div>
+          </div>
+        </div>
+      </div>
+                                      
+                                      {/* Why us */}
+      <div className="whyUs">
+        <h2 className="heading">Why Us  <i class="fa-solid fa-question"></i> </h2>
 
-    {/* Why Us Section */}
-  <section
-      style={{width: "100%",padding: "48px 16px",background: "rgb(161, 172, 187)",display: "flex",justifyContent: "center",boxSizing: "border-box"}}>
-      <div
-        style={{width: "100%",maxWidth: "980px",background: "rgb(128, 159, 166)",borderRadius: "12px",boxShadow: "0 8px 20px rgba(0,0,0,0.12)",padding: "28px 34px",border: "1px solid rgba(0,0,0,0.06)",boxSizing: "border-box",}}>
-        {/* Heading */}
-        <h2 style={{display: "flex",alignItems: "center", gap: "10px",margin: "0 0 14px 0",fontFamily:'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial',}}>
-          <button>
-          <span style={{fontSize: "28px",fontWeight: "700",color: "rgb(128, 159, 166)", textAlign: "center"}}>
-            Why Us
-          </span>
-          <span style={{color: "rgb(128,159,166)",fontSize: "28px",lineHeight: "1",marginLeft: "4px"}}>
-            <i class="fa-solid fa-question"></i>
-          </span></button>
-        </h2>
-
-         {/* Description */}
-        <h4><p style={{color: "#222",fontSize: "15px",lineHeight: "1.5",margin: "0 0 14px 0",fontWeight: "500",}}>
-          We give a platform with <strong>anonymous identity</strong> and direct
+        <p className="whyus-text"> We give a platform with <b>anonymous identity</b> and direct
           support of counsellor in case of emergency. A perfect meditation guide
           for users with mild symptoms of depression or anxiety. No need to
           stress out if you have mild symptoms — it is common now-a-days. No
-          worries, we are here to help.
-        </p></h4>
+          worries, we are here to help.</p>
 
-        {/* List */}
-        <ul
-          style={{listStyle: "none",padding: "0",margin: "0",color: "#222",fontSize: "15px",lineHeight: "1.6",}}>
-          {[
-            "Take our AI screening test to know your anxiety and depression level",
-            "If you feel like reading something makes you feel good, then watch resources",
-            "Chat with others and share your thoughts about how you healed",
-            "Want some human help? Book a meeting with a counsellor",
-          ].map((text, index) => (
-            <li
-              key={index}
-              style={{display: "flex",alignItems: "flex-start",gap: "10px",margin: "8px 0",}}>
-              <span
-                style={{color: "#198754",fontSize: "18px",lineHeight: "1",marginTop: "2px",}}>
-                🍀
-              </span>
-              <span>{text}</span>
-            </li>
-          ))}
-        </ul>
+          <div  className="list">
+            <ul>
+              <li><i class="fa-solid fa-feather-pointed"></i>&nbsp;&nbsp;
+              Take our AI screening test to know your anxiety and depression level</li>
+
+              <li><i class="fa-solid fa-feather-pointed"></i>&nbsp;&nbsp;
+              If you feel like reading something makes you feel good, then watch resources</li>
+
+              <li><i class="fa-solid fa-feather-pointed"></i>&nbsp;&nbsp;
+              Chat with others and share your thoughts about your healing journey</li>
+
+              <li><i class="fa-solid fa-feather-pointed"></i>&nbsp;&nbsp;
+              Want some human help? Book a meeting with a counsellor</li>
+            </ul>
+          </div>
+
+      </div>  
+
+
+
+
+
+
+
+
+
+
+
+                                  
+                                {/* About Us */}
+
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="/assests/Whoweare.png" class="d-block w-100" alt="..."/>
+        </div>
+        
+        <div class="carousel-item">
+          <img src="/assests/Ourmission.png" class="d-block w-100" alt="..."/>
+        </div>
+        
+        <div class="carousel-item">
+          <img src="/assests/Contact.png" class="d-block w-100" alt="..."/>
+        </div>
       </div>
-    </section>        
+    </div>
+
+    <hr></hr>
+    
     </div>
   );
 }

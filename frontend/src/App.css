@@ -4,11 +4,14 @@ body {
   margin: 0;
   transition: background-color 0.3s ease, color 0.3s ease; */
   font-family: "Inter", sans-serif;
-  background-color: #e1f1fc !important;
+  background: url("../assests/bg2.jpg") center/cover no-repeat;
+  position: relative;
   color: #333;
   margin: 0;
   overflow-x: hidden;
 }
+
+
 
 /* Light Mode */
 body.light {

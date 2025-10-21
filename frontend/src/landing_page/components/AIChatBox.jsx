@@ -15,12 +15,15 @@ function AIChatBox() {
 
     // Simulate AI response (TODO: connect backend API /api/chat)
     setTimeout(() => {
-      const reply = {
+      const reply = [{
         sender: "bot",
         text: "I understand. Remember to take a deep breath. Would you like coping strategies?",
-      };
-      setMessages((prev) => [...prev, reply]);
-    }, 800);
+      },{
+        sender:"bot",
+        text:"Tell me what was your screening score",
+      }];
+      setMessages((prev) =>{return [...prev, reply]});
+    }, 650);
 
     setInput("");
   };
@@ -47,10 +50,10 @@ function AIChatBox() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary mike-btn">
           <i class="fa-solid fa-microphone"></i>
         </button>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary send-btn">
           Send
         </button>
       </form>
