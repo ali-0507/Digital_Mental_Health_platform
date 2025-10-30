@@ -6,7 +6,7 @@ const api = axios.create({
 });
 
 // Automatically attach token if logged in
-api.interceptors.request.use((config) => {
+ api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;

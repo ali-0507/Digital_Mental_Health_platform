@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }) => {
   // Load user from token (if exists)
   useEffect(() => {
     const token = localStorage.getItem("token");
+
     if (token) {
       api
         .get("/auth/me")
