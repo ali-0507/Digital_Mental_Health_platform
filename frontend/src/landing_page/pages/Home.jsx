@@ -139,17 +139,6 @@ function Home() {
           </div>
 
       </div>  
-
-
-
-
-
-
-
-
-
-
-
                                   
                                 {/* About Us */}
 
