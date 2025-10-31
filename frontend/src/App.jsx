@@ -14,6 +14,8 @@ import Navbar from "./landing_page/Navbar.jsx";
 import Footer from "./landing_page/Footer.jsx";
 import Signup from "./landing_page/signup/Signup.jsx";
 import Login from "./landing_page/login/Login.jsx";
+import ScreeningHistory from "./landing_page/pages/ScreeningHistory.jsx";
+
 
 function App() {
   const location = useLocation();
@@ -48,6 +50,16 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route
+          path="/history"
+          element={
+            <ProtectedRoute>
+              <ScreeningHistory />
+            </ProtectedRoute>
+          }
+        />
+
 
 
         {/* Not Found */}

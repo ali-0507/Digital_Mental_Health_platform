@@ -62,9 +62,8 @@ function ScreeningForm() {
 
     try {
       setSubmitting(true);
-      // Wire this when backend is ready:
-      // await api.post("/screenings", { answers, score });
-      alert("Saved! (Connect to your /screenings endpoint when ready.)");
+      await api.post("/screenings",{questions, answers, score});
+      alert("Your score was saved scuccessfully!");
     } catch (err) {
       console.error(err);
       setSaveError(err?.response?.data?.message || "Unable to save right now.");
