@@ -10,30 +10,94 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Load user from token (if exists)
-  useEffect(() => {
-    const token = localStorage.getItem("token");
 
-    if (token) {
-      api
-        .get("/auth/me")
-        .then((res) => setUser(res.data.user))
-        .catch(() => localStorage.removeItem("token"))
-        .finally(() => setLoading(false));
-    } else {
-      setLoading(false);
+   // --- helper: try to refresh access token using HTTP-only cookie
+  const silentRefresh = async () => {
+    try {
+      const { data } = await api.post("/auth/refresh", {}, { withCredentials: true });
+      if (data?.accessToken) {
+        localStorage.setItem("token", data.accessToken); // save fresh access token
+        return data.accessToken;
+      }
+    } catch (_) {
+      // ignore here; caller will clean up
     }
+    return null;
+  };
+
+
+  // Load user on app start:
+  // 1) If we have a non-empty token -> try /me
+  // 2) If missing/invalid -> try silent refresh, then /me
+  useEffect(() => {
+    const bootstrap = async () => {
+      try {
+        const token = localStorage.getItem("token");
+
+        const hasToken =
+          token && token !== "undefined" && token !== "null" && token.trim() !== "";
+
+        if (hasToken) {
+          try {
+            const { data } = await api.get("/auth/me");
+            setUser(data.user);
+            setLoading(false);
+            return;
+          } catch {
+            // token might be expired/malformed; fall through to refresh
+          }
+        }
+
+
+         // No valid token -> try silent refresh using cookie
+        const newToken = await silentRefresh();
+        if (newToken) {
+          const { data } = await api.get("/auth/me");
+          setUser(data.user);
+        } else {
+          // refresh failed -> ensure clean state
+          localStorage.removeItem("token");
+          setUser(null);
+        }
+      } catch {
+        localStorage.removeItem("token");
+        setUser(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    bootstrap();
   }, []);
+  // Load user from token (if exists)
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+
+  //   if (token) {
+  //     api
+  //       .get("/auth/me")
+  //       .then((res) => setUser(res.data.user))
+  //       .catch(() => localStorage.removeItem("token"))
+  //       .finally(() => setLoading(false));
+  //   } else {
+  //     setLoading(false);
+  //   }
+  // }, []);
 
   // Login user (after successful login form)
-  const login = (token, userData) => {
-    localStorage.setItem("token", token);
+  const login = (accessToken, userData) => {
+    localStorage.setItem("token", accessToken);
     setUser(userData);
     navigate("/");
   };
 
   // Logout
-  const logout = () => {
+  const logout = async () => {
+    try{
+      await api.post("/auth/logout", {}, { withCredentials: true });
+    }catch(_){
+      // ignore errors
+    }
     localStorage.removeItem("token");
     setUser(null);
     navigate("/login");
