@@ -5,7 +5,10 @@ import "./Navbar.css";
 import "../landing_page/pages/Home.jsx";
 
 function Navbar() {
-  const { user, logout, isAuthenticated } = useAuth(); // get auth state
+  const { user, logout, isAuthenticated, loading } = useAuth(); // get auth state
+  if(loading){
+    return null; // or a loading spinner
+  }
   return (
     <nav className="navbar navbar-expand-lg navbar-dark sticky-top">
       
@@ -41,9 +44,9 @@ function Navbar() {
               About Us
             </button>
               <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="#"><i>Who we are</i></a></li>
-                <li><a className="dropdown-item" href="#"><i>Our mission</i></a></li>
-                <li><a className="dropdown-item" href="/email"><i>Contacts</i></a></li>
+                <li><NavLink className="dropdown-item" href="#"><i>Who we are</i></NavLink></li>
+                <li><NavLink className="dropdown-item" href="#"><i>Our mission</i></NavLink></li>
+                <li><NavLink className="dropdown-item" href="/email"><i>Contacts</i></NavLink></li>
               </ul>
             </li>
 
