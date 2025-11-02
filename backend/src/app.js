@@ -39,6 +39,9 @@ app.use("/api/admin", adminRoutes);
 // Audit logs (protected + admin only)
 app.use("/api/audit", auditRoutes);
 
+//Screening route
+app.use("/api/screenings", require("./routes/screeningRoutes"));
+
 app.get("/api/health", (req, res) => res.json({ ok: true }));
 
 module.exports = app;

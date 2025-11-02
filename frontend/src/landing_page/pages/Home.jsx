@@ -139,37 +139,40 @@ function Home() {
           </div>
 
       </div>  
-
-
-
-
-
-
-
-
-
-
-
                                   
                                 {/* About Us */}
 
-    <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
+    <div id="carouselExample" className="carousel slide" 
+    style={{width:"60%", margin:"auto", marginTop:"2rem", marginBottom:"2rem"}}>
       <div className="carousel-inner">
         <div className="carousel-item active">
-          <img src="/assests/Whoweare.png" className="d-block w-100" alt="..."/>
+          <img src="/assests/card1.jpeg" className="d-block w-100" alt="who we are"/>
         </div>
         
         <div className="carousel-item">
-          <img src="/assests/Ourmission.png" className="d-block w-100" alt="..."/>
+          <img src="/assests/card2.jpeg" className="d-block w-100" alt="our mission"/>
         </div>
         
         <div className="carousel-item">
-          <img src="/assests/Contact.png" className="d-block w-100" alt="..."/>
+          <img src="/assests/card3.jpeg" className="d-block w-100" alt="contact us"/>
         </div>
       </div>
+     
+      <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span className="visually-hidden">Previous</span>
+      </button>
+      <button className="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span className="carousel-control-next-icon" aria-hidden="true"></span>
+        <span className="visually-hidden">Next</span>
+      </button>
     </div>
 
-    <hr></hr>
+   <div className="helpline">
+      <b><p>In case of any emergency, feel free to reach out to our helpline. We will definitely help you out.
+      <br></br><i>No worries, we are here!</i></p></b>
+      <span><button className="btn help-btn">Emergency call helpline</button></span>
+   </div>
     
     </div>
   );

@@ -132,7 +132,7 @@
   width:80%;
   justify-content:flex-start;
   align-items: center;
-  background-color:rgba(186,243,241,0.3);
+  background-color:rgba(186, 220, 243, 0.3);
   border-radius:25px;
 }
 .heading{
@@ -142,7 +142,7 @@
   width:250px;
   padding:0.2rem;
   border-radius:20px;
-  box-shadow:9px 9px 6px rgba(0, 0, 0, 0.4);
+  box-shadow:9px 9px 6px rgba(0, 0, 0, 0.2);
   text-align:center;  
   font-family: "Intern",sans-serif !important;
   color:#173753;
@@ -163,8 +163,8 @@
   padding-right:1rem;
   text-align:justify;
   background: linear-gradient(to bottom , #e1f1fc ,#cfcac6);
-  border-radius: 20%;
-  box-shadow:9px 9px 6px rgba(0, 0, 0, 0.4);
+  border-radius: 30px;
+  box-shadow:9px 9px 6px rgba(0, 0, 0, 0.2);
 }
 .list ul{
   list-style: none;
@@ -175,26 +175,50 @@
 }
 
 
-
-
-
 /* About us */
-#carouselExampleSlidesOnly {
-  height: 80vh; 
-  overflow: hidden;
+.carousel-control-prev,
+.carousel-control-next {
+  background: none !important;
+  border: none;
 }
-
-#carouselExampleSlidesOnly img {
-  height: 80vh;
-  object-fit: cover;
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: transparent !important;
 }
-#carouselExampleSlidesOnly {
-  margin: 40px auto;
-  width: 80%;
-  border-radius: 15px;
-  box-shadow:10px 10px 10px rgba(34, 34, 34, 0.4);
-  
+.carousel-control-prev-icon{
+  margin-right:5rem ;
 }
-
-
-
+.carousel-control-next-icon{
+  margin-left:6.3rem;
+  font-size:50px;
+}
+/* Helpline */
+.helpline{
+  display:flex;
+  flex-direction:row;
+  justify-content:space-around;
+  align-items:center;
+  margin:2rem;
+  padding:1rem;
+  font-family: "Intern",sans-serif;
+  font-size: large!important;
+  background: linear-gradient(180deg, #f6acac,#efa9a9);
+  border-radius:20px;
+  box-shadow:9px 9px 6px rgba(0, 0, 0, 0.2);
+}
+.helpline p{
+  color:#195e24;
+  font-weight:600;
+}
+.help-btn{
+  margin-right:40px;
+  background-color: rgb(255, 85, 85) !important;
+  border:none !important;
+  font-size: large !important;
+}
+.help-btn:hover{
+  background-color: rgb(106, 1, 1) !important;
+  color:#fff !important;
+  transform:translate(-2px,-2px);
+  transition: transform 0.2s ease-out;
+}
