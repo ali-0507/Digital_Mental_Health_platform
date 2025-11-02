@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import api from "../../api/axios"; // Uncomment and wire when backend route is ready
+import api from "../../api/axios"; // Uncomment and wire when backend route is ready
 
 function ScreeningForm() {
   const navigate = useNavigate();
@@ -62,7 +62,7 @@ function ScreeningForm() {
 
     try {
       setSubmitting(true);
-      await api.post("/screenings",{questions, answers, score});
+      await api.post("/screenings",{questions,answers, score});
       alert("Your score was saved scuccessfully!");
     } catch (err) {
       console.error(err);
@@ -114,6 +114,10 @@ function ScreeningForm() {
         <button type="button" onClick={resetForm} className="btn screening-btn px-4">
           Reset
         </button>
+
+        <Link to="/history" className={`btn screening-btn ${!isLoggedIn ? "disabled" : ""}`}>
+          View history
+        </Link>
       </div>
 
       {/* PUBLIC: immediate results + general advice */}
@@ -172,8 +176,8 @@ function ScreeningForm() {
               </button>
 
               {!isLoggedIn && (
-                <span className="small screening-note">
-                  <Link to="/login" className="link-plain"><b>Log in</b></Link>  to save or{" "}
+                <span className="medium screening-note">
+                  <Link to="/login" className="link-plain"><b>Log in</b></Link>  to save and view history or{" "}
                   <Link to="/signup" className="link-plain"><b>create an account</b></Link>
                 </span>
               )}

@@ -15,14 +15,16 @@ function Screening() {
          <i className="bi bi-shield-lock me-1"></i> Private by default
        </span>
 
-     <h2 className="mt-3 mb-2">Mental Health Screening</h2>
+     <h2 className="mt-3 mb-2">Welcome to AI Screening</h2>
            <p className="text-muted">
-            Short self-check inspired by PHQ-9. This is <strong>not</strong> a diagnosis,
-           but it can help you decide whether to seek support.
+            <i>Let's take a short self-check! answer some questions below, this may help you decide whether to seek support.
+            &nbsp;
+            <strong>This is not a diagnosis </strong> 
+            </i>
          </p>
       </div>
         
-        <div className="screening-card p-4 p-md-5">
+        <div className="screening-card m-3 p-4 p-md-4">
           <ScreeningForm />
         </div>
       </div>

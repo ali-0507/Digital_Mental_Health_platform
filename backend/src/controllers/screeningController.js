@@ -1,4 +1,4 @@
-const Screening = require("../../models/Screening");
+const Screening = require("../models/Screening");
 
 exports.saveScreening = async (req, res) => {
   try {

@@ -31,7 +31,7 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/audit", auditRoutes);
 
 //Screening route
-app.use("/api/screenings", require("./src/routes/screeningRoutes"));
+app.use("/api/screenings", require("./routes/screeningRoutes"));
 
 app.get("/api/health", (req, res) => res.json({ ok: true }));
 
