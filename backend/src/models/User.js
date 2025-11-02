@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
   // createdAt: { type: Date, default: Date.now }
 });
 
-// Hash password before save (only if changed)
+// Hash password before save (only if password changed)
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   this.password = await bcrypt.hash(this.password, 12);

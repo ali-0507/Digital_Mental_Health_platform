@@ -114,7 +114,7 @@ function Home() {
                                       
                                       {/* Why us */}
       <div className="whyUs">
-        <h2 className="heading">Why Us  <i class="fa-solid fa-question"></i> </h2>
+        <h2 className="heading">Why Us  <i className="fa-solid fa-question"></i> </h2>
 
         <p className="whyus-text"> We give a platform with <b>anonymous identity</b> and direct
           support of counsellor in case of emergency. A perfect meditation guide
@@ -124,16 +124,16 @@ function Home() {
 
           <div  className="list">
             <ul>
-              <li><i class="fa-solid fa-feather-pointed"></i>&nbsp;&nbsp;
+              <li><i className="fa-solid fa-feather-pointed"></i>&nbsp;&nbsp;
               Take our AI screening test to know your anxiety and depression level</li>
 
-              <li><i class="fa-solid fa-feather-pointed"></i>&nbsp;&nbsp;
+              <li><i className="fa-solid fa-feather-pointed"></i>&nbsp;&nbsp;
               If you feel like reading something makes you feel good, then watch resources</li>
 
-              <li><i class="fa-solid fa-feather-pointed"></i>&nbsp;&nbsp;
+              <li><i className="fa-solid fa-feather-pointed"></i>&nbsp;&nbsp;
               Chat with others and share your thoughts about your healing journey</li>
 
-              <li><i class="fa-solid fa-feather-pointed"></i>&nbsp;&nbsp;
+              <li><i className="fa-solid fa-feather-pointed"></i>&nbsp;&nbsp;
               Want some human help? Book a meeting with a counsellor</li>
             </ul>
           </div>
