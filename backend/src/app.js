@@ -9,6 +9,9 @@ const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin");
 const auditRoutes = require("./routes/audit");
 
+//peerSupport
+const peerSupportRoutes = require("./routes/peerSupport.routes");
+
 const app = express();
 app.use(helmet());
 app.use(cookieParser());
@@ -24,6 +27,11 @@ app.get("/", (req, res) => {
 
 //auth endpoints
 app.use("/api/auth", authRoutes);
+
+
+// peer-support
+app.use("/api/peer-support", peerSupportRoutes);
+
 
 // Admin endpoints (protected + admin only)
 app.use("/api/admin", adminRoutes);
