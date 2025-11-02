@@ -1,18 +1,29 @@
 import axios from "axios";
 
-const api = axios.create({
-  baseURL: import.meta.env.VITE_BACKEND_URL + "/api", // backend URL
+const BASE_URL =
+  (import.meta.env.VITE_BACKEND_URL?.replace(/\/+$/, "") || "http://localhost:8000") + "/api";
+
+ const api = axios.create({
+  baseURL: BASE_URL, // backend URL
   withCredentials: true,               // set true because using cookies for refresh token
 });
 
 // ---- REQUEST INTERCEPTOR ---- Automatically attach token if logged in
  api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
-  if (token && token !== "undefined" || token !== "null") {
+
+   const hasRealToken =
+    typeof token === "string" &&
+    token.trim() !== "" &&
+    token !== "null" &&
+    token !== "undefined";
+
+
+  if (hasRealToken) {
     config.headers = config.headers || {};
     config.headers.Authorization = `Bearer ${token}`;
-  }else{
-    if(config.headers) delete config.headers.Authorization;
+  }else if (config.headers && "Authorization" in config.headers){
+      delete config.headers.Authorization;  // ensure header is absent for public requests
   }
   return config;
 });
@@ -24,22 +35,39 @@ const api = axios.create({
 // ---------- RESPONSE INTERCEPTOR (auto-refresh logic) ----------
 let isRefreshing = false;
 let pendingRequests = [];
+let logoutInProgress = false;
 
-const processQueue = (error, newToken = null) => {
-  pendingRequests.forEach(({ resolve, reject }) => {
-    if (newToken) resolve(newToken);
-    else reject(error);
-  });
-  pendingRequests = [];
+
+
+const shouldAttemptRefresh = (error, original) => {
+  // must be 401
+  if (error.response?.status !== 401) return false;
+
+  // don't refresh for refresh/logout endpoints
+  const url = (original?.url || "").toString();
+  if (url.includes("/auth/refresh") || url.includes("/auth/logout") || url.includes("/auth/login")) {
+    return false;
+  }
+
+  // only refresh if the original request actually had Authorization
+  const hadAuth =
+    !!original?.headers?.Authorization ||
+    !!api.defaults?.headers?.common?.Authorization;
+  if (!hadAuth) return false;
+
+  return true;
 };
-
 api.interceptors.response.use(
   (res) => res,
   async (error) => {
     const original = error.config;
 
-    // Not a 401 → reject immediately
-    if (error.response?.status !== 401 || original._retry) {
+    // // Not a 401 → reject immediately
+    // if (error.response?.status !== 401 || original._retry) {
+    //   return Promise.reject(error);
+    // }
+  // If we shouldn't try to refresh, just reject and DON'T logout spam
+    if (!shouldAttemptRefresh(error, original) || original._retry) {
       return Promise.reject(error);
     }
 
@@ -50,6 +78,7 @@ api.interceptors.response.use(
       return new Promise((resolve, reject) => {
         pendingRequests.push({
           resolve: (token) => {
+             original.headers = original.headers || {};
             original.headers.Authorization = `Bearer ${token}`;
             resolve(api(original));
           },
@@ -63,9 +92,9 @@ api.interceptors.response.use(
 
     try {
       const { data } = await axios.post(
-        `${baseURL}/auth/refresh`,
+        `${BASE_URL}/auth/refresh`,
         {},
-        { withCredentials: true }  //  send cookie
+        { withCredentials: true, headers: {} }  //  send cookie
       );
 
       const newToken = data?.accessToken;
@@ -74,21 +103,34 @@ api.interceptors.response.use(
       // Save new token
       localStorage.setItem("token", newToken);
       api.defaults.headers.common.Authorization = `Bearer ${newToken}`;
-      processQueue(null, newToken);
+        pendingRequests.forEach(({ resolve }) => resolve(newToken));
+       pendingRequests = [];
+
 
        // Retry original request with new token
+        original.headers = original.headers || {};
       original.headers.Authorization = `Bearer ${newToken}`;
       return api(original);
     } catch (err) {
-      processQueue(err, null);
+        // fail once → clear and (once) logout
+      pendingRequests.forEach(({ reject }) => reject(err));
+      pendingRequests = [];
+
+
+       localStorage.removeItem("token");
+      delete api.defaults.headers.common.Authorization;
 
       // Refresh failed → log out user
-      localStorage.removeItem("token");
-      try {
-        await axios.post(`${baseURL}/auth/logout`, {}, { withCredentials: true });
-      } catch (_) {}
-
-      window.location.href = "/login";
+      if (!logoutInProgress) {
+        logoutInProgress = true;
+        try {
+          await axios.post(`${BASE_URL}/auth/logout`, {}, { withCredentials: true, headers: {} });
+        } catch (_) {}
+        // redirect once
+        if (window.location.pathname !== "/login") {
+          window.location.replace("/login");
+        }
+      }
       return Promise.reject(err);
     } finally {
       isRefreshing = false;
