@@ -9,6 +9,8 @@ const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin");
 const auditRoutes = require("./routes/audit");
 
+const bookingRoutes = require("../src/routes/booking");
+
 const app = express();
 app.use(helmet());
 app.use(cors({ origin: process.env.FRONTEND_ORIGIN || "*" }));
@@ -29,6 +31,9 @@ app.use("/api/admin", adminRoutes);
 
 // Audit logs (protected + admin only)
 app.use("/api/audit", auditRoutes);
+
+// Booking Endpoints 
+app.use("/api/bookings", bookingRoutes);
 
 app.get("/api/health", (req, res) => res.json({ ok: true }));
 
