@@ -4,27 +4,33 @@
 }
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
-  background-color: #CFCAC6 !important;  
+  background-color: #eae1db !important;  
   color:#173753 !important;
-  border:1px solid #E1F1FC;
+  /* border:1px solid #E1F1FC; */
 }
 
-.nav-link{
-  font-weight: 400 !important;
+.nav-link,.logout-btn{
+  font-weight: 500 !important;
 }
 
 .navbar-brand{
   margin-left:5rem;
 }
 
-.dropdown .btn{
- background: linear-gradient(to left, #173753, #173753);
+.dropdown .btn, .logout-btn{
+  background: linear-gradient(to left, #173753, #173753);
   border:none;
   color:#E1F1FC;
 }
+.logout-btn:hover{
+   color:#eff8fe;
+}
+.logout-btn{
+  font-size:22px;
+}
 .dropdown-item:hover{
-  background: #CFCAC6;
-  color:#173753;
+  background: #e9e4df!important;
+  color:#173753 !important;
 }
 .dropdown-menu a{
   font-weight: 300;

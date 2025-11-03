@@ -1,10 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import api from "../../api/axios";
+import { useAuth } from "../../context/AuthContext.jsx";
 import "../signup/Signup.css"; // shared styles
 
 function Login() {
   const navigate = useNavigate();
+
+  const{ login } = useAuth();
 
   const [formData, setFormData] = useState({
     usernameOrEmail: "",
@@ -28,7 +31,14 @@ function Login() {
       const res = await api.post("/auth/login", formData);
 
       // Save token and redirect
-      localStorage.setItem("token", res.data.token);
+      // localStorage.setItem("token", res.data.token);
+      // alert("Login successful!");
+      // navigate("/"); // redirect to home or dashboard
+
+
+      // IMPORTANT: backend returns { accessToken, user }
+     // Use context login so Navbar updates immediately
+      login(res.data.accessToken, res.data.user);
       alert("Login successful!");
       navigate("/"); // redirect to home or dashboard
     } catch (err) {
