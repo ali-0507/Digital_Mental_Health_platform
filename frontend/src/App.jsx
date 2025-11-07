@@ -15,6 +15,7 @@ import Footer from "./landing_page/Footer.jsx";
 import Signup from "./landing_page/signup/Signup.jsx";
 import Login from "./landing_page/login/Login.jsx";
 import ScreeningHistory from "./landing_page/pages/ScreeningHistory.jsx";
+import ResourceGuide from "./landing_page/pages/ResourceGuide.jsx";
 
 
 function App() {
@@ -60,6 +61,14 @@ function App() {
           }
         />
 
+        <Route
+          path="/guides"
+          element={
+            <ProtectedRoute>
+              <ResourceGuide/>
+            </ProtectedRoute>
+          }
+          />
 
 
         {/* Not Found */}

@@ -1,0 +1,62 @@
+.guide-heading{
+    font-size:2.5rem;
+    font-weight: 600;
+    color:#173753;
+    font-family: Inter, sans-serif;
+}
+.guide-card{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding:2rem;
+    margin:3rem;
+    
+    width:100%;
+    background-color: #ffffff;
+    border-radius:2rem;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+}
+.guide-title{
+    color:#173753;
+    /* padding:0.5rem; */
+    font-weight:600;
+    font-size:1.3rem;
+}
+.guide-desc{
+    font-style: italic;
+    padding:0.5rem;
+    padding-bottom:0;
+    margin-left:0.6rem;
+}
+.guide-meta{
+    margin-left:1rem;
+    line-height: 1.8rem;
+    font-weight: bold;
+}
+.guide-card-actions{
+    display:flex;
+    flex-direction: row;
+    gap:1rem;
+}
+.guide-actions-protected{
+    display:flex;
+    gap:2rem;
+    padding-left:1rem;
+}
+.guide-open{
+    background-color:lightblue !important;
+    font-weight:600;
+}
+.guide-open:hover{
+    background-color:#1a4464 !important;
+    color:whitesmoke;
+    font-weight:600;
+}
+.guide-outline:hover{
+    background: #173753;
+    color:white;
+}
+.guide-outline.active{
+    border-color:#CFCAC6;
+    box-shadow:0 0 0 .18rem rgba(9,189,183,.18);
+}
