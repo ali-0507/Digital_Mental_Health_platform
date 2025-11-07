@@ -15,7 +15,7 @@ const peerSupportRoutes = require("./routes/peerSupport.routes");
 //Screening
 const screeningRoute = require("./routes/screeningRoutes");
 // AIChat 
-const AIChatRoute = require("./routes/AIChat.routes");
+// const AIChatRoute = require("./routes/AIChat.routes");
 
 const app = express();
 app.use(helmet());
@@ -42,7 +42,7 @@ app.use("/api/screenings", screeningRoute);
 
 
 // AIChat route
-app.use("/api/chat", AIChatRoute);
+// app.use("/api/chat", AIChatRoute);
 
 
 // Admin endpoints (protected + admin only)

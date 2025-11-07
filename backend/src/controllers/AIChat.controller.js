@@ -65,33 +65,33 @@ exports.chatWithAI = async (req, res) => {
 
 
 // Save chat history
-exports.saveChat = async (req, res) => {
-  try {
-    const userId = req.user?._id; // comes from protect middleware
-    const { messages } = req.body;
+// exports.saveChat = async (req, res) => {
+//   try {
+//     const userId = req.user?._id; // comes from protect middleware
+//     const { messages } = req.body;
 
-    if (!userId) return res.status(401).json({ message: "Unauthorized" });
-    if (!messages || !messages.length)
-      return res.status(400).json({ message: "No messages to save" });
+//     if (!userId) return res.status(401).json({ message: "Unauthorized" });
+//     if (!messages || !messages.length)
+//       return res.status(400).json({ message: "No messages to save" });
 
-    const chat = await Chat.create({ user: userId, messages });
-    return res.status(201).json({ message: "Chat saved successfully", chat });
-  } catch (err) {
-    console.error("Error saving chat:", err);
-    return res.status(500).json({ message: "Server error" });
-  }
-};
+//     const chat = await Chat.create({ user: userId, messages });
+//     return res.status(201).json({ message: "Chat saved successfully", chat });
+//   } catch (err) {
+//     console.error("Error saving chat:", err);
+//     return res.status(500).json({ message: "Server error" });
+//   }
+// };
 
-// Fetch all saved chats for the logged-in user
-exports.getUserChats = async (req, res) => {
-  try {
-    const userId = req.user?._id;
-    if (!userId) return res.status(401).json({ message: "Unauthorized" });
+// // Fetch all saved chats for the logged-in user
+// exports.getUserChats = async (req, res) => {
+//   try {
+//     const userId = req.user?._id;
+//     if (!userId) return res.status(401).json({ message: "Unauthorized" });
 
-    const chats = await Chat.find({ user: userId }).sort({ createdAt: -1 });
-    return res.json({ chats });
-  } catch (err) {
-    console.error("Error fetching chats:", err);
-    return res.status(500).json({ message: "Server error" });
-  }
-};
+//     const chats = await Chat.find({ user: userId }).sort({ createdAt: -1 });
+//     return res.json({ chats });
+//   } catch (err) {
+//     console.error("Error fetching chats:", err);
+//     return res.status(500).json({ message: "Server error" });
+//   }
+// };
