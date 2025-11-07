@@ -13,6 +13,11 @@ const bookingRoutes = require("../src/routes/booking");
 //peerSupport
 const peerSupportRoutes = require("./routes/peerSupport.routes");
 
+//Screening
+const screeningRoute = require("./routes/screeningRoutes");
+// AIChat 
+// const AIChatRoute = require("./routes/AIChat.routes");
+
 const app = express();
 app.use(helmet());
 app.use(cookieParser());
@@ -32,6 +37,13 @@ app.use("/api/auth", authRoutes);
 
 // peer-support
 app.use("/api/peer-support", peerSupportRoutes);
+
+//Screening route
+app.use("/api/screenings", screeningRoute);
+
+
+// AIChat route
+// app.use("/api/chat", AIChatRoute);
 
 
 // Admin endpoints (protected + admin only)
