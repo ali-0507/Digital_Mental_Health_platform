@@ -15,6 +15,8 @@ import Footer from "./landing_page/Footer.jsx";
 import Signup from "./landing_page/signup/Signup.jsx";
 import Login from "./landing_page/login/Login.jsx";
 import ScreeningHistory from "./landing_page/pages/ScreeningHistory.jsx";
+import RelaxationAudio from "./landing_page/pages/RelaxationAudio.jsx";
+import MindfulnessVideo from "./landing_page/pages/MindfulnessVideo.jsx";
 
 
 function App() {
@@ -37,6 +39,9 @@ function App() {
         <Route path="/booking" element={<Booking />} />
       
         <Route path="/resources" element={<Resources />} />
+        <Route path="/resources/relaxation-audio" element={<RelaxationAudio />} />
+        <Route path="/mindfulness-video" element={<MindfulnessVideo />} />
+
         <Route path="/peer-support" element={<PeerSupport />} />
 
         {/* Admin Route */}
