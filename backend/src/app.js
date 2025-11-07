@@ -9,6 +9,7 @@ const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin");
 const auditRoutes = require("./routes/audit");
 
+const bookingRoutes = require("../src/routes/booking");
 //peerSupport
 const peerSupportRoutes = require("./routes/peerSupport.routes");
 
@@ -50,6 +51,11 @@ app.use("/api/admin", adminRoutes);
 
 // Audit logs (protected + admin only)
 app.use("/api/audit", auditRoutes);
+
+// Booking Endpoints 
+app.use("/api/bookings", bookingRoutes);
+//Screening route
+app.use("/api/screenings", require("./routes/screeningRoutes"));
 
 app.get("/api/health", (req, res) => res.json({ ok: true }));
 

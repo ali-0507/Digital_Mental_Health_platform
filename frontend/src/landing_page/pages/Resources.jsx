@@ -1,35 +1,4 @@
-// // import React from "react";
-// import ResourceCard from "../components/ResourceCard";
- 
-// function Resources() {
-//   const resources = [
-//     { title: "Relaxation Audio", type: "audio", link: "/" },
-//     { title: "Stress Management Guide", type: "pdf", link: "/" },
-//     { title: "Mindfulness Video", type: "video", link: "/" },
-//   ];
-
-//   return (
-//     <div className="resources mb-4 p-3">
-//       <h2 className="mb-4 text-center">Psychoeducational Resources</h2>
-//       <p className="text-muted text-center mb-4">
-//         Explore resources designed to support your mental wellness.
-//       </p>
-
-//       <div className="row g-4">
-//         {resources.map((res, i) => (
-//           <div className="col-md-4" key={i}>
-//             <ResourceCard {...res} />
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Resources;
-
-
-
+import { useState } from "react";
 import React, { useState } from "react";
 import ResourceCard from "../components/ResourceCard";
 import "./Resources.css";
@@ -70,24 +39,24 @@ function Resources() {
       title: "Relaxation Audio",
       type: "audio",
       link: "/",
+      description: "A guided relaxation to reduce tension.",
+      link: "/resources/relaxation-audio",
       description: "A 10-minute guided relaxation to reduce tension.",
       meta: { source: "Connect & Evolve", author: "Clinical Team", year: "2025", length: "10 min" },
     },
     {
       id: "stress-guide",
-      title: "Stress Management Guide",
+      title: "Articles to help you!",
       type: "pdf",
-      link: "/",
-      description: "Evidence-based strategies for coping with stress.",
-      meta: { source: "WHO / APA summaries", year: "2024", length: "8 pages" },
+      link: "/guides",
+      description: "Strategies for coping with stress,anxiety,negative thoughts.",
     },
     {
       id: "mindfulness-video",
       title: "Mindfulness Video",
       type: "video",
-      link: "/",
+      link: "/mindfulness-video",
       description: "Learn a quick mindfulness practice you can do anywhere.",
-      meta: { source: "Connect & Evolve", year: "2025", length: "6 min" },
     },
   ];
 
@@ -106,11 +75,11 @@ function Resources() {
         <header className="text-center mb-3">
           <h2 className="rs-title mb-1">Psychoeducational Resources</h2>
           <p className="rs-subtitle">
-            Explore evidence-informed guides, audio practices, and videos to support your mental wellness.
+            Explore guides, audio practices, and videos to support your mental wellness.
           </p>
         </header>
 
-        <div className="rs-disclaimer mb-4">
+        <div className="rs-disclaimer">
           <i className="bi bi-info-circle me-2"></i>
           Educational content only — not a substitute for professional diagnosis or treatment.
           Please check cited sources and consult a clinician if needed.
