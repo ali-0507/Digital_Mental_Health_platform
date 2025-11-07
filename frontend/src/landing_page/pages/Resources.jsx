@@ -1,4 +1,5 @@
 import { useState } from "react";
+import React, { useState } from "react";
 import ResourceCard from "../components/ResourceCard";
 import "./Resources.css";
 import { Link } from "react-router-dom";
@@ -39,6 +40,9 @@ function Resources() {
       type: "audio",
       link: "/",
       description: "A guided relaxation to reduce tension.",
+      link: "/resources/relaxation-audio",
+      description: "A 10-minute guided relaxation to reduce tension.",
+      meta: { source: "Connect & Evolve", author: "Clinical Team", year: "2025", length: "10 min" },
     },
     {
       id: "stress-guide",
@@ -51,7 +55,7 @@ function Resources() {
       id: "mindfulness-video",
       title: "Mindfulness Video",
       type: "video",
-      link: "/",
+      link: "/mindfulness-video",
       description: "Learn a quick mindfulness practice you can do anywhere.",
     },
   ];
