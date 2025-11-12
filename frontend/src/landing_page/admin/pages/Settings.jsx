@@ -1,7 +1,6 @@
-import { useTheme } from "../context/ThemeContext";
+
 
 function Settings() {
-  const { theme, toggleTheme } = useTheme();
 
   return (
     <div className="container py-4">
@@ -11,9 +10,9 @@ function Settings() {
       {/* Theme Switch */}
       <div className="card p-3 shadow-sm mt-3">
         <h5>Appearance</h5>
-        <p>Current Theme: <strong>{theme}</strong></p>
-        <button className="btn btn-primary" onClick={toggleTheme}>
-          Switch to {theme === "light" ? "Dark" : "Light"} Mode
+        <p>Current Theme: <strong></strong></p>
+        <button className="btn btn-primary">
+          Switch to dark or light Mode
         </button>
       </div>
 

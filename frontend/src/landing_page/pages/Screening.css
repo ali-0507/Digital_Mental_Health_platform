@@ -20,7 +20,7 @@
   background:
     radial-gradient(900px 500px at 80% 10%, rgba(109,174,219,.20), transparent 60%),
     linear-gradient(180deg, var(--scr-bg-start) 0%, var(--scr-bg-end) 100%);
-    font-family: "Intern,san-serif";
+    font-family: Inter "san-serif";
 }
 
 /* Container card */

@@ -39,14 +39,27 @@ exports.signup = async (req, res) => {
   try {
     const { name, username, email, password, role } = req.body;
 
-    if (!name || !username || !email || !password) {
-      return res.status(400).json({ message: "Missing required fields" });
+     // Check for existing email
+    const existingEmail = await User.findOne({ email });
+    if (existingEmail) {
+      return res.status(400).json({ message: "Email already exist" });
     }
 
-    const exists = await User.findOne({ $or: [{ email }, { username }] });
-    if (exists) {
-      return res.status(400).json({ message: "User already exists" });
-    }
+
+     // Check for existing username
+    const existingUsername = await User.findOne({ username });
+    if (existingUsername) {
+      return res.status(400).json({ message: "Username already exists" });
+    }  
+
+    // if (!name || !username || !email || !password) {
+    //   return res.status(400).json({ message: "Missing required fields" });
+    // }
+
+    // const exists = await User.findOne({ $or: [{ email }, { username }] });
+    // if (exists) {
+    //   return res.status(400).json({ message: "User already exists" });
+    // }
 
     const user = await User.create({ name, username, email, password, role });
 

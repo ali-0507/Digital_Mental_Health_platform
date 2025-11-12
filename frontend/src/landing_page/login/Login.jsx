@@ -3,6 +3,7 @@ import { useState } from "react";
 import api from "../../api/axios";
 import { useAuth } from "../../context/AuthContext.jsx";
 import "../signup/Signup.css"; // shared styles
+import Swal from "sweetalert2";
 
 function Login() {
   const navigate = useNavigate();
@@ -13,18 +14,61 @@ function Login() {
     usernameOrEmail: "",
     password: "",
   });
+    const [touched, setTouched] = useState({});
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   // for login styling
    const [showPwd, setShowPwd] = useState(false);
 
+   const isEmail = (v) => /^[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(v);
+  const isUsername = (v) => /^[A-Za-z0-9._-]{3,}$/.test(v); // min 3 chars
+
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const {name, value} = e.target;
+    setFormData((s) => ({ ...s, [name]: value }));
   };
+
+   const handleBlur = (e) => {
+    const { name } = e.target;
+    setTouched((t) => ({ ...t, [name]: true }));
+  };
+
+    const validate = useMemo(() => {
+    const errs = {};
+     // usernameOrEmail: required; must be email OR username pattern
+    if (!formData.usernameOrEmail.trim()) {
+      errs.usernameOrEmail = "Please enter your email or username.";
+    } else if (!(isEmail(formData.usernameOrEmail) || isUsername(formData.usernameOrEmail))) {
+      errs.usernameOrEmail =
+        "Enter a valid email (name@example.com) or a username (min 3 letters/numbers).";
+    }
+
+    // password
+    if (!formData.password) {
+      errs.password = "Please enter your password.";
+    } else if (formData.password.length < 6) {
+      errs.password = "Password must be at least 6 characters.";
+    }
+
+    return errs;
+  }, [formData]);
+
+
+  const hasErrors = Object.keys(validate).length > 0;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+     setTouched({ usernameOrEmail: true, password: true });
+
+     if (hasErrors) {
+      Swal.fire({
+        icon: "warning",
+        title: "Check your details",
+        text: "Please fix the highlighted fields before logging in.",
+      });
+      return;
+    }
 
     try {
       setLoading(true);
@@ -35,15 +79,44 @@ function Login() {
       // alert("Login successful!");
       // navigate("/"); // redirect to home or dashboard
 
-
       // IMPORTANT: backend returns { accessToken, user }
      // Use context login so Navbar updates immediately
       login(res.data.accessToken, res.data.user);
-      alert("Login successful!");
-      navigate("/"); // redirect to home or dashboard
+     Swal.fire({
+    icon: "success",
+    title: "Welcome back! 🎉",
+    text: "Login successful. Redirecting to your dashboard...",
+    timer: 2000,                // auto close in 2 sec
+    showConfirmButton: false,   // hide "OK" button
+  });
+      setTimeout(() => {
+    navigate("/");
+    }, 2000);   // redirect to home or dashboard
     } catch (err) {
       console.error(err);
-      setError(err.response?.data?.message || "Login failed!");
+      const msg = err.response?.data?.message;
+       // Handle different types of errors
+  if (msg?.toLowerCase().includes("invalid credentials")) {
+    Swal.fire({
+      icon: "error",
+      title: "Invalid Credentials ❌",
+      text: "The email or password you entered is incorrect.",
+    });
+  } else if (msg?.toLowerCase().includes("user not found")) {
+    Swal.fire({
+      icon: "warning",
+      title: "User Not Found ⚠️",
+      text: "No account found with this email. Please sign up first.",
+    });
+  } else {
+    Swal.fire({
+      icon: "error",
+      title: "Login Failed 😕",
+      text: msg || "Something went wrong. Please try again later.",
+    });
+  }
+
+  setError(msg || "Login failed!");
     } finally {
       setLoading(false);
     }
@@ -52,7 +125,7 @@ function Login() {
     return ( 
 
 
-          <div className="mental-bg d-flex align-items-center min-vh-100 p-3">
+      <div className="mental-bg d-flex align-items-center min-vh-100 p-3">
       <div className="container">
         <div className="auth-wrapper mx-auto shadow-lg">
           <div className="row g-0">
@@ -94,34 +167,49 @@ function Login() {
               <form onSubmit={handleSubmit} noValidate>
                 <div className="mb-3">
                   <label className="form-label">Email or Username</label>
-                  <div className="input-group">
+                  <div className="input-group has-validation">
                     <span className="input-group-text">
                       <i className="bi bi-person"></i>
                     </span>
                     <input
                       type="text"
                       name="usernameOrEmail"
-                      className="form-control"
+                       className={`form-control ${
+                        touched.usernameOrEmail && validate.usernameOrEmail
+                          ? "is-invalid"
+                          : touched.usernameOrEmail
+                          ? "is-valid"
+                          : ""
+                      }`}
                       placeholder="Enter your email or username"
                       required
                       onChange={handleChange}
+                      onBlur={handleBlur}
                     />
+                     <div className="invalid-feedback">{validate.usernameOrEmail}</div>
                   </div>
                 </div>
 
                 <div className="mb-2">
                   <label className="form-label">Password</label>
-                  <div className="input-group">
+                  <div className="input-group has-validation">
                     <span className="input-group-text">
                       <i className="bi bi-lock"></i>
                     </span>
                     <input
                       type={showPwd ? "text" : "password"}
                       name="password"
-                      className="form-control"
+                       className={`form-control ${
+                        touched.password && validate.password
+                          ? "is-invalid"
+                          : touched.password
+                          ? "is-valid"
+                          : ""
+                      }`}
                       placeholder="Enter your password"
                       required
                       onChange={handleChange}
+                      onBlur={handleBlur}
                     />
                     <button
                       type="button"
@@ -131,6 +219,7 @@ function Login() {
                     >
                       <i className={`bi ${showPwd ? "bi-eye-slash" : "bi-eye"}`}></i>
                     </button>
+                      <div className="invalid-feedback">{validate.password}</div>
                   </div>
                 </div>
 
@@ -170,235 +259,3 @@ function Login() {
 }
 
 export default Login;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//        <div className="d-flex align-items-center justify-content-center vh-100 bg-light">
-//       <div className="card shadow-lg p-4" style={{ width: "400px", borderRadius: "15px" }}>
-//         <h2 className="text-center mb-4 text-primary">Login</h2>
-
-//         {error && <div className="alert alert-danger">{error}</div>}
-
-//         <form onSubmit={handleSubmit}>
-//           <div className="mb-3">
-//             <label className="form-label fw-bold">Email or Username</label>
-//             <input
-//               type="text"
-//               name="usernameOrEmail"
-//               className="form-control"
-//               placeholder="Enter your email or username"
-//               required
-//               onChange={handleChange}
-//             />
-//           </div>
-
-//           <div className="mb-3">
-//             <label className="form-label fw-bold">Password</label>
-//             <input
-//               type="password"
-//               name="password"
-//               className="form-control"
-//               placeholder="Enter your password"
-//               required
-//               onChange={handleChange}
-//             />
-//           </div>
-
-//           <button type="submit" className="btn btn-primary w-100 fw-bold" disabled={loading}>
-//             {loading ? "Logging in..." : "Login"}
-//           </button>
-
-//           <p className="text-center mt-3">
-//             Don’t have an account?{" "}
-//             <Link to="/signup" className="text-decoration-none text-primary fw-bold">
-//               Sign Up
-//             </Link>
-//           </p>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// }
-// export default Login;
-
-
-
-
-
-
-
-// import React, { useState } from "react";
-// import { Link, useNavigate } from "react-router-dom";
-
-// export default function Login() {
-//   const [usernameOrEmail, setUsernameOrEmail] = useState("");
-//   const [password, setPassword] = useState("");
-//   const [loading, setLoading] = useState(false);
-//   const [error, setError] = useState("");
-//   const navigate = useNavigate();
-
-//   // Works in both Vite (import.meta.env) and CRA (process.env)
-// const API_BASE = import.meta.env.VITE_API_BASE || "";
-
-
-
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     setError("");
-//     if (!usernameOrEmail || !password) {
-//       setError("Please enter email/username and password.");
-//       return;
-//     }
-
-//     try {
-//       setLoading(true);
-//       const res = await fetch(`${API_BASE}/api/auth/login`, {
-//         method: "POST",
-//         headers: { "Content-Type": "application/json" },
-//         body: JSON.stringify({ usernameOrEmail, password }),
-//       });
-
-//       const body = await res.json().catch(() => ({}));
-//       if (!res.ok) {
-//         throw new Error(body.message || "Login failed");
-//       }
-
-//       // expected { token, user }
-//       const { token, user } = body;
-//       if (token) {
-//         localStorage.setItem("token", token);
-//       }
-//       if (user) {
-//         localStorage.setItem("user", JSON.stringify(user));
-//       }
-
-//       // redirect based on role
-//       if (user?.role === "admin") {
-//         navigate("/admin");
-//       } else {
-//         navigate("/");
-//       }
-//     } catch (err) {
-//       console.error(err);
-//       setError(err.message || "Login error");
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   return (
-//     <div className="d-flex align-items-center justify-content-center vh-100 bg-light">
-//       <div className="card shadow-lg p-4" style={{ width: "400px", borderRadius: "15px" }}>
-//         <h2 className="text-center mb-4 text-primary">Login</h2>
-
-//         <form onSubmit={handleSubmit}>
-//           {error && <div className="alert alert-danger">{error}</div>}
-
-//           <div className="mb-3">
-//             <label className="form-label fw-bold">Email address or Username</label>
-//             <input
-//               value={usernameOrEmail}
-//               onChange={(e) => setUsernameOrEmail(e.target.value)}
-//               type="text"
-//               className="form-control"
-//               placeholder="Enter your email or username"
-//               required
-//             />
-//           </div>
-
-//           <div className="mb-3">
-//             <label className="form-label fw-bold">Password</label>
-//             <input
-//               value={password}
-//               onChange={(e) => setPassword(e.target.value)}
-//               type="password"
-//               className="form-control"
-//               placeholder="Enter your password"
-//               required
-//             />
-//           </div>
-
-//           <button type="submit" className="btn btn-primary w-100 fw-bold" disabled={loading}>
-//             {loading ? "Logging in..." : "Login"}
-//           </button>
-
-//           <p className="text-center mt-3">
-//             Don’t have an account?{" "}
-//             <Link to="/signup" className="text-decoration-none text-primary fw-bold">
-//               Sign Up
-//             </Link>
-//           </p>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// }

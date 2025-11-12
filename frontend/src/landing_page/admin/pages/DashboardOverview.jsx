@@ -21,7 +21,7 @@ function DashboardOverview() {
   const COLORS = ["#0d6efd", "#198754", "#ffc107", "#dc3545"];
 
   return (
-    <div className="container-fluid py-4">
+    <div className="container-fluid py-4" style={{backgroundColor:"white"}}>
       <h2 className="mb-4">Dashboard Overview</h2>
 
       {/* Stats Cards */}

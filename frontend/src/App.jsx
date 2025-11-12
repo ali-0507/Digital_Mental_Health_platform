@@ -36,9 +36,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/screening" element={<Screening />} />
         <Route path="/chat" element={<AIChat />} />
-          
         <Route path="/booking" element={<Booking />} />
-      
+    
         <Route path="/resources" element={<Resources />} />
         <Route path="/resources/relaxation-audio" element={<RelaxationAudio />} />
         <Route path="/mindfulness-video" element={<MindfulnessVideo />} />

@@ -1,60 +1,79 @@
 // import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import {useAuth} from "../context/AuthContext.jsx";
+import { useAuth } from "../context/AuthContext.jsx";
 import "./Navbar.css";
 import "../landing_page/pages/Home.jsx";
 
 function Navbar() {
   const { user, logout, isAuthenticated, loading } = useAuth(); // get auth state
-  if(loading){
+  if (loading) {
     return null; // or a loading spinner
   }
   return (
     <nav className="navbar navbar-expand-lg navbar-dark sticky-top">
-      
-        <div className="container-fluid">
-          {/* <Link className="navbar-brand" to="/">
+      <div className="container-fluid">
+        {/* <Link className="navbar-brand" to="/">
             <img src="/assests/logo.png" alt="Logo" className="d-flex align-text-center"/>
           </Link> */}
 
         <Link className="navbar-brand fs-5 logoName" to="/">
           <i>Connect&Evolve</i>
-        </Link> 
+        </Link>
 
         {/* for hamburger icon */}
         <button
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#navbarNav">
+          data-bs-target="#navbarNav"
+        >
           <span className="navbar-toggler-icon"></span>
         </button>
 
-          {/* Navbar Items */}
+        {/* Navbar Items */}
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="nav nav-pills nav-fill ms-auto fs-5">
-    
             <li className="nav-item">
-              <NavLink className="nav-link" to="/"> Home </NavLink>
+              <NavLink className="nav-link" to="/">
+                {" "}
+                Home{" "}
+              </NavLink>
             </li>
 
-          {/* Dropdown item */}
+            {/* Dropdown item */}
             <li className="nav-item dropdown">
-            <button className="btn btn-lg dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-              About Us
-            </button>
+              <button
+                className="btn btn-lg dropdown-toggle"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                About Us
+              </button>
+             
               <ul className="dropdown-menu">
-                <li><NavLink className="dropdown-item" href="#"><i>Who we are</i></NavLink></li>
-                <li><NavLink className="dropdown-item" href="#"><i>Our mission</i></NavLink></li>
-                <li><NavLink className="dropdown-item" href="/email"><i>Contacts</i></NavLink></li>
+                <li>
+                  <NavLink className="dropdown-item" href="#">
+                    <i>Who we are</i>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="dropdown-item" href="#">
+                    <i>Our mission</i>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="dropdown-item" href="/email">
+                    <i>Contacts</i>
+                  </NavLink>
+                </li>
               </ul>
             </li>
 
-
-
-             {/* Conditional Rendering based on login status */}
+            {/* Conditional Rendering based on login status */}
             {!isAuthenticated ? (
               <>
+
+
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/signup">
                     SignUp
@@ -69,7 +88,12 @@ function Navbar() {
               </>
             ) : (
               <>
-               {/* Show username and logout */}
+               <li className="nav-item">
+               <NavLink className="nav-link" to="/my-chats">
+                    My Chats
+                 </NavLink>
+             </li>
+                {/* Show username and logout */}
                 <li className="nav-item d-flex align-items-center px-3">
                   <span className="text-light ">
                     Hi, {user?.name?.split(" ")[0]} 👋
@@ -77,16 +101,12 @@ function Navbar() {
                 </li>
 
                 <li className="nav-item">
-                  <button
-                    className="btn mt-1 mb-1 logout-btn"
-                    onClick={logout}
-                  >
+                  <NavLink className="btn mt-1 mb-1 logout-btn" onClick={logout} to="/home">
                     Logout
-                  </button>
+                  </NavLink>
                 </li>
               </>
             )}
-
           </ul>
         </div>
       </div>
