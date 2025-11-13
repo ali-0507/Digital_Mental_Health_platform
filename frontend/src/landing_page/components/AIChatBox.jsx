@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import api from "../../api/axios";
 
 const PROMPTS = ["Breathing", "5-4-3-2-1", "Sleep tips", "Anxiety", "I feel lonely"];
 const MOODS = ["🙂", "😟", "😠", "😴", "😔"];
@@ -53,15 +54,17 @@ function AIChatBox({ isLoggedIn }) {
     setStickBottom(el.scrollHeight - el.scrollTop - el.clientHeight < 16);
   };
 
-  const botReply = (text, delay = 650) => {
-    setTyping(true);
-    setTimeout(() => {
-      setMessages((prev) => [...prev, { sender: "bot", text }]);
-      setTyping(false);
-    }, delay);
-  };
+  // const botReply = (text, delay = 650) => {
+  //   setTyping(true);
+  //   setTimeout(() => {
+  //     setMessages((prev) => [...prev, { sender: "bot", text }]);
+  //     setTyping(false);
+  //   }, delay);
+  // };
 
-  const handleSend = (e) => {
+
+   // 🔁 Non-stream backend call to /api/chat
+  const handleSend = async (e) => {
     e.preventDefault();
     const text = input.trim();
     if (!text) return;
@@ -69,10 +72,30 @@ function AIChatBox({ isLoggedIn }) {
     setMessages((prev) => [...prev, { sender: "user", text }]);
     setInput("");
     setShowRisk(RISK_REGEX.test(text));
-    botReply("I’m listening. Would you like a short coping exercise?");
+    // botReply("I’m listening. Would you like a short coping exercise?");
+    setTyping(true);
+
+     // Build short history for context (last 6 turns), mapping to LLM roles
+    const history = messages.slice(-6).map((m) => ({
+      role: m.sender === "user" ? "user" : "assistant",
+      content: m.text,
+    }));
+
+    try{
+       const {data} = await api.post("/chat",{message:text, mood, history});
+       const aiText = data?.reply || "Sorry, I couldn’t generate a response.";
+      setMessages((prev) => [...prev, { sender: "bot", text: aiText }]);
+    }catch(err){
+      console.error(err);
+      setMessages((prev) => [...prev,
+        { sender: "bot", text: "Sorry—server is busy right now. Please try again." },
+      ]);
+    }finally {
+      setTyping(false);
+    }
   };
 
-  const usePrompt = (p) => {
+  const usePrompt = async (p) => {
     const text =
       p === "Breathing"
         ? "Can we try box breathing?"
@@ -83,33 +106,47 @@ function AIChatBox({ isLoggedIn }) {
         : p === "Anxiety"
         ? "I'm feeling anxious."
         : "I'm feeling lonely.";
-    setMessages((prev) => [...prev, { sender: "user", text }]);
-    botReply(
-      p === "Breathing"
-        ? "Inhale 4s, hold 4s, exhale 4s, hold 4s. Repeat four cycles with me."
-        : p === "5-4-3-2-1"
-        ? "Notice 5 things you see, 4 you feel, 3 you hear, 2 you smell, 1 you taste."
-        : p === "Sleep tips"
-        ? "Try a wind-down: dim lights, stop screens 30 mins before bed, keep a consistent sleep time."
-        : p === "Anxiety"
-        ? "Name the feeling, breathe slowly, and try a 60-second focus on the breath."
-        : "You're not alone. Would you like ideas to reach out or self-soothe?"
-    );
-  };
+
+        setInput(text);
+         // trigger send using the same flow
+        const fakeEvent = { preventDefault: () => {} };
+         await handleSend(fakeEvent);
+     };
+    // setMessages((prev) => [...prev, { sender: "user", text }]);
+  //   botReply(
+  //     p === "Breathing"
+  //       ? "Inhale 4s, hold 4s, exhale 4s, hold 4s. Repeat four cycles with me."
+  //       : p === "5-4-3-2-1"
+  //       ? "Notice 5 things you see, 4 you feel, 3 you hear, 2 you smell, 1 you taste."
+  //       : p === "Sleep tips"
+  //       ? "Try a wind-down: dim lights, stop screens 30 mins before bed, keep a consistent sleep time."
+  //       : p === "Anxiety"
+  //       ? "Name the feeling, breathe slowly, and try a 60-second focus on the breath."
+  //       : "You're not alone. Would you like ideas to reach out or self-soothe?"
+  //   );
+  // };
 
   const clearChat = () => {
     setMessages([{ sender: "bot", text: "Hi! I'm here to support you. How are you feeling today?" }]);
     setShowRisk(false);
   };
 
-  const saveChat = () => {
+  const saveChat = async  () => {
     if (!isLoggedIn) {
       setShowAuthModal(true);
       return;
     }
-    // later: POST /api/chat/save {messages}
-    alert("Saved (stub). We’ll wire this to your backend.");
+    // // later: POST /api/chat/save {messages}
+    // alert("Saved (stub). We’ll wire this to your backend.");
+     try {
+    const res = await api.post("/chat/save", { messages });
+    alert("✅ Chat saved successfully!");
+     } catch (err) {
+      console.error("Save chat error:", err);
+       alert("❌ Failed to save chat");
+     }
   };
+
 
   const exportChat = () => {
     const text = messages
