@@ -4,6 +4,7 @@ import ScreeningForm from "../components/ScreeningForm";
 import "./Screening.css";             // tiny page-specific tweaks
 
 function Screening() {
+   const isLoggedIn = Boolean(localStorage.getItem("token"));
   return (
     <div className="screening-bg py-5">
       <div className="container" style={{maxWidth: 980}}>
@@ -22,6 +23,9 @@ function Screening() {
             <strong>This is not a diagnosis </strong> 
             </i>
          </p>
+         <a href="/history" className={`btn history-btn ${!isLoggedIn ? "disabled" : ""}`}>
+          View history
+        </a>
       </div>
         
         <div className="screening-card m-3 p-4 p-md-4">

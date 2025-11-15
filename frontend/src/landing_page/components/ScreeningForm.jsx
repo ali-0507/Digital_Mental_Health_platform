@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import {useEffect, useState, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../api/axios"; // Uncomment and wire when backend route is ready
 
@@ -15,17 +15,15 @@ function ScreeningForm() {
 
   const isLoggedIn = Boolean(localStorage.getItem("token"));
 
-  const questions = [
-    "Little interest or pleasure in doing things?",
-    "Feeling down, depressed, or hopeless?",
-    "Trouble sleeping, or sleeping too much?",
-    "Feeling tired or having little energy?",
-    "Poor appetite or overeating?",
-    "Feeling bad about yourself — or that you are a failure?",
-    "Trouble concentrating on things?",
-    "Moving/speaking slowly or being restless?",
-    "Thoughts that you would be better off dead or hurting yourself?",
-  ];
+  const [level, setLevel] = useState("level1");
+
+  const [questions, setQuestions] = useState([]);
+    useEffect(() => {
+      api.get("/screenings/questions").then(res => {
+      setQuestions(res.data.questions);
+      setLevel(res.data.level);
+    });
+}, []);
 
   const handleChange = (qIndex, value) => {
     setAnswers({ ...answers, [qIndex]: parseInt(value, 10) });
@@ -62,7 +60,7 @@ function ScreeningForm() {
 
     try {
       setSubmitting(true);
-      await api.post("/screenings",{questions,answers, score});
+      await api.post("/screenings",{answers, score,level});
       alert("Your score was saved scuccessfully!");
     } catch (err) {
       console.error(err);
@@ -80,9 +78,10 @@ function ScreeningForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} noValidate>
+    
+    <form onSubmit={handleSubmit} noValidate className="form">
       {questions.map((q, i) => (
-        <div key={i} className="mb-4 screening-divider pb-3">
+        <div key={i} className="mb-4 screening-divider pb-4">
           <label className="form-label screening-label mb-2">{q}</label>
           <select
             className="drop-down screening-select"
@@ -90,11 +89,11 @@ function ScreeningForm() {
             required
             value={answers[i] ?? ""}
           >
-            <option value="">Select...</option>
-            <option value="0">Not at all </option>
-            <option value="1">Several days </option>
-            <option value="2">More than half the days </option>
-            <option value="3">Nearly every day </option>
+            <option id="select-option" value="">Select...</option>
+            <option id="select-option" value="0">Low</option>
+            <option id="select-option" value="1">Mild</option>
+            <option id="select-option" value="2">Moderate</option>
+            <option id="select-option" value="3">Severe</option>
           </select>
            <div className="mt-1 screening-hint">Answer honestly for the best guidance.</div>
           {/* Self-harm safety nudge */}
@@ -115,9 +114,9 @@ function ScreeningForm() {
           Reset
         </button>
 
-        <Link to="/history" className={`btn screening-btn ${!isLoggedIn ? "disabled" : ""}`}>
+        {/* <Link to="/history" className={`btn screening-btn ${!isLoggedIn ? "disabled" : ""}`}>
           View history
-        </Link>
+        </Link> */}
       </div>
 
       {/* PUBLIC: immediate results + general advice */}
