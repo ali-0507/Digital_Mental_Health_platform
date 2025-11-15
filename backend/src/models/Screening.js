@@ -18,6 +18,7 @@ const screeningSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  level: { type: String },
   createdAt: {
     type: Date,
     default: Date.now,
