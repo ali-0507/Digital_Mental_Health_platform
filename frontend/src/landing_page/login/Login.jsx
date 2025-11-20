@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import api from "../../api/axios";
 import { useAuth } from "../../context/AuthContext.jsx";
 import "../signup/Signup.css"; // shared styles
@@ -90,7 +90,7 @@ function Login() {
     showConfirmButton: false,   // hide "OK" button
   });
       setTimeout(() => {
-    navigate("/");
+    navigate("/dashboard");
     }, 2000);   // redirect to home or dashboard
     } catch (err) {
       console.error(err);
@@ -230,9 +230,9 @@ function Login() {
                       Remember me
                     </label>
                   </div>
-                  <Link to="/forgot-password" className="small link-mental">
+                  {/* <Link to="/forgot-password" className="small link-mental">
                     Forgot password?
-                  </Link>
+                  </Link> */}
                 </div>
 
                 <button type="submit" className="btn btn-mental w-100 fw-semibold" disabled={loading}>

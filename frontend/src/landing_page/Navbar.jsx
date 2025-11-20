@@ -1,11 +1,14 @@
 // import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 import "./Navbar.css";
 import "../landing_page/pages/Home.jsx";
+ 
 
 function Navbar() {
   const { user, logout, isAuthenticated, loading } = useAuth(); // get auth state
+   const location = useLocation();
+
   if (loading) {
     return null; // or a loading spinner
   }
@@ -15,8 +18,9 @@ function Navbar() {
         {/* <Link className="navbar-brand" to="/">
             <img src="/assests/logo.png" alt="Logo" className="d-flex align-text-center"/>
           </Link> */}
-
+          
         <Link className="navbar-brand fs-5 logoName" to="/">
+        
           <i>Connect&Evolve</i>
         </Link>
 
@@ -88,11 +92,14 @@ function Navbar() {
               </>
             ) : (
               <>
-               <li className="nav-item">
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/dashboard">My Dashboard</NavLink>
+                </li>
+               {/* <li className="nav-item">
                <NavLink className="nav-link" to="/my-chats">
                     My Chats
                  </NavLink>
-             </li>
+             </li> */}
                 {/* Show username and logout */}
                 <li className="nav-item d-flex align-items-center px-3">
                   <span className="text-light ">
@@ -101,9 +108,9 @@ function Navbar() {
                 </li>
 
                 <li className="nav-item">
-                  <NavLink className="btn mt-1 mb-1 logout-btn" onClick={logout} to="/home">
+                  <button className="btn mt-1 mb-1 logout-btn" onClick={logout} >
                     Logout
-                  </NavLink>
+                  </button>
                 </li>
               </>
             )}

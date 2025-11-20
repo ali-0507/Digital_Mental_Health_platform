@@ -41,8 +41,8 @@ a {
 
 /* Navbar */
 .navbar {
- background: linear-gradient(to left, #173753 80%, #0f5485);
- box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+ background: linear-gradient(135deg, #9b8eff 0%, #8fd3f4 100%);
+ /* box-shadow: 0 4px 6px rgba(0,0,0,0.4); */
 }
 .navbar-brand,
 .navbar .nav-link {
@@ -61,7 +61,7 @@ footer {
   text-align:center;
   position: relative;
   overflow: hidden;
-  background:linear-gradient(to left,#4185b5 10%,#173753);
+ background: linear-gradient(135deg, #9b8eff 0%, #8fd3f4 100%);
   box-shadow: 10px 0 15px rgba(0,0,0,0.5);
 }
 
@@ -192,3 +192,49 @@ body.dark button {
   background-color: #0ed1d1;
   color: #000;
 }
+
+
+
+
+
+
+
+/* Dashboard styling */
+.dashboard-wrap { background: linear-gradient(180deg, rgba(240,248,255,0.8), rgba(245,250,255,0.9)); }
+
+/* Sidebar */
+.dashboard-sidebar {
+  width: 260px;
+  background: #fff;
+  border-right: 1px solid rgba(0,0,0,0.04);
+  transition: all 260ms ease;
+  box-shadow: 0 8px 30px rgba(13,38,58,0.06);
+  z-index: 40;
+}
+.dashboard-sidebar.closed { width: 0; overflow: hidden; }
+.sidebar-header { border-bottom: 1px solid rgba(0,0,0,0.04); }
+.sidebar-body { padding-top: 12px; }
+
+/* when sidebar closed show small button */
+.sidebar-closed-btn { padding: 8px; display: flex; align-items: flex-start; }
+
+/* tiles styling */
+.tile-card { border-radius: 12px; box-shadow: 0 8px 30px rgba(13,38,58,0.06); }
+.tile-icon { font-size: 28px; color: #4e73df; background: rgba(78,115,223,0.08); width: 48px; height: 48px; display:flex; align-items:center; justify-content:center; border-radius: 10px; }
+.tile-title { font-size: 18px; color: #243447; }
+.tile-value { color: #111827; }
+
+/* chart card extra polish */
+.chart-card { border-radius: 12px; }
+.card-title { font-weight: 600; color: #243447; }
+
+/* quick buttons */
+.btn-mental { background: linear-gradient(90deg,#4e73df,#6c5ce7); color:#fff; border:none; }
+.btn-outline-mental { border: 1px solid #4e73df; color: #4e73df; background: #fff; }
+
+/* recent list */
+.list-group-item { border: none; border-bottom: 1px solid rgba(0,0,0,0.04); }
+
+
+ 
+ 

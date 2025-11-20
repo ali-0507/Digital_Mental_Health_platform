@@ -57,16 +57,16 @@ function ScreeningHistory() {
                 </p>
             </div>
            
-            <p id="answer">                
-                <ul style={{listStyleType: "none"}}>
-                {Object.entries(item.answers).map(([qIndex, ans]) => (
+                          
+                <ul id="answer" style={{listStyleType: "none"}}>
+                {item.answers && Object.entries(item.answers).map(([qIndex, ans]) => (
                   <li key={qIndex}>
                     <b><i className="fa-solid fa-question fs-6" style={{color:"#ffffffff"}}></i> </b> {QUESTIONS[qIndex]} <br></br>
                     <b><i className="fa-solid fa-check fs-6"style={{color:"#ffffffff"}}></i> </b> {OPTIONS[ans] ?? ans}
                   </li>
                 ))}
                 </ul>
-            </p>         
+                      
           </div>
       
         ))

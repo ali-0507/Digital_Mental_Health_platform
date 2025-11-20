@@ -1,4 +1,5 @@
 const Chat = require("../models/AIChat");
+const {logActivity} = require("../utils/User.logActivity");
 
 const {GoogleGenAI} = require("@google/genai");
 const genai = new GoogleGenAI({apikey: process.env.GEMINI_API_KEY});
@@ -6,6 +7,7 @@ const genai = new GoogleGenAI({apikey: process.env.GEMINI_API_KEY});
 const SYSTEM_PROMPT = `You are a kind, empathetic assistant for basic emotional support.
 You are NOT a therapist. Provide gentle, practical coping suggestions (breathing, grounding).
 If the user expresses self-harm intent, encourage contacting local emergency services or a crisis helpline.
+Please keep responses concise (under 100 words) and supportive. keep a friendly tone.
 `;
 
 const RISK_REGEX = /(kill myself|suicide|end my life|hurt myself|self-?harm)/i;
@@ -68,6 +70,12 @@ exports.saveChat = async (req, res) => {
       return res.status(400).json({ message: "No messages to save" });
 
     const chat = await Chat.create({ user: userId, messages });
+
+    //  user Dashboard activity log
+    const lastUserMessage = messages.slice().reverse().find((m) => m.sender === "user");
+    const topicGuess = (lastUserMessage?.text || "").match(/sleep|anxiety|stress|focus|mood|lonely/i)?.[0]?.toLowerCase()||"other";// simple topic inference
+    await logActivity(req.user?._id, "chat", { topic: topicGuess, text: lastUserMessage?.text });
+
     return res.status(201).json({ message: "Chat saved successfully", chat });
   } catch (err) {
     console.error("Error saving chat:", err);

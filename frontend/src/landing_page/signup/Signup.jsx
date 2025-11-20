@@ -113,12 +113,12 @@ const navigate = useNavigate();
       Swal.fire({
     icon: "success",
     title: "Signup Successful 🎉",
-    text: "Signup successful. Redirecting to your dashboard...",
+    text: "Signup successful. Redirecting to your login page...",
     timer: 2000,
     showConfirmButton: false,
     });
       setTimeout(() => {
-    navigate("/");
+    navigate("/login");
     }, 2000); 
     } catch (err) {
   console.error(err);
