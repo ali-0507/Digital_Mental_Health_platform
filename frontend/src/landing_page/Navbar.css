@@ -1,4 +1,3 @@
-
 .logoName{
     color: #E1F1FC !important;
     font-weight: 600;
@@ -27,26 +26,48 @@
   border: none;
 }
 
-/* Dropdown Menu */
+
 .explore-menu {
   position: absolute;
-  top: 57px;
+  top: 48px;
   right: 0;
   width: 340px;
-  background: #faf6ff; 
+  background: #faf6ff;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-radius: 22px;
   padding: 20px;
   box-shadow: 0 8px 25px rgba(23, 55, 83, 0.15);
-  display: none;
-  animation: fadeIn 1s ease-out;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;       /* prevents clicking when hidden */
+  transform-origin: top right;
+  transform: translateY(-6px);/* slight lift for nicer animation */
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    visibility 0s linear 250ms; /* visibility will flip after the hide delay */
 }
 
-/* Show dropdown on hover */
-.explore-dropdown:hover .explore-menu {
-  display: block;
+/* show immediately on hover of trigger OR when hovering the menu */
+.explore-dropdown:hover .explore-menu,
+.explore-menu:hover {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition-delay: 0s;              /* show immediately */
+  transition-duration: 100ms;
+  animation: fadeIn 1s ease;
 }
+
+/* optional small fadeIn keyframes if you want the previous animation name kept */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 
 /* Dropdown items */
 .explore-item {

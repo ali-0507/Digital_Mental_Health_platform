@@ -202,6 +202,7 @@ export default function Dashboard() {
         <div className="text-muted small">Viewed</div>
       </div>
     </div>
+    
 
     {/* big count on the right of header */}
    
@@ -214,7 +215,7 @@ export default function Dashboard() {
     <div style={{ flex: "1 1 0" }} className="pe-3">
       {/* optional legend / small note */}
       {/* <div className="small text-muted mb-2">Breakdown</div> */}
-      <div style={{ width: "120%", height: 180 }}>
+      <div style={{ width: "120%", height: 190 }}>
         <ResponsiveContainer>
           <PieChart>
             <Pie
@@ -222,7 +223,7 @@ export default function Dashboard() {
               dataKey="value"
               nameKey="name"
               innerRadius={40}
-              outerRadius={70}
+              outerRadius={80}
               label={false}
             >
               {pieData.map((entry, index) => (
@@ -236,7 +237,7 @@ export default function Dashboard() {
     </div>
 
     {/* keep a small visual spacer if you want the donut to float to the right */}
-    <div style={{ width: 5}} />
+    <div style={{ width: 15}} />
   </div>
 </div>
               </div>

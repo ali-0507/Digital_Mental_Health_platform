@@ -90,11 +90,11 @@
 .hero-quote span{ font-style: normal; color:#392553; }
 
 .bg{
-  background-color: #def1ff;
+  background-color: white;
 }
 /* Buttons & links */
 .btn-mental{
-  background: linear-gradient(120deg, #f3e8ff);
+  background: linear-gradient(120deg, #f3e8ff)!important;
   border:none;
   color: #392553 !important;
   padding:.7rem 1rem;
@@ -144,7 +144,6 @@
 @media (max-width: 991.98px){
   .auth-wrapper{ border-radius: 18px; }
 }
-
 
 .auth-note {
   color: #667085;

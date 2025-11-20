@@ -43,8 +43,6 @@ function App() {
   }, [location.pathname]);
 
 
-
-
   
   const isAdminRoute = location.pathname.startsWith("/admin");
   const isDashboardRoute = location.pathname.startsWith("/dashboard");

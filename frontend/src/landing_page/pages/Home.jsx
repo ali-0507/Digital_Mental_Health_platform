@@ -30,17 +30,6 @@ function Home() {
               Chat with AI
             </Link>
           </div>
-        </div>
-        <div className="hero-image">
-          <img src="/assests/hero.jpg" alt="Wellness meditation" style={{borderRadius:"50%"}}/>
-        </div>
-      </section>
-
-    {/* GOAL SECTION */}
-    <section className="goal-section">
-      <h2>Our Goal</h2>
-      <p>We aim to make mental well-being accessible for everyone.</p>
-
           <span className="text">In a hurry? Call on this! (Tele MANAS)</span>
             <i className="fa-solid fa-phone phone"></i>
             <span className="phone">14416 or 1800-89-14416</span>
@@ -49,17 +38,18 @@ function Home() {
         <div className="img-area">
           <img src="../assests/hero.jpg" className="images"/>
         </div>
-      </section>
-
-         <div className="img-area2">
+          <div className="img-area2">
           <img src="../assests/ai.webp" className="images"/>
         </div>
 
       </section>
 
+       
+      
+
     {/* GOAL SECTION */}
     <section className="goal-section">
-      <h1 style={{marginBottom:"30px"}}><b>Our Goal</b></h1>
+      <h1 style={{marginBottom:"25px",}}><b>Our Goal</b></h1>
       <p>We aim to make mental well-being accessible for everyone.</p>
 
     <div className="goal-cards">
@@ -84,7 +74,7 @@ function Home() {
 </section>
 
 
-      {/* BENEFIT SECTION */}
+      {/* How we help SECTION */}
       <section className="benefit">
         <h1 style={{marginBottom:"40px"}}><strong>How We Help!</strong></h1>
         <div className="benefit-cards">
@@ -135,10 +125,9 @@ function Home() {
         Also you can download them for free.</p>
       </div>
     </div>
-  </div>
-</section>
 
-      <div class="timeline-item">
+
+ <div class="timeline-item">
         <div class="timeline-content right fadeUp">
         {/* <img src="../assests/video.avif"/> */}
         <h3>What you will get:</h3>
@@ -147,28 +136,17 @@ function Home() {
       </div>
     </div>
 
-      {/* BENEFIT SECTION */}
-      <section className="benefit">
-        <h2><strong>How We Help!</strong></h2>
-        <div className="benefit-cards">
-          <div className="benefit-card">
-          <MdSelfImprovement size={38} color="#6C63FF" />
-            <h3>Feeling lost or anxious?</h3>
-            <p>Personalized screening and relaxation tools.</p>
-          </div>
-
-    <div class="timeline-item">
-      <div class="timeline-content right fadeUp">
+ <div class="timeline-item">
+      <div class="timeline-content left fadeUp">
         <img src="../assests/audio.avif"/>
         <h3>Listen to calm audio</h3>
         <p>A theraupatic session by listening to peaceful sounds.</p>
       </div>
     </div>
-  </div>
-</section>
 
-      <div class="timeline-item">
-      <div class="timeline-content left fadeUp">
+
+  <div class="timeline-item">
+      <div class="timeline-content right fadeUp">
         {/* <img src="../assests/video.avif"/> */}
         <h3>What you will get:</h3>
         <p>A therapeutic session involving listening to peaceful sounds is a
@@ -176,17 +154,7 @@ function Home() {
       </div>
     </div>
 
-      {/* BENEFIT SECTION */}
-      <section className="benefit">
-        <h2><strong>How We Help!</strong></h2>
-        <div className="benefit-cards">
-          <div className="benefit-card">
-          <MdSelfImprovement size={38} color="#6C63FF" />
-            <h3>Feeling lost or anxious?</h3>
-            <p>Personalized screening and relaxation tools.</p>
-          </div>
-
-    <div class="timeline-item">
+  <div class="timeline-item">
       <div class="timeline-content left fadeUp">
         <img src="../assests/video.avif"/>
         <h3>Videos for guiding you on self improvement</h3>
@@ -194,7 +162,7 @@ function Home() {
       </div>
     </div>
 
-    <div class="timeline-item">
+     <div class="timeline-item">
         <div class="timeline-content right fadeUp">
         {/* <img src="../assests/video.avif"/> */}
         <h3>What you will get:</h3>
@@ -203,31 +171,26 @@ function Home() {
       </div>
     </div>
 
-     <div class="timeline-item">
-      <div class="timeline-content right fadeUp">
+
+ <div class="timeline-item">
+      <div class="timeline-content left fadeUp">
         <img src="../assests/peer.jpg"/>
         <h3>Support near you!</h3>
         <p>Chat with the people near by you anonymously without any judgements.</p>
       </div>
     </div>
 
-    <div class="timeline-item">
-        <div class="timeline-content left fadeUp">
+     <div class="timeline-item">
+        <div class="timeline-content right fadeUp">
         {/* <img src="../assests/video.avif"/> */}
         <h3>What you will get:</h3>
         <p>Connect locally, Chat anonymously.<br/> A safe space for real talk with people around you
         completely judgement free.</p>
       </div>
     </div>
-
-  </div>
-
-    </section>
-      
-
-
-  
-    </div>
+   </div>
+</section>
+</div>
   );
 }
 

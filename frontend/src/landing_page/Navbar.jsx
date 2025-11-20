@@ -13,7 +13,7 @@ function Navbar() {
     return null; // or a loading spinner
   }
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark sticky-top">
+    <nav className="custom-nav navbar navbar-expand-lg navbar-dark sticky-top">
       <div className="container-fluid">
         {/* <Link className="navbar-brand" to="/">
     <nav className="navbar navbar-expand-lg custom-nav sticky-top">

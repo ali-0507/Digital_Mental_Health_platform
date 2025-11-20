@@ -59,7 +59,7 @@ exports.getUserScreenings = async (req, res) => {
 
 
 exports.getQuestions = async (req, res) => {
-  const userId = req.user._id;
+  const userId = req.user?._id;
   const last = await Screening.findOne({ user: userId }).sort({ createdAt: -1 });
 
   let level = "level1";

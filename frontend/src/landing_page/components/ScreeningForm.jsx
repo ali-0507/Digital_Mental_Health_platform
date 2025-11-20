@@ -90,10 +90,10 @@ function ScreeningForm() {
             value={answers[i] ?? ""}
           >
             <option id="select-option" value="">Select...</option>
-            <option id="select-option" value="0">Low</option>
-            <option id="select-option" value="1">Mild</option>
-            <option id="select-option" value="2">Moderate</option>
-            <option id="select-option" value="3">Severe</option>
+            <option id="select-option" value="0">Not at all</option>
+            <option id="select-option" value="1">Several days</option>
+            <option id="select-option" value="2">More than half days</option>
+            <option id="select-option" value="3">Everyday</option>
           </select>
            <div className="mt-1 screening-hint">Answer honestly for the best guidance.</div>
           {/* Self-harm safety nudge */}
@@ -113,10 +113,6 @@ function ScreeningForm() {
         <button type="button" onClick={resetForm} className="btn screening-btn px-4">
           Reset
         </button>
-
-        {/* <Link to="/history" className={`btn screening-btn ${!isLoggedIn ? "disabled" : ""}`}>
-          View history
-        </Link> */}
       </div>
 
       {/* PUBLIC: immediate results + general advice */}
@@ -176,7 +172,7 @@ function ScreeningForm() {
 
               {!isLoggedIn && (
                 <span className="medium screening-note">
-                  <Link to="/login" className="link-plain"><b>Log in</b></Link>  to save and view history or{" "}
+                  <Link to="/login" className="link-plain"><b> Log in</b></Link> to save and view history or{" "}
                   <Link to="/signup" className="link-plain"><b>create an account</b></Link>
                 </span>
               )}
@@ -185,11 +181,6 @@ function ScreeningForm() {
 
           {saveError && <div className="text-danger small mt-2">{saveError}</div>}
 
-          <div className="text-end mt-3">
-            <Link to="/history" className={`btn screening-btn-outline ${!isLoggedIn ? "disabled" : ""}`}>
-              View history
-            </Link>
-          </div>
         </div>
       )}
     </form>
