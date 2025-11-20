@@ -18,6 +18,7 @@ import ScreeningHistory from "./landing_page/pages/ScreeningHistory.jsx";
 import ResourceGuide from "./landing_page/pages/ResourceGuide.jsx";
 import RelaxationAudio from "./landing_page/pages/RelaxationAudio.jsx";
 import MindfulnessVideo from "./landing_page/pages/MindfulnessVideo.jsx";
+import AboutUs from "./landing_page/pages/AboutUs.jsx";
 
 
 function App() {
@@ -74,6 +75,8 @@ function App() {
             </ProtectedRoute>
           }
           />
+
+        <Route path="/about-us" element={<AboutUs />} />
 
 
         {/* Not Found */}

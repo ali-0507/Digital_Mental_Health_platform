@@ -77,81 +77,7 @@ const navigate = useNavigate();
   const strengthLabel = ["Very weak", "Weak", "Okay", "Good", "Strong"][pwdScore];
 
     return ( 
-        
-    //         <div className="d-flex align-items-center justify-content-center vh-100 bg-light">
-    //       <div className="card shadow-lg p-4" style={{ width: "400px", borderRadius: "15px" }}>
-    //         <h2 className="text-center mb-4 text-primary">Create Account</h2>
-
-    //     {error && <div className="alert alert-danger">{error}</div>}
-
-    //     <form onSubmit={handleSubmit}>
-    //       <div className="mb-3">
-    //         <label className="form-label fw-bold">Full Name</label>
-    //         <input type="text" name="name" className="form-control"
-    //           placeholder="Enter your full name" required onChange={handleChange} />
-    //       </div>
-
-    //       <div className="mb-3">
-    //         <label className="form-label fw-bold">Username</label>
-    //         <input type="text" name="username" className="form-control"
-    //           placeholder="Choose a username" required onChange={handleChange} />
-    //       </div>
-
-    //       <div className="mb-3">
-    //         <label className="form-label fw-bold">Email address</label>
-    //         <input type="email" name="email" className="form-control"
-    //           placeholder="Enter your email" required onChange={handleChange} />
-    //       </div>
-
-    //       <div className="mb-3">
-    //         <label className="form-label fw-bold">Password</label>
-    //         <input type="password" name="password" className="form-control"
-    //           placeholder="Enter your password" required onChange={handleChange} />
-    //       </div>
-
-    //       <div className="mb-3">
-    //         <label className="form-label fw-bold">Confirm Password</label>
-    //         <input type="password" name="confirmPassword" className="form-control"
-    //           placeholder="Re-enter your password" required onChange={handleChange} />
-    //       </div>
-
-    //         {/* Role section */}
-    //         <div className="mb-3">
-    //         <label className="form-label fw-bold">Select Role</label>
-    //         <select
-    //           name="role"
-    //           className="form-select"
-    //           value={formData.role}
-    //           onChange={handleChange}
-    //         >
-    //           <option value="user">User</option>
-    //           <option value="counselor">Counselor</option>
-    //           <option value="admin">Admin</option>
-    //         </select>
-    //       </div>
-
-    //       <button type="submit" className="btn btn-primary w-100 fw-bold" disabled={loading}>
-    //         {loading ? "Signing Up..." : "Sign Up"}
-    //       </button>
-
-    //       <p className="text-center mt-3">
-    //         Already have an account?{" "}
-    //         <Link to="/login" className="text-decoration-none text-primary fw-bold">
-    //           Login
-    //         </Link>
-    //       </p>
-    //     </form>
-    //   </div>
-    // </div>
-
-
-
-
-
-
-
-
-
+  
     // New design
      <div className="mental-bg d-flex align-items-center min-vh-100 p-3">
       <div className="container">
@@ -161,10 +87,10 @@ const navigate = useNavigate();
             <div className="col-lg-5 hero-panel d-none d-lg-flex flex-column justify-content-between">
               <div>
                 <div className="brand-badge">
-                  <i className="bi bi-heart-pulse"></i>
+                  <i className="fa-solid fa-brain"></i>
                 </div>
                 <h2 className="hero-title">
-                  Connect & Evolve <span className="hero-dot">•</span>
+                  Connect & Evolve
                 </h2>
                 <p className="hero-sub">
                   A safe, private space to track your mood, talk to counselors,
@@ -184,10 +110,10 @@ const navigate = useNavigate();
             </div>
 
             {/* Right: form */}
-            <div className="col-lg-7 bg-white p-4 p-md-5">
+            <div className="col-lg-7 bg p-4 p-md-5">
               <div className="text-center mb-3">
-                <h3 className="mb-1">Create your account</h3>
-                <p className="text-muted mb-0">Start your wellbeing journey in minutes</p>
+                <h2 className="mb-1" style={{color:"#965fd8",fontWeight:"600"}}>Sign Up</h2>
+                <p className="text-muted mb-1"><i>Start your wellbeing journey with us.</i></p>
               </div>
 
               {error && <div className="alert alert-danger small">{error}</div>}

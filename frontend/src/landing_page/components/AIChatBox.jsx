@@ -12,9 +12,9 @@ function AuthModal({ open, onClose }) {
   return (
     <div className="ai-modal-backdrop" onClick={onClose}>
       <div className="ai-modal" onClick={(e) => e.stopPropagation()}>
-        <h5 className="mb-1">Login required</h5>
+        <h5 className="mb-3">Login required</h5>
         <p className="text-muted mb-3">
-          Please log in to use this feature (voice or saving chat). Your data is private and secure.
+          Please log in to use this feature (saving chat). Your data is private and secure.
         </p>
         <div className="d-flex gap-2">
           <Link to="/login" className="btn btn-plain w-100">Login</Link>
@@ -112,19 +112,7 @@ function AIChatBox({ isLoggedIn }) {
         const fakeEvent = { preventDefault: () => {} };
          await handleSend(fakeEvent);
      };
-    // setMessages((prev) => [...prev, { sender: "user", text }]);
-  //   botReply(
-  //     p === "Breathing"
-  //       ? "Inhale 4s, hold 4s, exhale 4s, hold 4s. Repeat four cycles with me."
-  //       : p === "5-4-3-2-1"
-  //       ? "Notice 5 things you see, 4 you feel, 3 you hear, 2 you smell, 1 you taste."
-  //       : p === "Sleep tips"
-  //       ? "Try a wind-down: dim lights, stop screens 30 mins before bed, keep a consistent sleep time."
-  //       : p === "Anxiety"
-  //       ? "Name the feeling, breathe slowly, and try a 60-second focus on the breath."
-  //       : "You're not alone. Would you like ideas to reach out or self-soothe?"
-  //   );
-  // };
+    
 
   const clearChat = () => {
     setMessages([{ sender: "bot", text: "Hi! I'm here to support you. How are you feeling today?" }]);
@@ -148,24 +136,24 @@ function AIChatBox({ isLoggedIn }) {
   };
 
 
-  const exportChat = () => {
-    const text = messages
-      .map((m) => (m.sender === "user" ? "You: " : "Assistant: ") + m.text)
-      .join("\n");
-    const blob = new Blob([text], { type: "text/plain" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url; a.download = "connect-evolve-chat.txt"; a.click();
-    URL.revokeObjectURL(url);
-  };
+  // const exportChat = () => {
+  //   const text = messages
+  //     .map((m) => (m.sender === "user" ? "You: " : "Assistant: ") + m.text)
+  //     .join("\n");
+  //   const blob = new Blob([text], { type: "text/plain" });
+  //   const url = URL.createObjectURL(blob);
+  //   const a = document.createElement("a");
+  //   a.href = url; a.download = "connect-evolve-chat.txt"; a.click();
+  //   URL.revokeObjectURL(url);
+  // };
 
-  const toggleVoice = () => {
-    if (!isLoggedIn) {
-      setShowAuthModal(true);
-      return;
-    }
-    setRecording((s) => !s); // UI state only
-  };
+  // const toggleVoice = () => {
+  //   if (!isLoggedIn) {
+  //     setShowAuthModal(true);
+  //     return;
+  //   }
+  //   setRecording((s) => !s); // UI state only
+  // };
 
   return (
     <div className="ai-chat-wrap">
@@ -212,11 +200,8 @@ function AIChatBox({ isLoggedIn }) {
         <button type="button" className="ai-tbtn" onClick={saveChat} title="Save">
           <i className="bi bi-save2"></i><span>Save</span>
         </button>
-        <button type="button" className="ai-tbtn" onClick={exportChat} title="Export">
-          <i className="bi bi-upload"></i><span>Export</span>
-        </button>
-
-        <button type="button" className="ai-tbtn" onClick={clearChat} title="Clear">
+        
+      <button type="button" className="ai-tbtn" onClick={clearChat} title="Clear">
           <i className="bi bi-eraser"></i><span>Clear</span>
         </button>
     </div>
@@ -237,7 +222,7 @@ function AIChatBox({ isLoggedIn }) {
               onClick={() => listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: "smooth" })}
               aria-label="scroll to latest"
             >
-              <i className="bi bi-arrow-down"></i>
+              <i className="bi bi-arrow-down" style={{color:"black"}}></i>
             </button>
           )}
         </div>
@@ -252,7 +237,7 @@ function AIChatBox({ isLoggedIn }) {
             onChange={(e) => setInput(e.target.value)}
             aria-label="message"
           />
-           <button style={{padding:"20px 5px", borderRadius:"20px"}}
+          {/* <button style={{padding:"20px 5px", borderRadius:"20px"}}
           type="button"
           className={`ai-send ai-tbtn ${recording ? "rec" : ""}`}
           onClick={toggleVoice}
@@ -260,14 +245,14 @@ function AIChatBox({ isLoggedIn }) {
           aria-pressed={recording}
         >
           <i className="bi bi-mic-fill"></i><b>Voice</b>
-        </button>
+        </button> */}
           <button type="submit" className="btn ai-send">Send</button>
         </form>
 
         {!isLoggedIn && (
           <div className="ai-anon note mt-3">
             You’re chatting anonymously.{" "}
-            <Link to="/login">Log in</Link> or <Link to="/signup">sign up</Link> to save chat or use voice.
+            <Link to="/login">Log in</Link>  or  <Link to="/signup">Sign up</Link> to save chat.
           </div>
         )}
         

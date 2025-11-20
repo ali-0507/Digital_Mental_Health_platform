@@ -8,7 +8,7 @@ function AuthModal({ open, onClose }) {
   return (
     <div className="bk-modal-backdrop" onClick={onClose}>
       <div className="bk-modal" onClick={(e) => e.stopPropagation()}>
-        <h5 className="mb-1">Login required</h5>
+        <h4 className="mb-3">Login required</h4>
         <p className="text-muted mb-3">
           Booking is personal. Please log in so we can confirm by email and notify your counselor.
         </p>
