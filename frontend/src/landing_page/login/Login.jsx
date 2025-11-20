@@ -133,10 +133,10 @@ function Login() {
             <div className="col-lg-5 hero-panel d-none d-lg-flex flex-column justify-content-between">
               <div>
                 <div className="brand-badge">
-                  <i className="bi bi-heart-pulse"></i>
+                  <i className="fa-solid fa-brain"></i>
                 </div>
                 <h2 className="hero-title">
-                  Welcome back <span className="hero-dot">•</span>
+                  Welcome back
                 </h2>
                 <p className="hero-sub">
                   Pick up where you left off—your check-ins, goals, and counselor
@@ -156,10 +156,10 @@ function Login() {
             </div>
 
             {/* Right: login form */}
-            <div className="col-lg-7 bg-white p-4 p-md-5">
+            <div className="col-lg-7 bg p-4 p-md-5">
               <div className="text-center mb-3">
-                <h3 className="mb-1">Login</h3>
-                <p className="text-muted mb-0">We’re glad you’re here</p>
+                <h3 className="mb-1"style={{color:"#965fd8",fontWeight:"600"}}>Login</h3>
+                <p className="text-muted mb-1 mt-1"><i>It's great to see you again.</i></p>
               </div>
 
               {error && <div className="alert alert-danger small">{error}</div>}

@@ -1,13 +1,12 @@
 .container{
   padding-left:50px;
   margin:auto;
+ 
+}
+.footer-bg{
+  background: linear-gradient(135deg, #9b8eff 0%, #8fd3f4 100%);
 }
 
-.lappy{
-  font-size: 90px;
-  padding-bottom: 10px;
-  color:#4185b5;
-}
 
 
 /* Common link animation for footer links & social icons */
@@ -17,7 +16,7 @@
   position: relative;
   width:fit-content;
   display: inline-block;
-  color: #cedaf0; 
+  color: #d8e1f2; 
   transition: color 0.3s ease;
 }
 
@@ -25,10 +24,10 @@
   content: "";
   position: absolute;
   width: 100%;
-  height: 1px;
+  height: 1.5px;
   left: 0;
   bottom: -2px;
-  background-color: #fff;
+  background-color: #f6f8f9 ;
   transform: scaleX(0);
   transform-origin: center;
   transition: transform 0.3s ease;
@@ -38,24 +37,8 @@
   transform: scaleX(1);
 }
 .footer-links a:hover {
-  color: #fff;
+  color: #f9f9f9 ;
 }
-
-/* .footer-logo{
-  height: 120px;
-  width: 90px;
-} */
-/* .trust-text{
-  white-space: nowrap;
-  color:#b2c3cf;
-  font-size:1rem;
-  font-weight: 300; 
-} */
-
-/* footer .row {
-  margin:auto;  
-  padding:0;
-} */
 
 footer::before {
   content: "";
@@ -69,7 +52,9 @@ footer::before {
 footer > * {
   position: relative;
 }
-
+.footer-head{
+  font-weight:500;
+}
 
 
 

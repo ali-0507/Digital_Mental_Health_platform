@@ -2,7 +2,6 @@
 :root{
   --rs-bg-start:#E1F1FC; --rs-bg-end:#CFCAC6;
   --rs-head:#173753; --rs-text:#1f2a37; --rs-muted:#6b7280;
-  --rs-accent:#099fbd; --rs-accent-600:#50c2ef;
   --rs-surface:#ffffff; --rs-border:#E6EAF0;
   --rs-shadow:0 20px 48px rgba(23,55,83,.12);
   --rs-deep:#123047;
@@ -13,17 +12,17 @@
 }
 
 .rs-title{ 
-  color:var(--rs-head); 
+  color:#965fd8; 
   font-weight:800;
   text-align:center;
   padding-bottom: 1rem;}
-.rs-subtitle{ color:var(--rs-muted); }
+.rs-subtitle{ color:#6b7280; }
 
 .rs-disclaimer{
-  background: rgba(249, 255, 204, 0.9);
+  background: rgba(219, 250, 255, 0.9);
   border-radius:14px;
   padding:.85rem 1rem;
-  color:var(--rs-muted);
+  color:#6b7280;
   margin-top:2rem !important;
   margin-bottom:2rem !important;
   gap:.5rem;
@@ -69,10 +68,10 @@
   padding: .75rem 1rem 1rem;
 }
 .res-open{
-  background:var(--rs-accent); border:none; color:#dcedf5;
+  background:#8fd3f4; border:none; color:#ffffff;
   font-weight:600; border-radius:10px; padding:.7rem 1.2rem;
 }
-.res-open:hover{ background:var(--rs-accent-600); }
+.res-open:hover{ background:#e0c8fc; }
 
 .res-actions-protected{ display:flex; gap:.45rem; }
 .res-outline{
@@ -81,7 +80,7 @@
 }
 .res-outline:hover{ background:#f7fafc; }
 .res-outline.active{
-  border-color:var(--rs-accent);
+  border-color:#003133;
   box-shadow:0 0 0 .18rem rgba(9,189,183,.18);
 }
 
@@ -97,7 +96,13 @@
   box-shadow:0 24px 60px rgba(0,0,0,.25); position:relative;
 }
 .rs-modal-close{
-  position:absolute; right:10px; top:10px; border:none; background:transparent; color:#64748b;
+  position:absolute; 
+  right:10px; 
+  top:10px; 
+  border:none; 
+  padding:0.2rem;
+  background:rgb(170, 21, 21) !important; 
+  color:#fafbfc !important;
 }
 
 .btn-plain{
@@ -110,5 +115,5 @@
 .btn-accent:hover{ background:var(--rs-accent-600); }
 
 .rs-helpline{ color:var(--rs-muted); }
-.rs-helpline a{ color:var(--rs-accent); text-decoration:none; }
+.rs-helpline a{ color:#0176a5; text-decoration:none; }
 .rs-helpline a:hover{ text-decoration:underline; }

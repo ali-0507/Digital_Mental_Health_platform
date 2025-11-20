@@ -59,6 +59,7 @@ app.use("/api/dashboard", UserDashboardRoutes);
 
 
 
+
 // Admin endpoints (protected + admin only)
 app.use("/api/admin", adminRoutes);
 // Audit logs (protected + admin only)

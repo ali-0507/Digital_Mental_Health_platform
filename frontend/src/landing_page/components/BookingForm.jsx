@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import api from "../../api/axios";
+import "../pages/Booking.css";
 
 function buildSlots() {
   // 09:00 – 17:00 every 30 mins
@@ -33,33 +34,6 @@ export default function BookingForm({ isLoggedIn, onRequireAuth }) {
 
   const selectSlot = (t) => setForm((p) => ({ ...p, time: p.time === t ? "" : t }));
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (!isLoggedIn) return onRequireAuth?.();
-
-  //   // TODO (backend):
-  //   // 1) POST /api/bookings { ...form }
-  //   // 2) Send user confirmation email
-  //   // 3) Notify counselor/admin
-  //   console.log("Booking submitted (UI):", form);
-  //   setSubmitted(true);
-  // };
-
-//   const handleSubmit = async (e) => {
-//   e.preventDefault();
-//   if (!isLoggedIn) return onRequireAuth?.();
-
-//   try {
-//     // Send booking data to backend
-//     const res = await api.post("/bookings", form);
-//     console.log("Booking saved:", res.data);
-//     setSubmitted(true);
-//   } 
-//   catch (err) {
-//     console.error("Booking error:", err.response?.data || err.message);
-//     alert("Booking failed. Please try again.");
-//   }
-// };
 
 const handleSubmit = async (e) => {
     e.preventDefault();

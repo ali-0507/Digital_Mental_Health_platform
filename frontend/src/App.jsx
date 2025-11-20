@@ -21,6 +21,7 @@ import RelaxationAudio from "./landing_page/pages/RelaxationAudio.jsx";
 import MindfulnessVideo from "./landing_page/pages/MindfulnessVideo.jsx";
 import Dashboard from "./landing_page/pages/User.Dashboard.jsx";
 import AdminLogin from "./landing_page/admin/pages/AdminLogin.jsx";
+import AboutUs from "./landing_page/pages/AboutUs.jsx";
 
 
 function App() {
@@ -93,9 +94,7 @@ function App() {
         <Route
           path="/history"
           element={
-            <ProtectedRoute>
               <ScreeningHistory />
-            </ProtectedRoute>
           }
         />
 
@@ -107,6 +106,8 @@ function App() {
             </ProtectedRoute>
           }
           />
+
+        <Route path="/about-us" element={<AboutUs />} />
 
 
         {/* Not Found */}

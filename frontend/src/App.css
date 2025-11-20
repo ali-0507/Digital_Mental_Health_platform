@@ -1,10 +1,12 @@
 /* Base styles */
 body {
-  /* font-family: "Inter", sans-serif;
-  margin: 0;
-  transition: background-color 0.3s ease, color 0.3s ease; */
   font-family: "Inter", sans-serif;
-  background: url("../assests/bg2.jpg") center/cover no-repeat;
+  background: 
+    radial-gradient(900px 500px at 10% 20%, #ceefff, transparent 60%),
+    radial-gradient(1200px 600px at 40% 50%, #f3e8ff, transparent 80%),
+    radial-gradient(700px 400px at 60% 70%, #ceefff, transparent 60%),
+    radial-gradient(1200px 600px at 100% 90%, #f3e8ff, transparent 80%),
+    #f6f8fc !important;
   position: relative;
   color: #333;
   margin: 0;
@@ -40,19 +42,19 @@ a {
 }
 
 /* Navbar */
-.navbar {
- background: linear-gradient(135deg, #9b8eff 0%, #8fd3f4 100%);
- /* box-shadow: 0 4px 6px rgba(0,0,0,0.4); */
+.custom-nav {
+  background: linear-gradient(135deg, #9b8eff 0%, #8fd3f4 100%) !important;
 }
 .navbar-brand,
 .navbar .nav-link {
  font-family:"Inter", sans-serif;
-  color:rgb(242,242,242);
+  color:#fffeff;
+  font-weight: 600;
 }
 .nav-title {
   color: rgb(242,242,242);
   font-size: 1.5rem;
-  font-weight: 200;
+  /* font-weight: 500; */
 }
 
 /* Footer */
@@ -61,8 +63,8 @@ footer {
   text-align:center;
   position: relative;
   overflow: hidden;
- background: linear-gradient(135deg, #9b8eff 0%, #8fd3f4 100%);
-  box-shadow: 10px 0 15px rgba(0,0,0,0.5);
+  background:linear-gradient(135deg, #f3e8ff 0%, #68ccfd 100%) ;
+  box-shadow: 10px 0 15px rgba(89, 89, 89, 0.5);
 }
 
 /* Sidebar */

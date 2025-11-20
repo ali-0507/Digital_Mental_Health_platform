@@ -16,6 +16,10 @@ function Navbar() {
     <nav className="navbar navbar-expand-lg navbar-dark sticky-top">
       <div className="container-fluid">
         {/* <Link className="navbar-brand" to="/">
+    <nav className="navbar navbar-expand-lg custom-nav sticky-top">
+      
+        <div className="container-fluid">
+          {/* <Link className="navbar-brand" to="/">
             <img src="/assests/logo.png" alt="Logo" className="d-flex align-text-center"/>
           </Link> */}
           
@@ -44,52 +48,47 @@ function Navbar() {
               </NavLink>
             </li>
 
-            {/* Dropdown item */}
-            <li className="nav-item dropdown">
-              <button
-                className="btn btn-lg dropdown-toggle"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                About Us
-              </button>
-             
-              <ul className="dropdown-menu">
-                <li>
-                  <NavLink className="dropdown-item" href="#">
-                    <i>Who we are</i>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink className="dropdown-item" href="#">
-                    <i>Our mission</i>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink className="dropdown-item" href="/email">
-                    <i>Contacts</i>
-                  </NavLink>
-                </li>
-              </ul>
-            </li>
-
-            {/* Conditional Rendering based on login status */}
+            
+             {/* Conditional Rendering based on login status */}
             {!isAuthenticated ? (
               <>
 
-
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/signup">
-                    SignUp
+                  <NavLink className="nav-link" to="/screening">
+                    AI Screening
                   </NavLink>
                 </li>
 
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/login">
-                    Login
-                  </NavLink>
-                </li>
-              </>
+                <li className="nav-item dropdown explore-dropdown">
+                  <button className="btn nav-link explore-toggle">
+                      Explore More
+                  </button>
+
+                <div className="explore-menu">
+                    <div className="explore-item">
+                    <h5>Book a Counsellor</h5>
+                    <a href="/booking" className="link">Book a meeting with a counsellor &rarr;</a>
+                  </div>
+
+                  <div className="explore-item">
+                    <h5>Peer Support</h5>
+                    <a href="/peer-support" className="link">Chat with others anonymously &rarr;</a>
+                  </div>
+
+                  <div className="explore-item">
+                    <h5>Resources</h5>
+                    <a href="/resources" className="link">some guided resources for you &rarr;</a>
+                  </div>
+
+                </div>
+              </li>
+
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/login">
+                  Login
+                </NavLink>
+              </li>
+          </>
             ) : (
               <>
                 <li className="nav-item">
@@ -101,9 +100,41 @@ function Navbar() {
                  </NavLink>
              </li> */}
                 {/* Show username and logout */}
+               {/* Show username and logout */}
+                
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/screening">
+                    AI Screening
+                  </NavLink>
+                </li>
+                   
+                <li className="nav-item dropdown explore-dropdown">
+                  <button className="btn nav-link explore-toggle">
+                    Explore More
+                  </button>
+
+                <div className="explore-menu">
+                    <div className="explore-item">
+                    <h5>Book a Counsellor</h5>
+                    <a href="/booking" className="link">Book a meeting with a counsellor &rarr;</a>
+                </div>
+
+                <div className="explore-item">
+                    <h5>Peer Support</h5>
+                    <a href="/peer-support" className="link">Chat with others anonymously &rarr;</a>
+                </div>
+
+                <div className="explore-item">
+                    <h5>Resources</h5>
+                    <a href="/resources" className="link">some guided resources for you &rarr;</a>
+                </div>
+
+              </div>
+            </li>
+
                 <li className="nav-item d-flex align-items-center px-3">
                   <span className="text-light ">
-                    Hi, {user?.name?.split(" ")[0]} 👋
+                    Welcome, {user?.name?.split(" ")[0]} 👋
                   </span>
                 </li>
 

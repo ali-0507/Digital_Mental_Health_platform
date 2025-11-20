@@ -11,15 +11,15 @@ function Footer() {
           {/* Trust Branding */}
           <div className="col-3 d-flex justify-content-end align-items-end ">
             <ul className="list-unstyled d-flex flex-row flex-md-column gap-3 mt-5 footer-links">
-              <p className="fs-5 pt-4 m-0">Trust</p>
-
-              <div className="text-center mt-0">
+              <p className="fs-5 mb-4">Trust</p>
+              <div className="text-center">
                 {/* <img src="/assests/logo_dmh.png" alt="Logo" className="footer-logo img-fluid my-2"/> */}
-                <i class="fa-solid fa-laptop-medical lappy"></i>
+                {/* <i class="fa-solid fa-laptop-medical lappy"></i> */}
+                <h5><i>Connect&Evolve</i></h5>
               </div>
 
               <li className="fs-6 text-center">
-                <i><p className="trust-text ">Supporting Student's Mental Wellbeing</p></i>
+                <i><p className="trust-text ">Supporting Your's Mental Wellbeing</p></i>
               </li>  
             </ul>
           </div>
@@ -28,9 +28,9 @@ function Footer() {
           <div className="col-3 d-flex justify-content-center align-items-center">
             <ul className="list-unstyled d-flex flex-md-column gap-3 mt-4 footer-links align-items-start">
               <p className="fs-5 mb-1 footer-head">Quick Links</p>
-              <li className="fs-6 "> <a href="/"> About Us </a></li>
+              <li className="fs-6 "> <a href="/about-us"> About Us </a></li>
               <li className="fs-6 me-2"> <a href="/booking">Booking </a></li>
-              <li className="fs-6"> <a href="/chat"> AI Support </a></li>
+              <li className="fs-6"> <a href="/peer-support"> Peer Support</a></li>
               <li className="fs-6">  <a href="/resources"> Resources </a></li>
             </ul>
           </div>
@@ -76,8 +76,8 @@ function Footer() {
 
         </div>
         <div className="row d-flex justify-content-evenly align-items-center">
-         <hr/>
-          <p className="mb-0 text-center mt-2">
+         <hr style={{color:"#005dc1ff"}}/>
+          <p className="mb-3 text-center ">
             &copy; {new Date().getFullYear()} Connect&Evolve. All rights reserved.
           </p>
         </div>

@@ -8,7 +8,7 @@ function AuthModal({ open, onClose }) {
   return (
     <div className="ps-modal-backdrop" onClick={onClose}>
       <div className="ps-modal" onClick={(e) => e.stopPropagation()}>
-        <h5 className="mb-1">Login required</h5>
+        <h5 className="mb-3">Login required</h5>
         <p className="text-muted mb-3">
           Please log in to post, reply, upvote, or report. We keep communities
           safe with basic moderation.
@@ -189,7 +189,7 @@ export default function PeerSupport() {
               placeholder={
                 isLoggedIn
                   ? "How are you feeling today?"
-                  : "Log in to start a thread..."
+                  : "Log in to start chat..."
               }
               value={newPost}
               onChange={(e) => setNewPost(e.target.value)}
