@@ -1,4 +1,7 @@
+import { logResourceView } from "../../utils/resourceLogger";
+
 export default function GuideCard({
+  id,
   title,
   type,         
   link,
@@ -19,6 +22,41 @@ export default function GuideCard({
     onRecommend?.();
   };
 
+
+    // Called when user clicks "Read guide"
+  const handleOpen = (e) => {
+    // determine a stable resource id; fallback to link if id not provided
+    const resourceId = id || link;
+    if (!resourceId) return;
+
+    // avoid duplicate logs in same session
+    const sessionKey = `resource_viewed:${resourceId}`;
+    if (sessionStorage.getItem(sessionKey)) {
+      // already logged this session — do nothing
+      return;
+    }
+
+
+
+    
+    // Fire-and-forget the logger so we don't delay opening the doc.
+    // When it resolves, mark sessionStorage to avoid re-logging.
+    logResourceView({ resourceId, title, topic: "guide", durationSeen: 0 })
+      .then((ok) => {
+        if (ok) {
+          try {
+            sessionStorage.setItem(sessionKey, "1");
+          } catch (err) {
+            // ignore sessionStorage errors
+          }
+        }
+      })
+      .catch((err) => {
+        console.error("Guide view log failed:", err);
+      });
+
+    // do not prevent default — allow opening in new tab immediately
+  };
   return (
     <div className="guide-card">
       <div className="guide-card-body">
@@ -42,6 +80,7 @@ export default function GuideCard({
           rel="noreferrer"
           className="btn guide-open"
           title="Read"
+          onClick={handleOpen}
         >
          Read guide
         </a>

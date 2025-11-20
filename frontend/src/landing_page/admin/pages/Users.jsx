@@ -1,293 +1,243 @@
-import { Table, Button } from "react-bootstrap";
+import React, {useEffect, useState} from "react";
+import { Table, Button, Form, Spinner } from "react-bootstrap";
+import api from "../../../api/axios";
+import { useAuth } from "../../../context/AuthContext";
 
-function Users() {
-  const users = [
-    { id: 1, name: "Ali Raza", email: "ali@example.com", status: "Active" },
-    { id: 2, name: "Fatima Noor", email: "fatima@example.com", status: "Blocked" },
-    { id: 3, name: "Aarav Sharma", email: "aarav@example.com", status: "Active" },
-  ];
+const ROLE_OPTIONS = ["user", "counselor", "admin"];
 
+export default function Users() {
+   const { user: me } = useAuth();
+  const [users, setUsers] = useState([]);
+  const [page, setPage] = useState(1);
+  const [limit] = useState(20);
+  const [total, setTotal] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [savingRoleId, setSavingRoleId] = useState(null);
+  const [deletingId, setDeletingId] = useState(null);
+  const [blockingMap, setBlockingMap] = useState({});
+  const [error, setError] = useState("");
+
+    const fetchUsers = async (p = 1) => {
+    setLoading(true);
+    setError("");
+    try {
+      const { data } = await api.get(`/admin/users?page=${p}&limit=${limit}`);
+      setUsers(data.users || []);
+      setPage(data.page || p);
+      setTotal(data.total || 0);
+    } catch (err) {
+      console.error("Failed to fetch users:", err);
+      setError(err?.response?.data?.message || "Failed to load users");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+useEffect(() => {
+    fetchUsers(page);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+
+const handleRoleChange = (userId, newRole) => {
+    setUsers((prev) => prev.map((u) => (u.id === userId ? { ...u, role: newRole } : u)));
+  };
+
+  const saveRole = async (userId) => {
+    const target = users.find((u) => u.id === userId);
+    if (!target) return;
+    setSavingRoleId(userId);
+    try {
+      const { data } = await api.put(`/admin/users/${userId}/role`, { role: target.role });
+      // update list with returned role (backend canonical)
+      setUsers((prev) => prev.map((u) => (u.id === userId ? { ...u, role: data.user.role } : u)));
+      alert("Role updated");
+    } catch (err) {
+      console.error("saveRole error:", err);
+      alert(err?.response?.data?.message || "Failed to update role");
+      // refetch to get canonical state
+      fetchUsers(page);
+    } finally {
+      setSavingRoleId(null);
+    }
+  };
+
+
+   const handleDelete = async (userId, name) => {
+    if (!window.confirm(`Delete user "${name}"? This will soft-delete the user (can be restored in DB). Continue?`)) {
+      return;
+    }
+    setDeletingId(userId);
+    try {
+      await api.delete(`/admin/users/${userId}`);
+      // remove from UI
+      setUsers((prev) => prev.filter((u) => u.id !== userId));
+      alert("User soft-deleted");
+    } catch (err) {
+      console.error("delete user error:", err);
+      alert(err?.response?.data?.message || "Failed to delete user");
+    } finally {
+      setDeletingId(null);
+    }
+  };
+
+
+  const canManage = (targetUser) => {
+    // Prevent UI actions on yourself (backend already enforces, but avoid sending request)
+    if (!me) return true;
+    return targetUser.id !== me.id;
+  };
+
+
+  
+  // NEW: toggle block/unblock
+  const toggleBlock = async (userId, name, currentlyBlocked) => {
+    if (!canManage({ id: userId })) {
+      alert("You cannot block/unblock yourself from the admin UI.");
+      return;
+    }
+
+     const action = currentlyBlocked ? "unblock" : "block";
+    if (!window.confirm(`${action === "block" ? "Block" : "Unblock"} user "${name}"?`)) {
+      return;
+    }
+
+ setBlockingMap((m) => ({ ...m, [userId]: true }));
+    
+    try {
+      const { data } = await api.put(`/admin/users/${userId}/block`, { block: !currentlyBlocked });
+      // update the single user with returned state (safer than optimistic toggle)
+      setUsers((prev) => prev.map((u) => (u.id === userId ? { ...u, isBlocked: data.user.isBlocked } : u)));
+      alert(data.message || (data.user.isBlocked ? "User blocked" : "User unblocked"));
+    } catch (err) {
+      console.error("toggleBlock error:", err);
+      alert(err?.response?.data?.message || "Failed to toggle block");
+      // refetch to ensure canonical state
+      fetchUsers(page);
+    } finally {
+      setBlockingMap((m) => {
+        const copy = { ...m };
+        delete copy[userId];
+        return copy;
+      });
+    }
+  };
+    
+  const pageCount = Math.max(1, Math.ceil(total / limit));
   return (
     <div className="container-fluid py-4">
       <h2 className="mb-4">User Management</h2>
+       {loading ? (
+        <div className="text-center py-5">
+          <Spinner animation="border" />
+        </div>
+      ) : error ? (
+        <div className="alert alert-danger">{error}</div>
+      ) : (
+        <>
       <Table striped bordered hover responsive>
         <thead className="table-dark">
           <tr>
-            <th>#</th>
+            <th>S.no</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Status</th>
-            <th>Actions</th>
+           <th style={{ width: 180 }}>Role</th>
+            <th style={{ width: 120 }}>Status</th>
+            <th style={{ width: 240 }}>Actions</th>
           </tr>
         </thead>
         <tbody>
+           {users.length === 0 && (
+                <tr>
+                  <td colSpan="6" className="text-center py-4">No users found.</td>
+                </tr>
+              )}
           {users.map((u, index) => (
             <tr key={u.id}>
-              <td>{index + 1}</td>
-              <td>{u.name}</td>
-              <td>{u.email}</td>
+              <td>{index + 1 + (page - 1) * limit}</td>
+              <td>{u.name || "--"}</td>
+              <td>{u.email || "--"}</td>
               <td>
-                <span
-                  className={`badge ${
-                    u.status === "Active" ? "bg-success" : "bg-danger"
-                  }`}
-                >
-                  {u.status}
-                </span>
+
+               <div className="d-flex">
+                      <Form.Select
+                        size="sm"
+                        value={u.role || "user"}
+                        onChange={(e) => handleRoleChange(u.id, e.target.value)}
+                        disabled={!canManage(u)}
+                      >
+                        {ROLE_OPTIONS.map((r) => (
+                          <option key={r} value={r}>
+                            {r}
+                          </option>
+                        ))}
+                      </Form.Select>
+                 
+                <Button size="sm" variant="primary" className="ms-2"
+                       onClick={() => saveRole(u.id)}
+                        disabled={!canManage(u) || savingRoleId === u.id}>
+                  {savingRoleId === u.id ? <Spinner as="span" animation="border" size="sm" /> : "Save"}
+                </Button>
+
+                </div>
               </td>
+               <td>
+                    <span className={`badge ${u.isBlocked ? "bg-danger" : "bg-success"}`}>
+                      {u.isBlocked ? "Blocked" : "Active"}
+                    </span>
+                  </td>
               <td>
-                <Button size="sm" variant="warning" className="me-2">
-                  Block
-                </Button>
-                <Button size="sm" variant="danger">
-                  Delete
-                </Button>
+                 <Button
+                      size="sm"
+                      variant="warning"
+                      className="me-2"
+                      disabled={!canManage(u) || !!blockingMap[u.id]}
+                      onClick={() => toggleBlock(u.id, u.name || u.email, !!u.isBlocked)}
+                    >
+                       {blockingMap[u.id] ? (
+                        <Spinner as="span" animation="border" size="sm" />
+                      ) : u.isBlocked ? (
+                        "Unblock"
+                      ) : (
+                        "Block"
+                      )}
+                    </Button>
+
+                    <Button
+                      size="sm"
+                      variant="danger"
+                      onClick={() => handleDelete(u.id, u.name)}
+                      disabled={!canManage(u) || deletingId === u.id}
+                    >
+                      {deletingId === u.id ? <Spinner as="span" animation="border" size="sm" /> : "Delete"}
+                    </Button>
               </td>
             </tr>
           ))}
         </tbody>
       </Table>
+   {/* simple pagination */}
+          <div className="d-flex justify-content-between align-items-center">
+            <div>
+              Showing page {page} of {pageCount} — {total} users
+            </div>
+
+            <div>
+              <Button variant="secondary" size="sm" className="me-2" disabled={page <= 1} onClick={() => fetchUsers(page - 1)}>
+                Prev
+              </Button>
+              <Button variant="secondary" size="sm" disabled={page >= pageCount} onClick={() => fetchUsers(page + 1)}>
+                Next
+              </Button>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }
 
-export default Users;
 
 
 
-
-
-
-
-
-
-// import React, { useEffect, useState } from "react";
-// import { Table, Button, Spinner, Form, InputGroup } from "react-bootstrap";
-
-/**
- * Users page — connects to backend admin endpoints:
- * - GET  /api/admin/users?page=1&limit=10&search=...
- * - PUT  /api/admin/users/:id/role
- * - DELETE /api/admin/users/:id
- *
- * Expects token in localStorage under key "token".
- * Adjust API_BASE if your frontend uses a proxy or env var.
- */
-
-// export default function Users() {
-//   const [users, setUsers] = useState([]);
-//   const [page, setPage] = useState(1);
-//   const [limit] = useState(10);
-//   const [totalPages, setTotalPages] = useState(1);
-//   const [loading, setLoading] = useState(false);
-//   const [error, setError] = useState("");
-//   const [search, setSearch] = useState("");
-
-//   const token = localStorage.getItem("token") || "";
-//  // Works in both Vite (import.meta.env) and CRA (process.env)
-// const API_BASE = import.meta.env.VITE_API_BASE || "";
-
-
-
-//   const fetchUsers = async (p = 1, q = "") => {
-//     setLoading(true);
-//     setError("");
-//     try {
-//       const url =
-//         `${API_BASE}/api/admin/users?page=${p}&limit=${limit}` +
-//         (q ? `&search=${encodeURIComponent(q)}` : "");
-//       const res = await fetch(url, {
-//         headers: { Authorization: `Bearer ${token}` },
-//       });
-
-//       const body = await res.json().catch(() => ({}));
-//       if (!res.ok) throw new Error(body.message || "Failed to fetch users");
-
-//       setUsers(body.users || []);
-//       setPage(body.page || p);
-//       setTotalPages(body.pages || 1);
-//     } catch (err) {
-//       console.error(err);
-//       setError(err.message || "Error fetching users");
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   useEffect(() => {
-//     fetchUsers(1, search);
-//     // eslint-disable-next-line react-hooks/exhaustive-deps
-//   }, []);
-
-//   const handleSearch = (e) => {
-//     e.preventDefault();
-//     fetchUsers(1, search);
-//   };
-
-//   const changeRole = async (userId, newRole) => {
-//     if (!window.confirm(`Change role to "${newRole}"?`)) return;
-//     try {
-//       const res = await fetch(`${API_BASE}/api/admin/users/${userId}/role`, {
-//         method: "PUT",
-//         headers: {
-//           "Content-Type": "application/json",
-//           Authorization: `Bearer ${token}`,
-//         },
-//         body: JSON.stringify({ role: newRole }),
-//       });
-//       const body = await res.json().catch(() => ({}));
-//       if (!res.ok) throw new Error(body.message || "Failed to change role");
-//       await fetchUsers(page, search);
-//       alert("Role updated");
-//     } catch (err) {
-//       console.error(err);
-//       alert(err.message || "Unable to update role");
-//     }
-//   };
-
-//   const deleteUser = async (userId) => {
-//     if (!window.confirm("Are you sure you want to delete this user?")) return;
-//     try {
-//       const res = await fetch(`${API_BASE}/api/admin/users/${userId}`, {
-//         method: "DELETE",
-//         headers: { Authorization: `Bearer ${token}` },
-//       });
-//       const body = await res.json().catch(() => ({}));
-//       if (!res.ok) throw new Error(body.message || "Failed to delete user");
-//       await fetchUsers(page, search);
-//       alert("User deleted");
-//     } catch (err) {
-//       console.error(err);
-//       alert(err.message || "Unable to delete user");
-//     }
-//   };
-
-//   return (
-//     <div className="container-fluid py-4">
-//       <div className="d-flex justify-content-between align-items-center mb-3">
-//         <h2>User Management</h2>
-
-//         <Form className="d-flex" onSubmit={handleSearch} style={{ minWidth: 320 }}>
-//           <InputGroup>
-//             <Form.Control
-//               placeholder="Search name / email"
-//               value={search}
-//               onChange={(e) => setSearch(e.target.value)}
-//               aria-label="Search users"
-//             />
-//             <Button variant="primary" type="submit">
-//               Search
-//             </Button>
-//           </InputGroup>
-//         </Form>
-//       </div>
-
-//       {loading ? (
-//         <div className="text-center py-5">
-//           <Spinner animation="border" /> <span className="ms-2">Loading users...</span>
-//         </div>
-//       ) : error ? (
-//         <div className="alert alert-danger">{error}</div>
-//       ) : (
-//         <>
-//           <Table striped bordered hover responsive>
-//             <thead className="table-dark">
-//               <tr>
-//                 <th>#</th>
-//                 <th>Name</th>
-//                 <th>Email</th>
-//                 <th>Role</th>
-//                 <th>Created</th>
-//                 <th style={{ width: 260 }}>Actions</th>
-//               </tr>
-//             </thead>
-//             <tbody>
-//               {users.length === 0 ? (
-//                 <tr>
-//                   <td colSpan="6" className="text-center">
-//                     No users found.
-//                   </td>
-//                 </tr>
-//               ) : (
-//                 users.map((u, idx) => (
-//                   <tr key={u._id || u.id || idx}>
-//                     <td>{(page - 1) * limit + idx + 1}</td>
-//                     <td>{u.name}</td>
-//                     <td>{u.email}</td>
-//                     <td style={{ textTransform: "capitalize" }}>{u.role}</td>
-//                     <td>{u.createdAt ? new Date(u.createdAt).toLocaleString() : "-"}</td>
-//                     <td>
-//                       <div className="d-flex gap-2">
-//                         <Button
-//                           size="sm"
-//                           variant={u.role === "admin" ? "outline-secondary" : "success"}
-//                           onClick={() =>
-//                             changeRole(u._id, u.role === "admin" ? "user" : "admin")
-//                           }
-//                         >
-//                           {u.role === "admin" ? "Demote" : "Make Admin"}
-//                         </Button>
-
-//                         <Button
-//                           size="sm"
-//                           variant="outline-primary"
-//                           onClick={() => {
-//                             const next = prompt(
-//                               "Enter role (user, counselor, admin):",
-//                               u.role || "user"
-//                             );
-//                             if (next && ["user", "counselor", "admin"].includes(next)) {
-//                               changeRole(u._id, next);
-//                             } else if (next) {
-//                               alert("Invalid role entered");
-//                             }
-//                           }}
-//                         >
-//                           Change Role
-//                         </Button>
-
-//                         <Button
-//                           size="sm"
-//                           variant="danger"
-//                           onClick={() => deleteUser(u._id)}
-//                         >
-//                           Delete
-//                         </Button>
-//                       </div>
-//                     </td>
-//                   </tr>
-//                 ))
-//               )}
-//             </tbody>
-//           </Table>
-
-//           <div className="d-flex justify-content-between align-items-center">
-//             <div>
-//               Page {page} / {totalPages} &nbsp; • &nbsp; Showing {users.length} users
-//             </div>
-
-//             <div>
-//               <Button
-//                 size="sm"
-//                 variant="outline-secondary"
-//                 className="me-2"
-//                 disabled={page <= 1}
-//                 onClick={() => fetchUsers(page - 1, search)}
-//               >
-//                 Prev
-//               </Button>
-//               <Button
-//                 size="sm"
-//                 variant="outline-secondary"
-//                 disabled={page >= totalPages}
-//                 onClick={() => fetchUsers(page + 1, search)}
-//               >
-//                 Next
-//               </Button>
-//             </div>
-//           </div>
-//         </>
-//       )}
-//     </div>
-//   );
-// }
+  

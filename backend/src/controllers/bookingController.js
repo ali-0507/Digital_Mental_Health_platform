@@ -1,5 +1,6 @@
 const Booking = require("../models/Booking");
 const { sendEmail } = require("../utils/email");
+const { logActivity } = require("../utils/User.logActivity");
 
 exports.createBooking = async (req, res) => {
   try {
@@ -16,7 +17,13 @@ exports.createBooking = async (req, res) => {
       mode,
       note,
     });
-
+    //  user activity log
+     await logActivity(user._id, "booking", {
+      date,
+      time,
+      mode,
+      note: note || null
+    });
     // 2️⃣ Send confirmation email to the user
     await sendEmail(
       email,

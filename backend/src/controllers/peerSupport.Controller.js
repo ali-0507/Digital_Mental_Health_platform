@@ -1,6 +1,6 @@
 const Post = require("../models/PeerSupport.Post");
 const Comment = require("../models/PeerSupport.Comment");
-
+const { logActivity } = require("../utils/User.logActivity");
 
 // Get all posts (public)
 exports.getPosts = async (req, res) => {
@@ -50,6 +50,14 @@ exports.createPost = async (req, res) => {
       content,
       tags,
     });
+
+    //  user dashoard activity
+    await logActivity(req.user._id, "peersupport", {
+  action: "create_post",
+  postId: newPost._id,
+  // store only small excerpt to protect privacy
+  excerpt: newPost.content.slice(0, 120)
+});
 
     res.status(201).json(newPost);
   } catch (err) {
@@ -105,7 +113,13 @@ exports.addComment = async (req, res) => {
       author: req.user._id,
       content,
     });
-
+     
+    await logActivity(req.user._id, "peersupport", {
+    action: "comment",
+     postId,
+    commentId: comment._id,
+  excerpt: comment.content.slice(0, 120) // keep short
+});
     res.status(201).json(comment);
   } catch (err) {
     res.status(500).json({ message: err.message });

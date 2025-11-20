@@ -9,15 +9,12 @@ import {
   FaFileAlt,
   FaCog,
 } from "react-icons/fa";
-import { useTheme } from "../context/ThemeContext";
+
 
 function Sidebar() {
-  const { theme } = useTheme();
   const location = useLocation();
 
-  const sidebarClass = `sidebar d-flex flex-column p-3 ${
-    theme === "dark" ? "bg-dark text-light" : "bg-light text-dark"
-  }`;
+  const sidebarClass = "sidebar d-flex flex-column p-3" ;
 
   const makeLinkClass = (path) => {
     // active if exact match OR starts with path (so /admin/users/new still marks /admin/users active)
@@ -31,12 +28,12 @@ function Sidebar() {
       // use a visible primary background for active state in both themes
       return `${base} bg-success text-white`;
     } else {
-      return `${base} ${theme === "dark" ? "text-light" : "text-dark"}`;
+      return `${base}`;
     }
   };
 
   return (
-    <div className={sidebarClass} style={{ width: "250px", minHeight: "100vh" }}>
+    <div className={sidebarClass} style={{ width: "250px", minHeight: "100vh", backgroundColor: "white" }}>
       <h3 className="text-center mb-4">Admin Panel</h3>
       <ul className="nav flex-column">
         <li className="nav-item mb-2">

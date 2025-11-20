@@ -1,4 +1,3 @@
-import { useTheme } from "./context/ThemeContext";
 import Sidebar from "./components/Sidebar";
 import Topbar from "./components/Topbar";
 import { Routes, Route } from "react-router-dom";
@@ -13,7 +12,6 @@ import Resources from "./pages/Resources";
 import Settings from "./pages/Settings";
 
 function AdminDashboard() {
-  const { theme } = useTheme();
 
   return (
     <div className="d-flex" style={{ minHeight: "100vh" }}>
@@ -25,12 +23,7 @@ function AdminDashboard() {
         {/* Topbar */}
         <Topbar />
 
-        {/* Content Area */}
-        <div
-          className={`p-4 flex-grow-1 ${
-            theme === "dark" ? "bg-dark text-light" : "bg-light text-dark"
-          }`}
-        >
+  
           <Routes>
             <Route path="/" element={<DashboardOverview />} />
             <Route path="users" element={<Users />} />
@@ -45,7 +38,7 @@ function AdminDashboard() {
           </Routes>
         </div>
       </div>
-    </div>
+
   );
 }
 
