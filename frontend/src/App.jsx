@@ -61,9 +61,7 @@ function App() {
         <Route
           path="/history"
           element={
-            <ProtectedRoute>
               <ScreeningHistory />
-            </ProtectedRoute>
           }
         />
 

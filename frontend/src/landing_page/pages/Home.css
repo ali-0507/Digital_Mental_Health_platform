@@ -44,6 +44,9 @@
     transform: translateY(-12px);
   }
 
+.hero-content {
+  max-width: 50%;
+  min-width: 300px;
 }
 
 .phone{
