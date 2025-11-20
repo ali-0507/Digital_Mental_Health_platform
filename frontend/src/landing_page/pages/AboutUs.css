@@ -1,0 +1,132 @@
+.about-wrapper {
+  font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+}
+
+/* ---------------- HERO ---------------- */
+.about-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 70px 8%;
+  /* background: linear-gradient(135deg, #9b8eff 0%, #8fd3f4 100%); */
+  background-image: url("../assests/aboutHero.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+}
+
+.about-hero-text {
+  max-width: 550px;
+}
+
+.about-hero-text h1 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.about-hero-text p {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* .about-hero-image img {
+  width: auto;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+} */
+
+/* ---------------- SECTIONS ---------------- */
+.about-section {
+  position: relative;
+  padding: 80px 10%;
+  background: #ffffff;
+}
+
+/* .about-section.light {
+  background: #f8faff;
+} */
+
+.section-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #173753;
+}
+
+.section-desc {
+  max-width: 800px;
+  line-height: 1.7;
+  font-size: 1.15rem;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+/* Circular soft backgrounds */
+.circle-bg {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  z-index: 1;
+  opacity: 0.2;
+}
+
+.circle1 {
+  top: 10px;
+  left: 90px;
+  background: #a7d9ff;
+}
+
+.circle2 {
+  top: 10px;
+  left: 90px;
+  background: #a486df;
+}
+
+/* ---------------- QUOTE STRIP ---------------- */
+.quote-strip {
+  background: #f3e8ff;
+  padding: 60px 10%;
+  text-align: center;
+  font-size: 1.7rem;
+  color: #3c2d73;
+  font-weight: 600;
+  font-style: italic;
+}
+
+/* ---------------- VALUES SECTION ---------------- */
+.values {
+  background: #ffffff;
+}
+
+.values-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+}
+
+.value-card {
+  background: #f3e8ff;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 5px 12px rgba(0,0,0,0.08);
+  transition: 0.3s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-5px);
+}
+
+.value-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: #173753;
+}
+
+.value-card p {
+  color: #555;
+}

@@ -1,39 +1,102 @@
 
 .logoName{
     color: #E1F1FC !important;
+    font-weight: 600;
+    font-size: large;
 }
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
-  background-color: #eae1db !important;  
-  color:#173753 !important;
-  /* border:1px solid #E1F1FC; */
+  background-color:transparent !important;  
+  color:#7e5af4  !important;
+  font-weight:700 !important;
 }
-
-.nav-link,.logout-btn{
-  font-weight: 500 !important;
-}
-
 .navbar-brand{
   margin-left:5rem;
 }
 
-.dropdown .btn, .logout-btn{
-  background: linear-gradient(to left, #173753, #173753);
+/* Dropdown wrapper */
+.explore-dropdown {
+  position: relative;
+}
+
+/* Toggle Button */
+.explore-toggle {
+  background: transparent !important;
+  color: #ffffff !important;
+  font-size: 1.2rem;
+  border: none;
+}
+
+/* Dropdown Menu */
+.explore-menu {
+  position: absolute;
+  top: 57px;
+  right: 0;
+  width: 340px;
+  background: #faf6ff; 
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 22px;
+  padding: 20px;
+  box-shadow: 0 8px 25px rgba(23, 55, 83, 0.15);
+  display: none;
+  animation: fadeIn 1s ease-out;
+}
+
+/* Show dropdown on hover */
+.explore-dropdown:hover .explore-menu {
+  display: block;
+}
+
+/* Dropdown items */
+.explore-item {
+  padding: 12px 5px;
+  line-height: 2rem;
+  border-bottom: 1px solid #b8b8b8; 
+}
+
+.explore-item:last-child {
+  border-bottom: none;
+}
+
+.link{
+  color:#6b7280;
+  font-size:15px;
+  transition: font-size 0.5s ease-in;
+}
+
+.link:hover{
+  color:#3c2d73;
+  font-size:17px;
+}
+
+.explore-item h5 {
+  margin: 0;
+  color: #7e5af4; 
+  font-weight: 600;
+}
+
+.explore-item p {
+  margin: 3px 0 0 0;
+  font-size: 0.9rem;
+  color: #6b7280; 
+}
+
+/* Soft fade animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+.logout-btn{
+  background: #ae85f9 !important;
   border:none;
   color:#E1F1FC;
+  font-size:22px;
 }
 .logout-btn:hover{
    color:#eff8fe;
-}
-.logout-btn{
-  font-size:22px;
-}
-.dropdown-item:hover{
-  background: #e9e4df!important;
-  color:#173753 !important;
-}
-.dropdown-menu a{
-  font-weight: 300;
 }
 
 .btn-outline-light:hover{
