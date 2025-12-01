@@ -1,4 +1,5 @@
 const Chat = require("../models/AIChat");
+const {logActivity} = require("../utils/User.logActivity");
 
 const {GoogleGenAI} = require("@google/genai");
 const genai = new GoogleGenAI({apikey: process.env.GEMINI_API_KEY});
@@ -6,6 +7,7 @@ const genai = new GoogleGenAI({apikey: process.env.GEMINI_API_KEY});
 const SYSTEM_PROMPT = `You are a kind, empathetic assistant for basic emotional support.
 You are NOT a therapist. Provide gentle, practical coping suggestions (breathing, grounding).
 If the user expresses self-harm intent, encourage contacting local emergency services or a crisis helpline.
+Please keep responses concise (under 100 words) and supportive. keep a friendly tone.
 `;
 
 const RISK_REGEX = /(kill myself|suicide|end my life|hurt myself|self-?harm)/i;
@@ -57,41 +59,77 @@ exports.chatWithAI = async (req, res) => {
 }
 
 
-
-
-
-
-
-
-
 // Save chat history
-// exports.saveChat = async (req, res) => {
-//   try {
-//     const userId = req.user?._id; // comes from protect middleware
-//     const { messages } = req.body;
+exports.saveChat = async (req, res) => {
+  try {
+    const userId = req.user?._id; // comes from protect middleware
+    const { messages } = req.body;
 
-//     if (!userId) return res.status(401).json({ message: "Unauthorized" });
-//     if (!messages || !messages.length)
-//       return res.status(400).json({ message: "No messages to save" });
+    if (!userId) return res.status(401).json({ message: "Unauthorized" });
+    if (!messages || !messages.length)
+      return res.status(400).json({ message: "No messages to save" });
 
-//     const chat = await Chat.create({ user: userId, messages });
-//     return res.status(201).json({ message: "Chat saved successfully", chat });
-//   } catch (err) {
-//     console.error("Error saving chat:", err);
-//     return res.status(500).json({ message: "Server error" });
-//   }
-// };
+    const chat = await Chat.create({ user: userId, messages });
 
-// // Fetch all saved chats for the logged-in user
-// exports.getUserChats = async (req, res) => {
-//   try {
-//     const userId = req.user?._id;
-//     if (!userId) return res.status(401).json({ message: "Unauthorized" });
+    //  user Dashboard activity log
+    const lastUserMessage = messages.slice().reverse().find((m) => m.sender === "user");
+    const topicGuess = (lastUserMessage?.text || "").match(/sleep|anxiety|stress|focus|mood|lonely/i)?.[0]?.toLowerCase()||"other";// simple topic inference
+    await logActivity(req.user?._id, "chat", { topic: topicGuess, text: lastUserMessage?.text });
 
-//     const chats = await Chat.find({ user: userId }).sort({ createdAt: -1 });
-//     return res.json({ chats });
-//   } catch (err) {
-//     console.error("Error fetching chats:", err);
-//     return res.status(500).json({ message: "Server error" });
-//   }
-// };
+    return res.status(201).json({ message: "Chat saved successfully", chat });
+  } catch (err) {
+    console.error("Error saving chat:", err);
+    return res.status(500).json({ message: "Server error" });
+  }
+};
+
+// Fetch all saved chats for the logged-in user
+exports.getUserChats = async (req, res) => {
+  try {
+    const userId = req.user?._id;
+    if (!userId) return res.status(401).json({ message: "Unauthorized" });
+
+    const chats = await Chat.find({ user: userId }).sort({ createdAt: -1 });
+    return res.json({ chats });
+  } catch (err) {
+    console.error("Error fetching chats:", err);
+    return res.status(500).json({ message: "Server error" });
+  }
+};
+
+
+
+
+// get chat from DB ( one chat by id, only owner)
+exports.getChatById = async (req, res)=>{
+  try{
+     const userId = req.user?._id;
+     const {id} = req.params;
+     if(!userId) return res.status(401).json({message:"Unauthorized, please login!"});
+
+   const chat = await Chat.findOne({_id: id, user: userId});
+   if(!chat) return res.status(404).json({message: "Chat not found"});
+
+   return res.json({chat});
+  }catch(err){
+   console.error(err);
+    return res.status(500).json({ message: "Server error" });
+  }
+};
+
+// Delete Chat (delete one chat, only owner)
+exports.deleteChat = async (req, res)=>{
+  try{
+     const userId = req.user?._id;
+     const {id} = req.params;
+     if(!userId) return res.status(401).json({message:"Unauthorized, please login!"});
+
+   const chat = await Chat.findOneAndDelete({_id: id, user: userId});
+   if(!chat) return res.status(404).json({message: "Chat not found"});
+
+   return res.json({message : "Chat deleted!!"});
+  }catch(err){
+   console.error(err);
+    return res.status(500).json({ message: "Server error" });
+  }
+};

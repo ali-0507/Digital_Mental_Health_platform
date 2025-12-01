@@ -30,7 +30,7 @@
     radial-gradient(1200px 600px at 30% 30%, #d3cdff, transparent 80%),
     radial-gradient(900px 500px at 90% 80%, #cceeff, transparent 60%),
     #f6f8fc;
-    font-family: "Intern,san-serif";
+    font-family: Intern "san-serif";
 }
 
 /* Container card */

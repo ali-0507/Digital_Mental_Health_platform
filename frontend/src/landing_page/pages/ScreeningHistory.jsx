@@ -101,8 +101,8 @@ const deleteSingle = async (id) => {
 
             </div>
            
-            <p id="answer">                
-              <ul style={{ listStyleType: "none" }}>
+                         
+              <ul id="answer" style={{ listStyleType: "none" }}>
                 {item.questions.map((question, qIndex) => (
                   <li key={qIndex} style={{ marginBottom: "8px" }}>
                     <b>&#9679;</b> {question} <br /><br/>
@@ -111,7 +111,7 @@ const deleteSingle = async (id) => {
                   </li>
                 ))} 
               </ul>
-            </p>         
+                    
           </div>
       
         ))

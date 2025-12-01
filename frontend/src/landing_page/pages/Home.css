@@ -1,4 +1,4 @@
-/* ===== HERO ===== */
+ /* ===== HERO ===== */
 
 .hero {
   display: flex;
@@ -45,7 +45,6 @@
     transform: translateY(-12px);
   }
 }
-
 .hero-content {
   max-width: 50%;
   min-width: 300px;
@@ -120,7 +119,7 @@ transform: translateY(-6px);
 /* ===== GOAL ===== */
 .goal-section {
   text-align: center;
-  padding:9rem;
+  padding:5rem;
 }
 
 .goal-section h2 {
@@ -138,7 +137,7 @@ transform: translateY(-6px);
 .goal-cards {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 3rem;
 }
 
@@ -231,6 +230,7 @@ transform: translateY(-6px);
 .timeline {
   position: relative;
   width: 90%;
+  min-height: 100vh;
   max-width: 1200px;
   margin: 30px auto;
   padding: 20px 0;

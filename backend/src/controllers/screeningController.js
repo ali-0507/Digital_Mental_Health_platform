@@ -1,4 +1,5 @@
 const Screening = require("../models/Screening");
+const {logActivity} = require("../utils/User.logActivity");
 const questionSets = require("../data/screeningQuestions");
 
 
@@ -29,6 +30,11 @@ exports.saveScreening = async (req, res) => {
       level,
     });
 
+    await logActivity(req.user?._id, "screening", { score });
+    res.status(201).json({
+      message: "Screening saved successfully",
+      data: newScreening,
+    });
     res.status(201).json({ message: "Saved", data: newScreening });
 
   } catch (err) {
@@ -53,7 +59,7 @@ exports.getUserScreenings = async (req, res) => {
 
 
 exports.getQuestions = async (req, res) => {
-  const userId = req.user._id;
+  const userId = req.user?._id;
   const last = await Screening.findOne({ user: userId }).sort({ createdAt: -1 });
 
   let level = "level1";

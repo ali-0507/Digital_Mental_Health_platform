@@ -29,6 +29,36 @@ exports.protect = async (req, res, next) => {
   }
 };
 
+
+//  Protect-Optional 
+exports.protectOptional = async (req, res, next) => {
+  try {
+    const authHeader = req.headers.authorization || req.cookies?.token;
+    if (!authHeader) {
+      // No token — allow public access
+      return next();
+    }
+
+    // Extract token (accept "Bearer <token>" or raw token in cookie/header)
+    const token = authHeader.startsWith("Bearer ")
+      ? authHeader.split(" ")[1]
+      : authHeader;
+
+    if (!token) return next();
+
+    // Verify token
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    // Attach user (without password)
+    const user = await User.findById(decoded.userId).select("-password");
+    if (user) req.user = user;
+    } catch (err) {
+    // Don't block public users if token invalid/expired — just warn and continue
+    console.warn("protectOptional: token invalid or missing user — continuing as unauthenticated", err.message);
+  }
+  return next();
+};
+
 //Restrict by role
 exports.restrictTo = (...roles) => {
   return (req, res, next) => {

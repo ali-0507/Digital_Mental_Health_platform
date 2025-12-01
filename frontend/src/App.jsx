@@ -1,3 +1,4 @@
+ import {useEffect} from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 // Protected Route
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
@@ -18,18 +19,38 @@ import ScreeningHistory from "./landing_page/pages/ScreeningHistory.jsx";
 import ResourceGuide from "./landing_page/pages/ResourceGuide.jsx";
 import RelaxationAudio from "./landing_page/pages/RelaxationAudio.jsx";
 import MindfulnessVideo from "./landing_page/pages/MindfulnessVideo.jsx";
+import Dashboard from "./landing_page/pages/User.Dashboard.jsx";
+import AdminLogin from "./landing_page/admin/pages/AdminLogin.jsx";
 import AboutUs from "./landing_page/pages/AboutUs.jsx";
 
 
 function App() {
   const location = useLocation();
-  // Check if current route starts with /admin
-  const isAdminRoute = location.pathname.startsWith("/admin");
+  // Check if current route starts with /
+  
+    // Keyboard shortcut for Admin Login
+  useEffect(() => {
+    const handler = (e) => {
+      if (location.pathname.startsWith("/admin")) return; // disable inside admin
 
+      if (e.shiftKey && e.key === "A") {
+        window.location.href = "/admin/login";
+      }
+    };
+
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [location.pathname]);
+
+
+  
+  const isAdminRoute = location.pathname.startsWith("/admin");
+  const isDashboardRoute = location.pathname.startsWith("/dashboard");
   return (
     <div className="app-container d-flex flex-column min-vh-100">
       {/* Show Navbar & Footer only if NOT on admin routes */}
-      {!isAdminRoute && <Navbar />}
+      {!isAdminRoute && !isDashboardRoute && <Navbar />}
+      
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -37,18 +58,28 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/screening" element={<Screening />} />
         <Route path="/chat" element={<AIChat />} />
-          
         <Route path="/booking" element={<Booking />} />
-      
+    
         <Route path="/resources" element={<Resources />} />
         <Route path="/resources/relaxation-audio" element={<RelaxationAudio />} />
         <Route path="/mindfulness-video" element={<MindfulnessVideo />} />
 
         <Route path="/peer-support" element={<PeerSupport />} />
 
+
+        <Route
+           path="/dashboard"
+              element={
+          <ProtectedRoute>
+                <Dashboard />
+           </ProtectedRoute>
+         }
+        />
+
         {/* Admin Route */}
         {/* <Route path="/admin/*" element={<AdminDashboard />} /> */}
          {/* Protected Admin Route */}
+         <Route path="/admin/login" element={<AdminLogin/>} />
         <Route
           path="/admin/*"
           element={
@@ -81,7 +112,8 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
 
-      {!isAdminRoute && <Footer />}
+      {!isAdminRoute && !isDashboardRoute && <Footer />}
+
     </div>
   );
 }
