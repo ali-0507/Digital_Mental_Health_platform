@@ -15,6 +15,7 @@
   padding:0.9rem;
   max-width: 40%;
   min-width: 300px;
+  /* border: 1px solid black; */
 }
 .img-area{
   margin-left:-5rem;
@@ -43,6 +44,7 @@
   50% {
     transform: translateY(-12px);
   }
+}
 
 .hero-content {
   max-width: 50%;
@@ -210,9 +212,9 @@ transform: translateY(-6px);
   transform: translateY(-6px);
   box-shadow: 0px 4px 10px #9385fd;
 }
-.explore{
+/* .explore{
   padding: 90px 10%;
-}
+} */
 
 
 @keyframes fadeUp{

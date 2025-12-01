@@ -301,13 +301,15 @@ function Home() {
         <div className="img-area">
           <img src="../assests/hero.jpg" className="images"/>
         </div>
-      </section>
 
-         <div className="img-area2">
+        <div className="img-area2">
           <img src="../assests/ai.webp" className="images"/>
         </div>
-
       </section>
+
+         
+
+      {/* </section> */}
 
     {/* GOAL SECTION */}
     <section className="goal-section">
@@ -465,8 +467,6 @@ function Home() {
 
     </section>
       
-
-
   
     </div>
   );
