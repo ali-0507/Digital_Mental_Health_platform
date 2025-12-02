@@ -72,8 +72,9 @@ exports.getMyDashboard = async (req, res) => {
 
     return res.json({
       greeting: {
-        headline: `Hi, ${firstName} - Here's your week at a glance`,
-        subline: "Welcome to Connect&Evolve — Your personal mental-wellbeing hub.",
+        title: "Connect&Evolve",
+        headline: `${firstName}'s Dashboard`,
+        subline: "Your personal mental-wellbeing hub.",
       },
       tiles: {
         chatsThisWeek,

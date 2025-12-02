@@ -14,15 +14,7 @@ function Navbar() {
   }
   return (
     <nav className="custom-nav navbar navbar-expand-lg navbar-dark sticky-top">
-      <div className="container-fluid">
-        {/* <Link className="navbar-brand" to="/">
-    <nav className="navbar navbar-expand-lg custom-nav sticky-top">
-      
-        <div className="container-fluid">
-          {/* <Link className="navbar-brand" to="/">
-            <img src="/assests/logo.png" alt="Logo" className="d-flex align-text-center"/>
-          </Link> */}
-          
+      <div className="container-fluid">        
         <Link className="navbar-brand fs-5 logoName" to="/">
         
           <i>Connect&Evolve</i>
@@ -94,15 +86,8 @@ function Navbar() {
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/dashboard">My Dashboard</NavLink>
                 </li>
-               {/* <li className="nav-item">
-               <NavLink className="nav-link" to="/my-chats">
-                    My Chats
-                 </NavLink>
-             </li> */}
-                {/* Show username and logout */}
-               {/* Show username and logout */}
-                
-                <li className="nav-item">
+
+               <li className="nav-item">
                   <NavLink className="nav-link" to="/screening">
                     AI Screening
                   </NavLink>

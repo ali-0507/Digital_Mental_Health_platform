@@ -85,19 +85,11 @@ const navigate = useNavigate();
       password: true,
       confirmPassword: true,
     });
-    // setError("");
-
-    // if (formData.password !== formData.confirmPassword) {
-    //   setError("Passwords do not match!");
-    //   return;
-    // }
 
      if (Object.keys(errors).length > 0) {
       setError("Please fix the highlighted errors before submitting.");
       return;
     }
-
-
     try {
       setLoading(true);
       const res = await api.post("/auth/signup", {

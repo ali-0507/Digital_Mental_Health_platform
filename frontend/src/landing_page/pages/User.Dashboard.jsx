@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../api/axios";
 import { useAuth } from "../../context/AuthContext.jsx";
@@ -99,18 +99,20 @@ export default function Dashboard() {
       <div className="d-flex">
         <aside className={`dashboard-sidebar ${sidebarOpen ? "open" : "closed"}`}>
           <div className="sidebar-header d-flex justify-content-between align-items-center px-3 py-2">
-            <strong>Quick actions</strong>
-            <button className="btn btn-sm btn-outline-secondary" onClick={() => setSidebarOpen(false)} aria-label="Close sidebar">
+            
+            <strong className="fs-5" style={{color:"#4e73df"}}>Quick actions</strong>
+
+            <button className="btn btn-sm btn-outline-danger" onClick={() => setSidebarOpen(false)} aria-label="Close sidebar">
               ✕
             </button>
           </div>
 
           <div className="sidebar-body p-3">
-            <button className="btn btn-mental w-100 mb-3" onClick={() => navigate("/chat")}>Continue Chat</button>
-            <button className="btn btn-outline-mental w-100 mb-3" onClick={() => navigate("/screening")}>Take Screening</button>
-            <button className="btn btn-outline-mental w-100 mb-3" onClick={() => navigate("/booking")}>Book Session</button>
-            <button className="btn btn-outline-mental w-100 mb-3" onClick={() => navigate("/resources")}>Explore Resources</button>
-            <button className="btn btn-outline-mental w-100" onClick={() => navigate("/peer-support")}>Explore Peer-Support</button>
+            <button className="btn w-100 mb-3 side-btn" onClick={() => navigate("/chat")}>Continue Chat</button>
+            <button className="btn w-100 mb-3 side-btn" onClick={() => navigate("/screening")}>Take Screening</button>
+            <button className="btn w-100 mb-3 side-btn" onClick={() => navigate("/booking")}>Book Session</button>
+            <button className="btn w-100 mb-3 side-btn" onClick={() => navigate("/resources")}>Explore Resources</button>
+            <button className="btn w-100 side-btn" onClick={() => navigate("/peer-support")}>Explore Peer-Support</button>
           </div>
 
           <div className="sidebar-footer p-3 small text-muted">
@@ -120,22 +122,27 @@ export default function Dashboard() {
 
         {/* small open button when sidebar closed */}
         {!sidebarOpen && (
-          <div className="sidebar-closed-btn p-2">
-            <button className="btn btn-primary" onClick={() => setSidebarOpen(true)} aria-label="Open sidebar">Menu</button>
+          <div className="sidebar-closed-btn p-2 mt-3">
+            <button className="btn options" onClick={() => setSidebarOpen(true)} 
+            aria-label="Open sidebar">
+              Menu</button>
           </div>
         )}
 
         {/* MAIN */}
         <main className="flex-fill p-4">
           <div className="d-flex justify-content-between align-items-start mb-3">
-            <div style={{textAlign:"center"}}>
-              <h4 className="mb-1">{greeting.headline}</h4>
-              <div className="text-muted">{greeting.subline}</div>
+            <div style={{textAlign:"left",fontFamily:"Inter, sans-serif"}}>
+              <h1 className="mt-0" style={{color:"#4e73df"}}>{greeting.title}</h1>
+              <h4 className="mb-1 fs-5"><i>{greeting.headline}</i></h4>
+              <p className="text-muted fs-6">{greeting.subline}</p>
+             
             </div>
 
             <div className="d-flex gap-2">
-              <button className="btn btn-outline-secondary" onClick={() => navigate("/")}>Home</button>
-              <button className="btn btn-primary" onClick={() => {
+              <button className="btn options" onClick={() => navigate("/")}>Home</button>
+
+              <button className="btn btn-danger" onClick={() => {
                 Swal.fire({
                   title: 'Are you sure ?',
                   text : 'You will be logged out from your account!',
@@ -191,57 +198,57 @@ export default function Dashboard() {
             <div className="col-lg-4 mb-4">
               <div className="card h-100 shadow-sm chart-card">
                 <div className="card-body">
-  {/* top row: icon + title */}
-  <div className="d-flex align-items-center justify-content-between mb-2">
-    <div className="d-flex align-items-center">
-      <div className="resource-icon me-3 d-flex align-items-center justify-content-center">
-        <i className="bi bi-bookmark tile-icon" aria-hidden="true" />
-      </div>
-      <div>
-        <div className="fw-semibold ">Resources</div>
-        <div className="text-muted small">Viewed</div>
-      </div>
-    </div>
-    
-
-    {/* big count on the right of header */}
-   
-  </div>
-   <div className="mt-5 mx-3">
-      <div className="h2 mb-0">{resourcesCount ?? 0}</div>
-    </div>
-  {/* chart row: place pie to the right (compact) */}
-  <div className="d-flex align-items-center">
-    <div style={{ flex: "1 1 0" }} className="pe-3">
-      {/* optional legend / small note */}
-      {/* <div className="small text-muted mb-2">Breakdown</div> */}
-      <div style={{ width: "120%", height: 190 }}>
-        <ResponsiveContainer>
-          <PieChart>
-            <Pie
-              data={pieData}
-              dataKey="value"
-              nameKey="name"
-              innerRadius={40}
-              outerRadius={80}
-              label={false}
-            >
+          
+          {/* top row: icon + title */}
+          <div className="d-flex align-items-center justify-content-between mb-2">
+            <div className="d-flex align-items-center">
+              <div className="resource-icon me-3 d-flex align-items-center justify-content-center">
+                <i className="bi bi-bookmark tile-icon" aria-hidden="true" />
+              </div>
+              <div>
+                <div className="fw-semibold ">Resources</div>
+                <div className="text-muted small">Viewed</div>
+              </div>
+            </div>  
+          </div>
+          
+          <div className="mt-5 mx-3">
+            <div className="h2 mb-0">{resourcesCount ?? 0}</div>
+          </div>
+      
+          {/* chart row: place pie to the right (compact) */}
+          <div className="d-flex align-items-center">
+            <div style={{ flex: "1 1 0" }} className="pe-3">
+          
+          {/* optional legend / small note */}
+          {/* <div className="small text-muted mb-2">Breakdown</div> */}
+      
+          <div style={{ width: "120%", height: 190 }}>
+          <ResponsiveContainer>
+            <PieChart>
+              <Pie
+                data={pieData}
+                dataKey="value"
+                nameKey="name"
+                innerRadius={40}
+                outerRadius={80}
+                label={false}
+              >
               {pieData.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
               ))}
             </Pie>
             <Legend verticalAlign="bottom" height={30} />
-          </PieChart>
-        </ResponsiveContainer>
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
       </div>
-    </div>
 
-    {/* keep a small visual spacer if you want the donut to float to the right */}
-    <div style={{ width: 15}} />
-  </div>
-</div>
-              </div>
-            </div>
+          {/* keep a small visual spacer if you want the donut to float to the right */}
+          <div style={{ width: 15}} /></div>
+        </div>
+          </div>
+          </div>
           </div>
 
           {/* Recent activity + note */}

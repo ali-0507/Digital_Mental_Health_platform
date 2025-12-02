@@ -1,9 +1,5 @@
 const AuditLog = require("../models/AuditLog");
 
-/**
- * createAudit({ action, resourceType, resourceId, performedBy, details, ip, meta })
- * performedBy: { id, name, email } (id is required)
- */
 const createAudit = async ({ action, resourceType, resourceId = null, performedBy, details = {}, ip = null, meta = {} }) => {
   try {
     if (!performedBy || !performedBy.id) {

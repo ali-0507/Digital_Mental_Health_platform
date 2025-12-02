@@ -69,21 +69,7 @@ export const AuthProvider = ({ children }) => {
 
     bootstrap();
   }, []);
-  // Load user from token (if exists)
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-
-  //   if (token) {
-  //     api
-  //       .get("/auth/me")
-  //       .then((res) => setUser(res.data.user))
-  //       .catch(() => localStorage.removeItem("token"))
-  //       .finally(() => setLoading(false));
-  //   } else {
-  //     setLoading(false);
-  //   }
-  // }, []);
-
+  
   // Login user (after successful login form)
   const login = (accessToken, userData) => {
     localStorage.setItem("token", accessToken);

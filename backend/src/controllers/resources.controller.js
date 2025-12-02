@@ -28,7 +28,7 @@ exports.markResourceViewed = async (req, res) => {
     if (!created) return res.status(500).json({ message: "Failed to log resource view" });
 
     // // IMPORTANT: await so the DB write completes before returning
-    // await logActivity(userId, "resource", meta);
+    
 
     return res.status(201).json({ message: "Resource view logged", activityId: created._id });
   } catch (err) {

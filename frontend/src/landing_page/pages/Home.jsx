@@ -35,13 +35,14 @@ function Home() {
             <span className="phone">14416 or 1800-89-14416</span>
           
         </div>
+        <div className="images-wrapper">
         <div className="img-area">
           <img src="../assests/hero.jpg" className="images"/>
         </div>
           <div className="img-area2">
           <img src="../assests/ai.webp" className="images"/>
         </div>
-
+        </div>
       </section>
 
        

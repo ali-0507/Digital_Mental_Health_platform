@@ -28,14 +28,6 @@ export default function RelaxationAudio() {
   );
 }
 
-/**
- * AudioCard
- * - starts a threshold timer on play
- * - cancels on pause/seek
- * - logs either when threshold reached or when audio ends (actual time)
- * - prevents duplicate logs in same session via sessionStorage
- * - broadcasts "audio-played" event to pause other players when one plays
- */
 function AudioCard({ audio }) {
   const elRef = useRef(null);
   const timerRef = useRef(null);

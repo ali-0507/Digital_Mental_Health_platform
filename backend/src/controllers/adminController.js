@@ -1,11 +1,8 @@
-// backend/src/controllers/adminController.js
+
 const User = require("../models/User");
 const { createAudit } = require("../utils/auditLogger");
 
-/**
- * GET /api/admin/users
- * Query: page, limit, search
- */
+
 exports.getUsers = async (req, res) => {
   try {
     const page = Math.max(parseInt(req.query.page || "1", 10), 1);
@@ -64,9 +61,7 @@ exports.getUsers = async (req, res) => {
   }
 };
 
-/**
- * GET /api/admin/users/:id
- */
+
 exports.getUserById = async (req, res) => {
   try {
     const user = await User.findById(req.params.id).select("-password");
@@ -78,11 +73,7 @@ exports.getUserById = async (req, res) => {
   }
 };
 
-/**
- * PUT /api/admin/users/:id/role
- * Body: { role: "admin" }
- * Prevent admin removing their own admin role
- */
+
 exports.updateUserRole = async (req, res) => {
   try {
     const { role } = req.body;
@@ -126,10 +117,7 @@ exports.updateUserRole = async (req, res) => {
   }
 };
 
-/**
- * DELETE /api/admin/users/:id
- * Prevent deleting yourself
- */
+
 exports.deleteUser = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
@@ -158,14 +146,6 @@ exports.deleteUser = async (req, res) => {
   }
 };
 
-
-
-
-/**
- * PUT /api/admin/users/:id/block
- * Body: { block: true }  -> block user
- *       { block: false } -> unblock user
- */
 exports.toggleBlockUser = async (req, res) => {
   try {
     const mongoose = require("mongoose");
@@ -245,8 +225,6 @@ exports.getAdminStats = async (req, res) => {
     const User = safeModel("User", "../models/User");
     const Screening = safeModel("Screening", "../models/Screening"); // common name
     const PeerPost = safeModel("Post", "../models/PeerSupport.Post.js"); // guess
-    // const PeerSupportPost = safeModel("PeerSupportPost", "../models/PeerSupport"); // alternative guess
-    // Counselors: prefer counting users with role "counselor" if User model exists, otherwise try a Counselor model
     const CounselorModel = safeModel("Counselor", "../models/Counselor");
 
     // counts with fallbacks

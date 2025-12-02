@@ -53,14 +53,6 @@ exports.signup = async (req, res) => {
       return res.status(400).json({ message: "Username already exists" });
     }  
 
-    // if (!name || !username || !email || !password) {
-    //   return res.status(400).json({ message: "Missing required fields" });
-    // }
-
-    // const exists = await User.findOne({ $or: [{ email }, { username }] });
-    // if (exists) {
-    //   return res.status(400).json({ message: "User already exists" });
-    // }
     const user = await User.create({ name, username, email, password, role });
 
     // issue tokens
@@ -194,7 +186,7 @@ exports.refreshToken = async (req, res) => {
 };
 
 
-// ---- new: logout current device ----
+//logout current device
 exports.logout = async (req, res) => {
   try {
     const token = req.cookies?.rt;

@@ -7,8 +7,6 @@ const sessionSchema = new mongoose.Schema({
   ip: String,
    // You are setting this in the controller; declare it here so TTL works
     expiresAt: { type: Date, required: true },
-    // Do NOT declare createdAt manually. timestamps will add createdAt/updatedAt
-   //   createdAt: { type: Date, required:true} // Session expires after 7 days
 }, { timestamps: true });
 
 // auto-delete after expiresAt

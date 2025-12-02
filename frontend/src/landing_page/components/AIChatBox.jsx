@@ -54,16 +54,10 @@ function AIChatBox({ isLoggedIn }) {
     setStickBottom(el.scrollHeight - el.scrollTop - el.clientHeight < 16);
   };
 
-  // const botReply = (text, delay = 650) => {
-  //   setTyping(true);
-  //   setTimeout(() => {
-  //     setMessages((prev) => [...prev, { sender: "bot", text }]);
-  //     setTyping(false);
-  //   }, delay);
-  // };
 
 
-   // 🔁 Non-stream backend call to /api/chat
+
+   // Non-stream backend call to /api/chat
   const handleSend = async (e) => {
     e.preventDefault();
     const text = input.trim();
@@ -72,7 +66,6 @@ function AIChatBox({ isLoggedIn }) {
     setMessages((prev) => [...prev, { sender: "user", text }]);
     setInput("");
     setShowRisk(RISK_REGEX.test(text));
-    // botReply("I’m listening. Would you like a short coping exercise?");
     setTyping(true);
 
      // Build short history for context (last 6 turns), mapping to LLM roles
@@ -124,8 +117,6 @@ function AIChatBox({ isLoggedIn }) {
       setShowAuthModal(true);
       return;
     }
-    // // later: POST /api/chat/save {messages}
-    // alert("Saved (stub). We’ll wire this to your backend.");
      try {
     const res = await api.post("/chat/save", { messages });
     alert("✅ Chat saved successfully!");
@@ -134,26 +125,6 @@ function AIChatBox({ isLoggedIn }) {
        alert("❌ Failed to save chat");
      }
   };
-
-
-  // const exportChat = () => {
-  //   const text = messages
-  //     .map((m) => (m.sender === "user" ? "You: " : "Assistant: ") + m.text)
-  //     .join("\n");
-  //   const blob = new Blob([text], { type: "text/plain" });
-  //   const url = URL.createObjectURL(blob);
-  //   const a = document.createElement("a");
-  //   a.href = url; a.download = "connect-evolve-chat.txt"; a.click();
-  //   URL.revokeObjectURL(url);
-  // };
-
-  // const toggleVoice = () => {
-  //   if (!isLoggedIn) {
-  //     setShowAuthModal(true);
-  //     return;
-  //   }
-  //   setRecording((s) => !s); // UI state only
-  // };
 
   return (
     <div className="ai-chat-wrap">
@@ -237,15 +208,7 @@ function AIChatBox({ isLoggedIn }) {
             onChange={(e) => setInput(e.target.value)}
             aria-label="message"
           />
-          {/* <button style={{padding:"20px 5px", borderRadius:"20px"}}
-          type="button"
-          className={`ai-send ai-tbtn ${recording ? "rec" : ""}`}
-          onClick={toggleVoice}
-          title="Voice (login required)"
-          aria-pressed={recording}
-        >
-          <i className="bi bi-mic-fill"></i><b>Voice</b>
-        </button> */}
+          
           <button type="submit" className="btn ai-send">Send</button>
         </form>
 

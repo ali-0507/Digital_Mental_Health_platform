@@ -9,7 +9,6 @@ const videos = [
 ];
 
 function extractYouTubeId(url) {
-  // handle forms like https://www.youtube.com/embed/VIDEOID or https://youtu.be/VIDEOID
   const m = url.match(/(?:embed\/|v=|youtu\.be\/)([A-Za-z0-9_-]{6,})/);
   return m ? m[1] : null;
 }
