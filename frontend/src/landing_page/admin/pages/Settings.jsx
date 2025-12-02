@@ -1,4 +1,4 @@
-// frontend/src/landing_page/admin/pages/Settings.jsx
+
 import React, { useEffect, useState } from "react";
 import { Card, Button, Form, Row, Col, Modal, Spinner, Alert } from "react-bootstrap";
 import api from "../../../api/axios";

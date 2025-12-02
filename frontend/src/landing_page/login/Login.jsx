@@ -73,14 +73,6 @@ function Login() {
     try {
       setLoading(true);
       const res = await api.post("/auth/login", formData);
-
-      // Save token and redirect
-      // localStorage.setItem("token", res.data.token);
-      // alert("Login successful!");
-      // navigate("/"); // redirect to home or dashboard
-
-      // IMPORTANT: backend returns { accessToken, user }
-     // Use context login so Navbar updates immediately
       login(res.data.accessToken, res.data.user);
      Swal.fire({
     icon: "success",
@@ -230,9 +222,6 @@ function Login() {
                       Remember me
                     </label>
                   </div>
-                  {/* <Link to="/forgot-password" className="small link-mental">
-                    Forgot password?
-                  </Link> */}
                 </div>
 
                 <button type="submit" className="btn btn-mental w-100 fw-semibold" disabled={loading}>

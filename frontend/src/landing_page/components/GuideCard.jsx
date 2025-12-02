@@ -66,7 +66,6 @@ export default function GuideCard({
 
         <ul className="guide-meta" style={{listStyle:"none", paddingLeft:0}}>
           {meta.source && <li><i className="bi bi-link-45deg"></i> {meta.source}</li>}
-          {/* {meta.author && <li><i className="bi bi-person"></i> {meta.author}</li>} */}
           {meta.year && <li><i className="bi bi-calendar3"></i> {meta.year}</li>}
           {meta.length && <li><i className="bi bi-book"></i> {meta.length}</li>}
         </ul>

@@ -27,10 +27,6 @@
   return (
     <div className="res-card">
       <div className="res-card-body">
-        {/* <div className="res-type">
-          <span className="material-icons-round">{icon}</span>
-        </div> */}
-
         <h5 className="res-title">{title}</h5>
         {description && <p className="res-desc">{description}</p>}
       </div>

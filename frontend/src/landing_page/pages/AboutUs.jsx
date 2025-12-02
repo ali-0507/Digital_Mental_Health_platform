@@ -17,10 +17,6 @@ export default function AboutUs() {
             AI-assisted tools, professional support, and a safe space to reflect and grow.
           </p>
         </div>
-
-        {/* <div className="about-hero-image">
-          <img src="../assests/aboutHero.jpg" alt="Mental wellness" />
-        </div> */}
       </section>
 
       {/* ------- PROBLEM SECTION ------- */}

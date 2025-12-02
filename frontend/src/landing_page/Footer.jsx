@@ -13,8 +13,6 @@ function Footer() {
             <ul className="list-unstyled d-flex flex-row flex-md-column gap-3 mt-5 footer-links">
               <p className="fs-5 mb-4">Trust</p>
               <div className="text-center">
-                {/* <img src="/assests/logo_dmh.png" alt="Logo" className="footer-logo img-fluid my-2"/> */}
-                {/* <i class="fa-solid fa-laptop-medical lappy"></i> */}
                 <h5><i>Connect&Evolve</i></h5>
               </div>
 

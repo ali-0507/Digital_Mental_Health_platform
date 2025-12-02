@@ -38,16 +38,15 @@
   border-radius: 22px;
   padding: 20px;
   box-shadow: 0 8px 25px rgba(23, 55, 83, 0.15);
-
   opacity: 0;
   visibility: hidden;
   pointer-events: none;       /* prevents clicking when hidden */
   transform-origin: top right;
   transform: translateY(-6px);/* slight lift for nicer animation */
   transition:
-    opacity 180ms ease,
-    transform 180ms ease,
-    visibility 0s linear 250ms; /* visibility will flip after the hide delay */
+  opacity 180ms ease,
+  transform 180ms ease,
+  visibility 0s linear 250ms; 
 }
 
 /* show immediately on hover of trigger OR when hovering the menu */
@@ -110,17 +109,69 @@
 }
 
 
-.logout-btn{
-  background: #ae85f9 !important;
+.logout-btn{ 
   border:none;
   color:#E1F1FC;
   font-size:22px;
+  font-weight: 600;
 }
 .logout-btn:hover{
-   color:#eff8fe;
+   color:#7e5af4;
 }
 
 .btn-outline-light:hover{
   background-color: #CFCAC6 !important;
   color:#173753 !important;
+}
+.navbar-collapse,
+.navbar-collapse.collapsing,
+.navbar-collapse.collapse {
+  transition: none !important;
+  overflow: visible !important;
+}
+
+/* 📱 MOBILE RESPONSIVE NAVBAR    */
+
+@media (max-width: 769px) { 
+  .navbar-collapse.collapse {
+    display: none !important;
+  }
+  .navbar-collapse.collapse.show {
+    display: block !important;
+  } 
+  .navbar-brand {
+    font-size: 1rem;
+  }
+  nav.custom-nav {
+    padding: 8px 8px;
+  }
+.hero {
+    /* padding-top: 40px !important;  */
+    padding: 20px 15px !important; 
+  }
+
+  /* Collapse menu spacing */
+  .navbar-collapse {
+    padding-top: 6px;
+  }
+  .nav-item {
+    margin-bottom: 4px;
+  }
+  .explore-toggle {
+    font-size: 1.25rem;
+    padding-left: 0;
+  }
+  .explore-menu {
+    padding: 12px;
+  }
+  .explore-item h5 {
+    font-size: 0.95rem;
+  }
+  .explore-item .link {
+    font-size: 16px;
+  }
+  .logout-btn {
+    font-size: 1.5rem;
+    padding: 0;
+  }
 }

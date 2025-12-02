@@ -62,11 +62,6 @@ api.interceptors.response.use(
   async (error) => {
     const original = error.config;
 
-    // // Not a 401 → reject immediately
-    // if (error.response?.status !== 401 || original._retry) {
-    //   return Promise.reject(error);
-    // }
-  // If we shouldn't try to refresh, just reject and DON'T logout spam
     if (!shouldAttemptRefresh(error, original) || original._retry) {
       return Promise.reject(error);
     }
