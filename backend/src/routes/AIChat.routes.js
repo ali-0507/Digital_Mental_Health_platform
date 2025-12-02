@@ -5,10 +5,9 @@ const {protect} = require("../middlewares/auth");
 const AIChatController = require("../controllers/AIChat.controller");
 
 
-router.post("/",/*protect, */chatWithAI);
+router.post("/",chatWithAI);
 
 // save chats in DB
-// Save chat
 router.post("/save", protect, AIChatController.saveChat);
 
 // Get all saved chats for user

@@ -1,4 +1,4 @@
-// backend/src/models/AuditLog.js
+
 const mongoose = require("mongoose");
 
 const AuditLogSchema = new mongoose.Schema({

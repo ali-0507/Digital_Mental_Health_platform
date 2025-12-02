@@ -1,4 +1,4 @@
-// backend/src/models/Resource.js
+
 const mongoose = require("mongoose");
 
 const AdminResourceSchema = new mongoose.Schema({

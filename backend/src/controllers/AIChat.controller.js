@@ -37,7 +37,7 @@ exports.chatWithAI = async (req, res) => {
       systemInstruction: { text: SYSTEM_PROMPT },
       generationConfig: { temperature: 0.7, maxOutputTokens: 300 },
      });
-    // console.log("🧠 Gemini raw response:", JSON.stringify(result, null, 2));
+    
 
       const reply =
         (result?.candidates?.[0]?.content?.parts || [])

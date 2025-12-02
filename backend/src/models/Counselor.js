@@ -1,4 +1,4 @@
-// backend/src/models/Counselor.js
+
 const mongoose = require("mongoose");
 
 const CounselorSchema = new mongoose.Schema(
