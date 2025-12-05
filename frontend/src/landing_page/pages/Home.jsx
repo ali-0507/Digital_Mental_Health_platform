@@ -23,7 +23,7 @@ function Home() {
             support from our AI wellness companion.
           </p>
           <div className="hero-buttons">
-            <Link to="/signup" className="btn-primary">
+            <Link to="/login" className="btn-primary">
               Get Started
             </Link>
             <Link to="/chat" className="btn-secondary">

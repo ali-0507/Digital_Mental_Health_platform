@@ -1,4 +1,5 @@
  
+import { Link } from "react-router-dom";
 import ScreeningForm from "../components/ScreeningForm";
 // reuse theme (adjust path if needed)
 import "./Screening.css";             // tiny page-specific tweaks
@@ -26,6 +27,12 @@ function Screening() {
          <a href="/history" className={`btn history-btn ${!isLoggedIn ? "disabled" : ""}`}>
           View history
         </a>
+         {!isLoggedIn && (
+                  <div className="mt-2">
+                    Please <Link to="/login" style={{color:"#873ce2ff", textDecoration:"underline"}}>login</Link> to view your history.
+                  </div>
+                )}
+                
       </div>
         
         <div className="screening-card m-3 p-4 p-md-4">

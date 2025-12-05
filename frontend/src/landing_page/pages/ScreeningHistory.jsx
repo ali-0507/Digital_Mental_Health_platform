@@ -102,15 +102,23 @@ const deleteSingle = async (id) => {
             </div>
            
                          
-              <ul id="answer" style={{ listStyleType: "none" }}>
-                {item.questions.map((question, qIndex) => (
-                  <li key={qIndex} style={{ marginBottom: "8px" }}>
-                    <b>&#9679;</b> {question} <br /><br/>
-                    <p style={{fontWeight:"lighter",color:"GrayText",padding:"0px"}}>
-                      Your response &rarr; </p>{OPTIONS[item.answers[qIndex]] ?? item.answers[qIndex]}
-                  </li>
-                ))} 
-              </ul>
+               <ul id="answer" style={{ listStyleType: "none" }}>
+               {(item.questions || []).map((question, qIndex) => {
+               const answer = item.answers?.[qIndex];               // safe access
+               const display = (answer === undefined || answer === null)
+                ? "No answer"
+                : (OPTIONS[answer] ?? answer);
+         return (
+               <li key={qIndex} style={{ marginBottom: "8px" }}>
+               <b>&#9679;</b> {question} <br /><br/>
+              <p style={{fontWeight:"lighter",color:"GrayText",padding:"0px"}}>
+               Your response &rarr;
+            </p>
+           {display}
+         </li>
+       );
+      })}
+   </ul>
                     
           </div>
       
