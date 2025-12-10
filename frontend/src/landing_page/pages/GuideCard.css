@@ -1,7 +1,8 @@
 .guide-heading{
     font-size:2.5rem;
     font-weight: 600;
-    color:#173753;
+    text-align: center;
+    color:#965fd8;
     font-family: Inter, sans-serif;
 }
 .guide-card{
@@ -9,16 +10,15 @@
     flex-direction: column;
     justify-content: space-around;
     padding:2rem;
-    margin:3rem;
-    
+    margin:3rem;   
     width:100%;
     background-color: #ffffff;
     border-radius:2rem;
     box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
 }
 .guide-title{
-    color:#173753;
-    /* padding:0.5rem; */
+    color:#965fd8;
+    padding:0.5rem;
     font-weight:600;
     font-size:1.3rem;
 }
@@ -26,17 +26,18 @@
     font-style: italic;
     padding:0.5rem;
     padding-bottom:0;
-    margin-left:0.6rem;
+    margin-left:0.2rem;
 }
 .guide-meta{
     margin-left:1rem;
-    line-height: 1.8rem;
+    line-height: 2rem;
     font-weight: bold;
+    color:#0e6eb2;
 }
 .guide-card-actions{
     display:flex;
     flex-direction: row;
-    gap:1rem;
+    margin-left:1rem;
 }
 .guide-actions-protected{
     display:flex;
@@ -44,16 +45,17 @@
     padding-left:1rem;
 }
 .guide-open{
-    background-color:lightblue !important;
+    background-color:rgb(121, 129, 222) !important;
+    color:white;
     font-weight:600;
 }
 .guide-open:hover{
-    background-color:#1a4464 !important;
+    background-color:#4626b9 !important;
     color:whitesmoke;
     font-weight:600;
 }
 .guide-outline:hover{
-    background: #173753;
+    background: #39174d;
     color:white;
 }
 .guide-outline.active{

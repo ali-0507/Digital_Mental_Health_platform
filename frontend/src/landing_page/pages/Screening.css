@@ -168,36 +168,33 @@
 .scr-shadow     { box-shadow: var(--scr-shadow); }
 
 
-/* Subtle helper text + plain links used in protected section */
 .screening-note { color: var(--scr-muted); }
 .link-plain { color: var( --scr-head)!important; text-decoration: none;font-size:medium; }
 .link-plain:hover { text-decoration: underline; color: var(--scr-accent-600) !important;}
 
-/* Disabled look for the history button when logged out */
+
 .btn.disabled, .btn:disabled {
   opacity: .6;
   pointer-events: none;
 }
 .screening-history{
   text-align:justify;
-  border-radius:8% !important;
   border:none;
+  border-radius:50px !important;
   font-size:medium;
   box-shadow: 0 0 0 .25rem rgba(9,189,183,.15);
   margin-bottom:2rem;
 }
 .start-info{
   display:flex;
-  justify-content:space-evenly;
+  justify-content:space-around;
   text-align: center;
   align-items:center;
-  padding-top:0.5rem;
-  margin-top:0.6rem;
-  background-color: #eef8ff;
-  border-radius:30px;
+  padding:0.1rem;
+  margin-top:0.2rem;
 }
 .delete-btn{
-  background-color: #eef8ff !important;
+  background-color: #ffffff !important;
   margin:10px;
   text-align: center;
   padding:2px;
@@ -212,15 +209,11 @@
 
 
 #answer {
-  background: #f3e8ff; /* make it slightly transparent */
-  border-radius: 7%;
-  padding: 0.4rem;
+  background: #f3e8ff;
+  padding: 0.7rem;
+  border-radius:50px !important;
   font-weight: 600;
   color: #392553;
-  backdrop-filter: blur(8px); 
-  backdrop-filter:brightness(90%);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 

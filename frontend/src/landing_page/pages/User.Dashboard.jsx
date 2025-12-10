@@ -83,11 +83,15 @@ export default function Dashboard() {
   dashboard?.metrics?.resourcesViewed ??         // optional fallback if you add metrics
   (Array.isArray(recent) ? recent.filter((r) => r.type === "resource").length : 0); // last resort
 
-  // small helpers
+  
   const fmtDate = (iso) => {
     try {
       const d = new Date(iso);
-      return d.toLocaleString();
+      return d.toLocaleString("en-IN", {
+       year: "numeric",
+       month: "short",
+       day: "numeric",
+      });
     } catch {
       return iso || "—";
     }
@@ -123,7 +127,7 @@ export default function Dashboard() {
       <i class="fa-solid fa-calendar-days" style={{color:"#1fc768ff"}}></i> Book Session&nbsp;&nbsp;
     </button>
     <button className="btn w-100 mb-3 side-btn" onClick={() => navigate("/resources")}>
-         &nbsp; &nbsp; &nbsp;<i class="fa-solid fa-book" style={{color:"#b54cf2ff"}}></i> Explore Resources
+     &nbsp;&nbsp;<i class="fa-solid fa-book" style={{color:"#b54cf2ff"}}></i> Explore Resources
     </button>
     <button className="btn w-100 mb-3 side-btn" onClick={() => navigate("/peer-support")}>
       <i class="fa-solid fa-handshake" style={{color:"#0be1d3dc"}}></i> Peer Support&nbsp;&nbsp;
@@ -136,9 +140,21 @@ export default function Dashboard() {
 
    
 
-  <div className="sidebar-footer text-center p-3 small">
-    <button className="btn btn-sm btn-outline-secondary w-100 mt-2">⚙ Settings</button>
-    <button className="btn btn-sm btn-outline-secondary w-100 mt-2">❓ Help</button>
+  <div className="sidebar-footer">
+    <ul>
+      <li>
+        <i class="fa-solid fa-globe"></i> <a href="/about-us">About us</a>
+      </li>
+      <li>
+        <i class="fa-solid fa-clipboard-question"></i> <a href="/faq">FAQ</a>
+      </li>
+      <li>
+        <i class="fa-solid fa-user-shield"></i> <a href="/privacy-policy">Privacy Policy</a>
+      </li>
+      <li>
+        <i class="fa-solid fa-file-contract"></i> <a href="/terms-of-service">Terms and Conditions</a>
+      </li>
+    </ul>
   </div>
 </aside>
 
@@ -185,10 +201,10 @@ export default function Dashboard() {
 
           {/* Tiles row */}
           <div className="row g-3 mb-4">
-            <Tile title="AI Chats (7d)" value={tiles.chatsThisWeek ?? 0} subtitle="Conversations this week" icon="bi-chat-dots" />
-            <Tile title="Last Screening" value={tiles.lastScreeningScore ?? "—"} subtitle="Latest screening score" icon="bi-clipboard-check" />
-            <Tile title="Next Session" value={tiles.nextSession ? fmtDate(tiles.nextSession) : "None"} subtitle="Upcoming booking" icon="bi-calendar-event" />
-            <Tile title="Peer Support (7d)" value={tiles.peerSupportThisWeek ?? tiles.peerSupportThisWeek ?? 0} subtitle="Peer support activity" icon="bi-people" />
+            <Tile title="AI Chats" subtitle="Conversations this week" value={tiles.chatsThisWeek ?? 0} icon="bi-chat-dots" />
+            <Tile title="Last Screening" subtitle="Latest screening score"value={tiles.lastScreeningScore ?? "—"}  icon="bi-clipboard-check" />
+            <Tile title="Next Session" subtitle="Upcoming booking"  value={tiles.nextSession ? fmtDate(tiles.nextSession) : "None"} icon="bi-calendar-event" />
+            <Tile title="Peer Support" value={tiles.peerSupportThisWeek ?? tiles.peerSupportThisWeek ?? 0} subtitle="Peer support activity" icon="bi-people" />
           </div>
 
           {/* Charts row */}
@@ -304,8 +320,8 @@ export default function Dashboard() {
                   <h6 className="card-title mb-3">Need help?</h6>
                   <p className="small text-muted">If you're feeling overwhelmed, reach out to a counselor or one of our peer groups.</p>
                   <div className="d-grid gap-2">
-                    <button className="btn btn-outline-mental" onClick={() => navigate("/peer-support")}>Go to Peer Support</button>
-                    <button className="btn btn-outline-mental" onClick={() => navigate("/resources")}>View Resources</button>
+                    <p style={{color:"#ce4343ff"}}>Call on toll-free number of Tele manas 14416 or 
+                      <br></br>1800-89-14416</p>
                   </div>
                 </div>
               </div>

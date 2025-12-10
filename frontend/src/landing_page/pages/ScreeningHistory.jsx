@@ -63,17 +63,23 @@ const deleteSingle = async (id) => {
 
   return (
     <div className="container mx-auto my-4" style={{maxWidth: "1000px", padding:"10px"}}>
-      <h3 style={{textAlign:"center",padding:"10px",fontFamily:"Intern,sans-serif",fontSize:"45px",color:"#173753"}}>Your Screening History</h3>
-      <p style={{color:"#6b7280",textAlign:"center",fontSize:"20px",fontStyle:"italic"}}>Take a look at your previous screening</p>
-        <div className="text-center mb-3">
+
+        <div className="text-center mb-3 d-flex justify-content-end">
           <button 
             className="btn deleteBtn"
             onClick={handleDeleteHistory}
-            style={{ borderRadius: "10px", padding: "8px 16px" }}
+            style={{ borderRadius: "10px", padding: "8px 16px",
+              backgroundColor:"#d53939ff",color:"white" }}
           >
           Clear All History
           </button>
         </div>
+
+      <h3 style={{textAlign:"center",padding:"1px",fontFamily:"Intern,sans-serif",fontSize:"45px",color:"#965fd8"}}>
+        Your Screening History</h3><br></br>
+      
+      <p style={{color:"#6b7280",textAlign:"center",fontSize:"20px",fontStyle:"italic"}}>
+        Take a look at your previous screening</p>
      
       
       {history.length === 0 ? (

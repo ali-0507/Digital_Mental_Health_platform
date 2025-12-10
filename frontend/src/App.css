@@ -219,8 +219,8 @@ body.dark button {
 /* tiles styling */
 .tile-card { border-radius: 12px; box-shadow: 0 8px 10px rgba(16, 33, 214, 0.2); }
 .tile-icon { font-size: 28px; color: #4e73df; background: rgba(78,115,223,0.08); width: 48px; height: 48px; display:flex; align-items:center; justify-content:center; border-radius: 10px; }
-.tile-title { font-size: 18px; color: #243447; }
-.tile-value { color: #111827;}
+.tile-title { font-size: 20px; color: #243447; }
+.tile-value { color: #111827; font-size: 20px;}
 
 /* chart card extra polish */
 .chart-card { border-radius: 12px; box-shadow: 0 8px 10px rgba(47, 4, 203, 0.2) !important; }
@@ -245,7 +245,7 @@ body.dark button {
   width: 55px;
   height: 55px;
   border-radius: 50%;
-  background: #4e73df;
+  background: #373738;
   color: #fff;
   font-size: 24px;
   font-weight: bold;
@@ -294,7 +294,20 @@ body.dark button {
   transition: box-shadow 0.6s ease-in ,transform 0.7s ease;
    transform: translateY(-6px);
 }
-
+.sidebar-footer ul{
+  margin-top:1.3rem;
+  color:darkgrey;
+  list-style:none;
+  padding-left:1.4rem;
+  font-size:18px;
+}
+.sidebar-footer ul li{
+  margin-top:1.3rem;
+}
+.sidebar-footer ul li:hover{
+  text-decoration: underline;
+  color:rgb(103, 59, 173);
+}
 
 
  

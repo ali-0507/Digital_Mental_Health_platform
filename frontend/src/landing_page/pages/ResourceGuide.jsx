@@ -5,7 +5,7 @@ import "../pages/GuideCard.css";
 export default function ResourceGuide(){
     const guideResources =[{
         id:"guide-1",
-        title:"Stress Management",
+        title:"Guide to manage stress",
         type:"pdf",
         link:"assests/guides/Stress_Management.pdf",
         description:
@@ -33,7 +33,7 @@ export default function ResourceGuide(){
 
     return(
         <div className="container py-5 px-5 mx-5">
-            <h2 className="mb-3 text-center guide-heading">Stress Management</h2>
+            <h2 className="mb-3 guide-heading">Stress Management</h2>
             <p className="text-center text-muted mb-4 mt-2">
                 Explore our curated resources to help you manage stress effectively and improve your emotional well-being.
             </p>

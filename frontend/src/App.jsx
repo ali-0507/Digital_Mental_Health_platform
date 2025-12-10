@@ -22,7 +22,7 @@ import MindfulnessVideo from "./landing_page/pages/MindfulnessVideo.jsx";
 import Dashboard from "./landing_page/pages/User.Dashboard.jsx";
 import AdminLogin from "./landing_page/admin/pages/AdminLogin.jsx";
 import AboutUs from "./landing_page/pages/AboutUs.jsx";
-
+import FAQ from "./landing_page/pages/FAQ.jsx";
 
 function App() {
   const location = useLocation();
@@ -106,6 +106,7 @@ function App() {
           />
 
         <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/faq" element={<FAQ />} />
 
 
         {/* Not Found */}

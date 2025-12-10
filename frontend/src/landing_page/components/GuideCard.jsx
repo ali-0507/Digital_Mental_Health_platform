@@ -60,7 +60,6 @@ export default function GuideCard({
   return (
     <div className="guide-card">
       <div className="guide-card-body">
-       <span><i className="fa-solid fa-seedling fs-5 pb-2"></i></span>
        <h5 className="guide-title">{title}</h5>
         {description && <p className="guide-desc">{description}</p>}
 
@@ -85,7 +84,7 @@ export default function GuideCard({
         </a>
 
         {/* protected actions */}
-        <div className="guide-actions-protected">
+        {/* <div className="guide-actions-protected">
           <button
             type="button"
             className={`btn guide-outline ${isBookmarked ? "active" : ""}`}
@@ -103,7 +102,7 @@ export default function GuideCard({
           >
             <i className="bi bi-send"></i>
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
