@@ -97,35 +97,58 @@ export default function Dashboard() {
     <div className="dashboard-wrap" style={{ minHeight: "80vh" }}>
       {/* Sidebar + main content layout */}
       <div className="d-flex">
-        <aside className={`dashboard-sidebar ${sidebarOpen ? "open" : "closed"}`}>
-          <div className="sidebar-header d-flex justify-content-between align-items-center px-3 py-2">
-            
-            <strong className="fs-5" style={{color:"#4e73df"}}>Quick actions</strong>
-
-            <button className="btn btn-sm btn-outline-danger" onClick={() => setSidebarOpen(false)} aria-label="Close sidebar">
+     <aside className={`dashboard-sidebar ${sidebarOpen ? "open" : "closed"}`}>
+       {/* User mini profile */}
+  <div className="sidebar-profile text-center py-3 position-relative">
+    <button className="close-btn" onClick={() => setSidebarOpen(false)} aria-label="Close sidebar">
               ✕
-            </button>
-          </div>
+      </button>
+    <div className="avatar-circle mx-auto mb-2">
+      {user?.name?.charAt(0).toUpperCase()}
+    </div>
+    <div className="fw-bold">{user?.name}</div>
+    <small className="text-muted">{user?.email}</small>
+  </div>
 
-          <div className="sidebar-body p-3">
-            <button className="btn w-100 mb-3 side-btn" onClick={() => navigate("/chat")}>Continue Chat</button>
-            <button className="btn w-100 mb-3 side-btn" onClick={() => navigate("/screening")}>Take Screening</button>
-            <button className="btn w-100 mb-3 side-btn" onClick={() => navigate("/booking")}>Book Session</button>
-            <button className="btn w-100 mb-3 side-btn" onClick={() => navigate("/resources")}>Explore Resources</button>
-            <button className="btn w-100 side-btn" onClick={() => navigate("/peer-support")}>Explore Peer-Support</button>
-          </div>
+  <hr className="sidebar-divider" />
 
-          <div className="sidebar-footer p-3 small text-muted">
-            Pro tip: use the actions to quickly continue your journey.
+  <div className="sidebar-body p-3">
+    <button className="btn w-100 mb-3 side-btn" onClick={() => navigate("/chat")}>
+      <i class="fa-solid fa-comments" style={{color:"#4c73f2ff"}}></i> Continue Chat
+    </button>
+    <button className="btn w-100 mb-3 side-btn" onClick={() => navigate("/screening")}>
+      <i class="fa-solid fa-chart-line" style={{color:"#db4291ff"}}></i> Take Screening
+    </button>
+    <button className="btn w-100 mb-3 side-btn" onClick={() => navigate("/booking")}>
+      <i class="fa-solid fa-calendar-days" style={{color:"#1fc768ff"}}></i> Book Session&nbsp;&nbsp;
+    </button>
+    <button className="btn w-100 mb-3 side-btn" onClick={() => navigate("/resources")}>
+         &nbsp; &nbsp; &nbsp;<i class="fa-solid fa-book" style={{color:"#b54cf2ff"}}></i> Explore Resources
+    </button>
+    <button className="btn w-100 mb-3 side-btn" onClick={() => navigate("/peer-support")}>
+      <i class="fa-solid fa-handshake" style={{color:"#0be1d3dc"}}></i> Peer Support&nbsp;&nbsp;
+    </button>
+  </div>
+<div className="sidebar-footer p-3 small text-muted">
+            Pro tip: use the above actions to quickly continue your journey.
           </div>
-        </aside>
+  <hr className="sidebar-divider" />
+
+   
+
+  <div className="sidebar-footer text-center p-3 small">
+    <button className="btn btn-sm btn-outline-secondary w-100 mt-2">⚙ Settings</button>
+    <button className="btn btn-sm btn-outline-secondary w-100 mt-2">❓ Help</button>
+  </div>
+</aside>
+
 
         {/* small open button when sidebar closed */}
         {!sidebarOpen && (
-          <div className="sidebar-closed-btn p-2 mt-3">
+          <div className="sidebar-closed-btn p-2 mt-2">
             <button className="btn options" onClick={() => setSidebarOpen(true)} 
             aria-label="Open sidebar">
-              Menu</button>
+               ☰</button>
           </div>
         )}
 
@@ -133,7 +156,7 @@ export default function Dashboard() {
         <main className="flex-fill p-4">
           <div className="d-flex justify-content-between align-items-start mb-3">
             <div style={{textAlign:"left",fontFamily:"Inter, sans-serif"}}>
-              <h1 className="mt-0" style={{color:"#4e73df"}}>{greeting.title}</h1>
+              <h1 className="mt-0" style={{color:"#4e73df",fontWeight:"bold"}}><i className="fa-solid fa-brain fs-2"></i>{greeting.title}</h1>
               <h4 className="mb-1 fs-5"><i>{greeting.headline}</i></h4>
               <p className="text-muted fs-6">{greeting.subline}</p>
              

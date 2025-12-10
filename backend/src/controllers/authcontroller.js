@@ -28,9 +28,10 @@ const signRefreshToken = (user) => {
   const maxAgeMs = 7 * 24 * 60 * 60 * 1000; // sync with REFRESH_TOKEN_EXPIRES if you change it
   res.cookie("rt", token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
-    path: "/api/auth/refresh", // cookie is only sent to refresh endpoint
+    // secure: process.env.NODE_ENV === "production",
+    secure: false,
+    sameSite: "lax", // later write none ...production time
+    path: "/", // cookie is only sent to refresh endpoint
     maxAge: maxAgeMs,
   });
 };

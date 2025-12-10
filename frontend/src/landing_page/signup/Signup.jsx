@@ -3,9 +3,13 @@ import { useState } from "react";
 import api from "../../api/axios";
 import "./Signup.css";
 import Swal from "sweetalert2";
+import { useAuth } from "../../context/AuthContext";
+
+
 
 function Signup() {
 const navigate = useNavigate();
+const {login} = useAuth();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -87,7 +91,7 @@ const navigate = useNavigate();
     });
 
      if (Object.keys(errors).length > 0) {
-      setError("Please fix the highlighted errors before submitting.");
+      setError("Please fix the highlighted fields before submitting.");
       return;
     }
     try {
@@ -101,17 +105,16 @@ const navigate = useNavigate();
       });
 
       // Save token + redirect
-      localStorage.setItem("token", res.data.token);
+      // localStorage.setItem("token", res.data.token);
+      login(res.data.accessToken, res.data.user);
       Swal.fire({
     icon: "success",
     title: "Signup Successful 🎉",
-    text: "Signup successful. Redirecting to your login page...",
+    text: "Signup successful. Redirecting to your dashboard page...",
     timer: 2000,
     showConfirmButton: false,
-    });
-      setTimeout(() => {
-    navigate("/login");
-    }, 2000); 
+    });  
+    navigate("/dashboard"); 
     } catch (err) {
   console.error(err);
   const msg = err.response?.data?.message;

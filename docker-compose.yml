@@ -1,0 +1,29 @@
+version : "3.8"
+
+services:
+   backend:
+       build: ./backend
+       container_name: connect-backend
+       ports:
+        - "8080:8080"
+       env_file:
+        - ./backend/.env 
+       networks:
+        - ce-network
+
+   frontend:
+      build: ./frontend
+      container_name: connect-frontend
+      env_file:
+       - ./frontend/.env
+      ports:
+       - "5173:5173"
+      depends_on:
+       - backend
+      networks:
+        - ce-network
+
+  
+networks :
+  ce-network :
+       

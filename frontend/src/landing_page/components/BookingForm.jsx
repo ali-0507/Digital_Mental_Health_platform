@@ -5,7 +5,7 @@ import "../pages/Booking.css";
 function buildSlots() {
   // 09:00 – 17:00 every 30 mins
   const slots = [];
-  for (let h = 9; h <= 17; h++) {
+  for (let h = 9; h <= 18; h++) {
     for (let m of [0, 30]) {
       const hh = String(h).padStart(2, "0");
       const mm = String(m).padStart(2, "0");
@@ -27,15 +27,16 @@ export default function BookingForm({ isLoggedIn, onRequireAuth }) {
   const [submitted, setSubmitted] = useState(false);
 
   const slots = useMemo(buildSlots, []);
+  const [period, setPeriod] = useState("AM");
 
   const handleChange = (e) => {
     setForm((p) => ({ ...p, [e.target.name]: e.target.value }));
   };
 
-  const selectSlot = (t) => setForm((p) => ({ ...p, time: p.time === t ? "" : t }));
+  const selectSlot = (t) =>
+    setForm((p) => ({ ...p, time: p.time === t ? "" : t }));
 
-
-const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!isLoggedIn) return onRequireAuth?.();
 
@@ -53,13 +54,20 @@ const handleSubmit = async (e) => {
     }
   };
 
+  function formatToAmPm(time24) {
+    let [h, m] = time24.split(":").map(Number);
+    const suffix = h >= 12 ? "PM" : "AM";
+    h = h % 12 || 12;
+    return `${String(h).padStart(2, "0")}:${m === 0 ? "00" : "30"} ${suffix}`;
+  }
 
   if (submitted) {
     return (
       <div className="bk-success p-3 p-md-4">
         <h5 className="mb-1">Request received ✔</h5>
         <p className="text-muted mb-0">
-          We’ve recorded your preferred time. You’ll receive a confirmation email after a counselor accepts.
+          We’ve recorded your preferred time. You’ll receive a confirmation
+          email after a counselor accepts.
         </p>
       </div>
     );
@@ -111,6 +119,20 @@ const handleSubmit = async (e) => {
             <span>Preferred Time</span>
             <small className="text-muted">Tap to select</small>
           </label>
+          <div className="d-flex gap-2 ">
+            {[].map((p) => (
+              <button
+                type="button"
+                key={p}
+                className={`bk-period ${period === p ? "active" : ""}`}
+                onClick={() => setPeriod(p)}
+                disabled={!isLoggedIn}
+              >
+                {p}
+              </button>
+            ))}
+          </div>
+
           <div className="bk-slots">
             {slots.map((t) => (
               <button
@@ -120,7 +142,7 @@ const handleSubmit = async (e) => {
                 onClick={() => (isLoggedIn ? selectSlot(t) : onRequireAuth?.())}
                 disabled={!isLoggedIn}
               >
-                {t}
+                {formatToAmPm(t)}
               </button>
             ))}
           </div>
@@ -145,7 +167,11 @@ const handleSubmit = async (e) => {
                 key={m}
                 type="button"
                 className={`bk-mode ${form.mode === m ? "active" : ""}`}
-                onClick={() => (isLoggedIn ? setForm((p) => ({ ...p, mode: m })) : onRequireAuth?.())}
+                onClick={() =>
+                  isLoggedIn
+                    ? setForm((p) => ({ ...p, mode: m }))
+                    : onRequireAuth?.()
+                }
                 disabled={!isLoggedIn}
               >
                 {m === "online" ? "Online (video)" : "In-person"}
@@ -170,7 +196,11 @@ const handleSubmit = async (e) => {
 
       {!isLoggedIn && (
         <div className="bk-note mt-3">
-          Please <button type="button" className="link-plain" onClick={onRequireAuth}>log in</button> to submit.
+          Please{" "}
+          <button type="button" className="link-plain" onClick={onRequireAuth}>
+            log in
+          </button>{" "}
+          to submit.
         </div>
       )}
 
@@ -182,7 +212,8 @@ const handleSubmit = async (e) => {
 
       <div className="bk-privacy mt-3">
         <i className="bi bi-shield-lock me-1"></i>
-        Your booking is confidential. We’ll only email you about this appointment.
+        Your booking is confidential. We’ll only email you about this
+        appointment.
       </div>
     </form>
   );

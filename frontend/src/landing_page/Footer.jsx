@@ -9,11 +9,11 @@ function Footer() {
         <div className="row">
           
           {/* Trust Branding */}
-          <div className="col-3 d-flex justify-content-end align-items-end ">
+          <div className="col-3 d-flex justify-content-end align-items-end mb-5">
             <ul className="list-unstyled d-flex flex-row flex-md-column gap-3 mt-5 footer-links">
-              <p className="fs-5 mb-4">Trust</p>
-              <div className="text-center">
-                <h5><i>Connect&Evolve</i></h5>
+              <p className="fs-5 mb-2">Trust</p>
+              <div className="text-center"> 
+                <h5><i className="fa-solid fa-brain"></i><i>Connect&Evolve</i></h5>
               </div>
 
               <li className="fs-6 text-center">

@@ -110,9 +110,14 @@
 
 
 .logout-btn{ 
+   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5px;
   border:none;
-  color:#E1F1FC;
-  font-size:22px;
+  color: #ffffff;
+  font-size: 200px;
   font-weight: 600;
 }
 .logout-btn:hover{
