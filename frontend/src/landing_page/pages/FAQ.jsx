@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./FAQ.css";
-import faqCharacter from "../../../public/assests/faq.webp";
+import faqCharacter from "/assests/faq.webp";
 
 function FAQ() {
   const faqData = [

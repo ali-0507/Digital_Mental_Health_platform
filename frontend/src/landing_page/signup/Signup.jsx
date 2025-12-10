@@ -324,7 +324,6 @@ const {login} = useAuth();
                   >
                     <option value="user">User</option>
                     <option value="counselor">Counselor</option>
-                    <option value="admin">Admin</option>
                   </select>
                   <small className="text-muted">
                     Roles help personalize the experience and access.

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import api from "../../api/axios";
 import { useAuth } from "../../context/AuthContext.jsx";
 import {
@@ -143,16 +143,16 @@ export default function Dashboard() {
   <div className="sidebar-footer">
     <ul>
       <li>
-        <i class="fa-solid fa-globe"></i> <a href="/about-us">About us</a>
+        <i class="fa-solid fa-globe"></i> <Link to="/about-us">About us</Link>
       </li>
       <li>
-        <i class="fa-solid fa-clipboard-question"></i> <a href="/faq">FAQ</a>
+        <i class="fa-solid fa-clipboard-question"></i> <Link to="/faq">FAQ</Link>
       </li>
       <li>
-        <i class="fa-solid fa-user-shield"></i> <a href="/privacy-policy">Privacy Policy</a>
+        <i class="fa-solid fa-user-shield"></i> <Link to="/privacy-policy">Privacy Policy</Link>
       </li>
       <li>
-        <i class="fa-solid fa-file-contract"></i> <a href="/terms-of-service">Terms and Conditions</a>
+        <i class="fa-solid fa-file-contract"></i> <Link to="/terms-of-service">Terms and Conditions</Link>
       </li>
     </ul>
   </div>
