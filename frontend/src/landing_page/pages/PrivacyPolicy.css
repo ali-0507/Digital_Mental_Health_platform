@@ -1,0 +1,108 @@
+.privacy-container {
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #dbd7fb 0%, #d9f1fd 100%);
+  display: flex;
+  justify-content: center;
+  align-items:center;
+}
+
+.privacy-card {
+  width: 90%;
+  max-width:80%;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  animation: fadeIn 0.6s ease;
+}
+
+.privacy-title {
+  font-size: 2.3rem;
+  font-weight: 700;
+  font-family: "Inter", sans-serif;
+  color: #6b5cff;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.updated-date {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 25px;
+}
+
+h4 {
+  margin-top: 25px;
+  color: #4b3dbd;
+}
+
+ul {
+  margin-left: 20px;
+  margin-top: 10px;
+  font-family: "Inter", sans-serif;
+}
+
+.email {
+  font-weight: bold;
+  color: #6b5cff;
+  font-family: "Inter", sans-serif;
+}
+
+.policy-buttons {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.btn-primary {
+  background: #6b5cff;
+  padding: 10px 22px;
+  border-radius: 25px;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  background: #4c3ac6;
+  transform: translateY(-3px);
+}
+
+.btn-secondary {
+  background: #ffffff;
+  color: #6b5cff;
+  padding: 10px 22px;
+  border-radius: 25px;
+  border: 2px solid #6b5cff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  background: #f3eaff;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+/* 📱 Mobile */
+@media (max-width: 576px) {
+  .privacy-card {
+    padding: 25px;
+  }
+  .privacy-title {
+    font-size: 1.8rem;
+  }
+  .policy-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

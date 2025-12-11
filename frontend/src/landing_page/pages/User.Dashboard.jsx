@@ -138,7 +138,7 @@ export default function Dashboard() {
           </div>
   <hr className="sidebar-divider" />
 
-   
+   <hr></hr>
 
   <div className="sidebar-footer">
     <ul>
@@ -152,7 +152,7 @@ export default function Dashboard() {
         <i class="fa-solid fa-user-shield"></i> <Link to="/privacy-policy">Privacy Policy</Link>
       </li>
       <li>
-        <i class="fa-solid fa-file-contract"></i> <Link to="/terms-of-service">Terms and Conditions</Link>
+        <i class="fa-solid fa-file-contract"></i> <Link to="/terms">Terms and Conditions</Link>
       </li>
     </ul>
   </div>

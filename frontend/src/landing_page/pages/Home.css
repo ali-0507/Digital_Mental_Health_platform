@@ -96,6 +96,7 @@ transform: translateY(-6px);
 
 .btn-secondary {
   background: white;
+  border:none !important;
   color: #6b5cff;
   transition: box-shadow 0.6s ease-in ,transform 1s ease;
 }

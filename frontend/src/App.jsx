@@ -23,6 +23,8 @@ import Dashboard from "./landing_page/pages/User.Dashboard.jsx";
 import AdminLogin from "./landing_page/admin/pages/AdminLogin.jsx";
 import AboutUs from "./landing_page/pages/AboutUs.jsx";
 import FAQ from "./landing_page/pages/FAQ.jsx";
+import Terms from "./landing_page/pages/Terms.jsx";
+import PrivacyPolicy from "./landing_page/pages/PrivacyPolicy.jsx";
 
 function App() {
   const location = useLocation();
@@ -107,6 +109,11 @@ function App() {
 
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/faq" element={<FAQ />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+
+        
+
 
 
         {/* Not Found */}

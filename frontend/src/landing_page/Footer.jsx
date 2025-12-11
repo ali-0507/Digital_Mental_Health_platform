@@ -39,8 +39,8 @@ function Footer() {
               <p className="fs-5 mb-1 footer-head">Support & Safety</p>
               <li className="fs-6 text-center"><a href="/"><i class="fa-solid fa-phone fs-6 me-2"></i>Emergency contact </a></li>
               <li className="fs-6 text-center"><a href="/faq"><i class="fa-regular fa-circle-question fs-5 me-1"></i> FAQs </a></li> 
-              <li className="fs-6 text-center"><a href="/"> Terms & Conditions</a> </li> 
-              <li className="fs-6 text-center"> <a href="/"><i class="fa-solid fa-shield-halved fs-5 me-2"></i>Privacy Policy</a> </li>
+              <li className="fs-6 text-center"><a href="/terms"><i class="fa-solid fa-file-contract"></i>  Terms & Conditions</a> </li> 
+              <li className="fs-6 text-center"> <a href="/privacy-policy"><i class="fa-solid fa-shield-halved fs-5 me-2"></i>Privacy Policy</a> </li>
             </ul>
           </div>
           
