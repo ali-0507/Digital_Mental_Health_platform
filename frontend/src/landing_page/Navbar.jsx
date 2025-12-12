@@ -136,7 +136,7 @@ function Navbar() {
                                   }).then((result) => {
                                     if (result.isConfirmed) {
                                     logout(); 
-                                    navigate("/");
+                                    navigate("/login");
                                   }
                                   });
                            }} >
